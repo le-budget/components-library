@@ -45,21 +45,21 @@ const sizeClass = computed(() => {
 const toneClass = computed(() => {
   switch (props.color) {
     case "secondary":
-      return "border-c-blue bg-white text-c-blue-dark hover:bg-c-blue-light focus-visible:ring-c-blue-dark";
+      return "border-c-blue bg-white text-c-blue-dark hover:bg-c-blue-dark hover:text-white focus-visible:ring-c-blue-dark";
     case "ghost":
       return "border-transparent bg-transparent text-c-blue-dark hover:bg-c-blue-light/20 focus-visible:ring-c-blue-dark";
     case "primary-success":
       return "border-c-green-dark bg-c-green text-white hover:bg-c-green-dark focus-visible:ring-c-green-dark";
     case "secondary-success":
-      return "border-c-green bg-white text-c-green-dark hover:bg-c-green-light focus-visible:ring-c-green-dark";
+      return "border-c-green bg-white text-c-green-dark hover:bg-c-green-dark hover:text-white focus-visible:ring-c-green-dark";
     case "primary-warning":
       return "border-c-orange-dark bg-c-orange text-white hover:bg-c-orange-dark focus-visible:ring-c-orange-dark";
     case "secondary-warning":
-      return "border-c-orange bg-white text-c-orange-dark hover:bg-c-orange-light focus-visible:ring-c-orange-dark";
+      return "border-c-orange bg-white text-c-orange-dark hover:bg-c-orange-dark hover:text-white focus-visible:ring-c-orange-dark";
     case "primary-error":
       return "border-c-red-dark bg-c-red text-white hover:bg-c-red-dark focus-visible:ring-c-red-dark";
     case "secondary-error":
-      return "border-c-red bg-white text-c-red-dark hover:bg-c-red-light focus-visible:ring-c-red-dark";
+      return "border-c-red bg-white text-c-red-dark hover:bg-c-red-dark hover:text-white focus-visible:ring-c-red-dark";
     case "primary":
     default:
       return "border-c-blue-dark bg-c-blue text-white hover:bg-c-blue-dark focus-visible:ring-c-blue-dark";
