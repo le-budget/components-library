@@ -45,24 +45,24 @@ const sizeClass = computed(() => {
 const toneClass = computed(() => {
   switch (props.color) {
     case "secondary":
-      return "border-c-blue bg-white text-c-blue-dark hover:bg-c-blue-dark hover:text-white focus-visible:ring-c-blue-dark";
+      return "border-c-blue bg-white text-c-blue-dark hover:bg-c-blue-dark hover:text-white active:bg-c-blue-active active:text-white focus-visible:ring-c-blue-dark dark:border-c-black dark:bg-white dark:text-c-black dark:hover:bg-c-black dark:hover:text-white dark:active:bg-c-black-active dark:active:text-white dark:focus-visible:ring-c-black";
     case "ghost":
-      return "border-transparent bg-transparent text-c-blue-dark hover:bg-c-blue-light/20 focus-visible:ring-c-blue-dark";
+      return "border-transparent bg-transparent text-c-blue-dark hover:bg-c-blue-light/20 active:bg-c-blue-active/20 focus-visible:ring-c-blue-dark dark:text-c-black dark:hover:bg-c-black-light dark:active:bg-c-black-active/20 dark:focus-visible:ring-c-black";
     case "primary-success":
-      return "border-c-green-dark bg-c-green text-white hover:bg-c-green-dark focus-visible:ring-c-green-dark";
+      return "border-c-green-dark bg-c-green text-white hover:bg-c-green-dark active:bg-c-green-active focus-visible:ring-c-green-dark dark:border-c-black-success dark:bg-c-black-success dark:hover:bg-c-black-success-dark dark:active:bg-c-black-success dark:focus-visible:ring-c-black-success";
     case "secondary-success":
-      return "border-c-green bg-white text-c-green-dark hover:bg-c-green-dark hover:text-white focus-visible:ring-c-green-dark";
+      return "border-c-green bg-white text-c-green-dark hover:bg-c-green-dark hover:text-white active:bg-c-green-active active:text-white focus-visible:ring-c-green-dark dark:border-c-black-success dark:bg-white dark:text-c-black-success dark:hover:bg-c-black-success dark:hover:text-white dark:active:bg-c-black-success dark:active:text-white dark:focus-visible:ring-c-black-success";
     case "primary-warning":
-      return "border-c-orange-dark bg-c-orange text-white hover:bg-c-orange-dark focus-visible:ring-c-orange-dark";
+      return "border-c-orange-dark bg-c-orange text-white hover:bg-c-orange-dark active:bg-c-orange-active focus-visible:ring-c-orange-dark dark:border-c-black-warning dark:bg-c-black-warning dark:hover:bg-c-black-warning-dark dark:active:bg-c-black-warning dark:focus-visible:ring-c-black-warning";
     case "secondary-warning":
-      return "border-c-orange bg-white text-c-orange-dark hover:bg-c-orange-dark hover:text-white focus-visible:ring-c-orange-dark";
+      return "border-c-orange bg-white text-c-orange-dark hover:bg-c-orange-dark hover:text-white active:bg-c-orange-active active:text-white focus-visible:ring-c-orange-dark dark:border-c-black-warning dark:bg-white dark:text-c-black-warning dark:hover:bg-c-black-warning dark:hover:text-white dark:active:bg-c-black-warning dark:active:text-white dark:focus-visible:ring-c-black-warning";
     case "primary-error":
-      return "border-c-red-dark bg-c-red text-white hover:bg-c-red-dark focus-visible:ring-c-red-dark";
+      return "border-c-red-dark bg-c-red text-white hover:bg-c-red-dark active:bg-c-red-active focus-visible:ring-c-red-dark dark:border-c-black-error dark:bg-c-black-error dark:hover:bg-c-black-error-dark dark:active:bg-c-black-error dark:focus-visible:ring-c-black-error";
     case "secondary-error":
-      return "border-c-red bg-white text-c-red-dark hover:bg-c-red-dark hover:text-white focus-visible:ring-c-red-dark";
+      return "border-c-red bg-white text-c-red-dark hover:bg-c-red-dark hover:text-white active:bg-c-red-active active:text-white focus-visible:ring-c-red-dark dark:border-c-black-error dark:bg-white dark:text-c-black-error dark:hover:bg-c-black-error dark:hover:text-white dark:active:bg-c-black-error dark:active:text-white dark:focus-visible:ring-c-black-error";
     case "primary":
     default:
-      return "border-c-blue-dark bg-c-blue text-white hover:bg-c-blue-dark focus-visible:ring-c-blue-dark";
+      return "border-c-blue-dark bg-c-blue text-white hover:bg-c-blue-dark active:bg-c-blue-active focus-visible:ring-c-blue-dark dark:border-c-black dark:bg-c-black dark:hover:bg-c-black-dark dark:active:bg-c-black-active dark:focus-visible:ring-c-black";
   }
 });
 </script>
