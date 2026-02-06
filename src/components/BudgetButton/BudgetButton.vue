@@ -2,6 +2,16 @@
 import { computed } from "vue";
 
 type ButtonSize = "sm" | "md" | "lg";
+type ButtonColor =
+  | "primary"
+  | "secondary"
+  | "ghost"
+  | "primary-success"
+  | "secondary-success"
+  | "primary-warning"
+  | "secondary-warning"
+  | "primary-error"
+  | "secondary-error";
 
 const props = withDefaults(
   defineProps<{
@@ -9,7 +19,8 @@ const props = withDefaults(
     size?: ButtonSize;
     loading?: boolean;
     disabled?: boolean;
-    error?: boolean;
+    color?: ButtonColor;
+    hideIconsOnLoading?: boolean;
     ariaLabel?: string;
   }>(),
   {
@@ -17,7 +28,8 @@ const props = withDefaults(
     size: "md",
     loading: false,
     disabled: false,
-    error: false,
+    color: "primary",
+    hideIconsOnLoading: true,
     ariaLabel: undefined
   }
 );
@@ -31,10 +43,27 @@ const sizeClass = computed(() => {
 });
 
 const toneClass = computed(() => {
-  if (props.error) {
-    return "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500";
+  switch (props.color) {
+    case "secondary":
+      return "border-c-blue bg-white text-c-blue-dark hover:bg-c-blue-light focus-visible:ring-c-blue-dark";
+    case "ghost":
+      return "border-transparent bg-transparent text-c-blue-dark hover:bg-c-blue-light/20 focus-visible:ring-c-blue-dark";
+    case "primary-success":
+      return "border-c-green-dark bg-c-green text-white hover:bg-c-green-dark focus-visible:ring-c-green-dark";
+    case "secondary-success":
+      return "border-c-green bg-white text-c-green-dark hover:bg-c-green-light focus-visible:ring-c-green-dark";
+    case "primary-warning":
+      return "border-c-orange-dark bg-c-orange text-white hover:bg-c-orange-dark focus-visible:ring-c-orange-dark";
+    case "secondary-warning":
+      return "border-c-orange bg-white text-c-orange-dark hover:bg-c-orange-light focus-visible:ring-c-orange-dark";
+    case "primary-error":
+      return "border-c-red-dark bg-c-red text-white hover:bg-c-red-dark focus-visible:ring-c-red-dark";
+    case "secondary-error":
+      return "border-c-red bg-white text-c-red-dark hover:bg-c-red-light focus-visible:ring-c-red-dark";
+    case "primary":
+    default:
+      return "border-c-blue-dark bg-c-blue text-white hover:bg-c-blue-dark focus-visible:ring-c-blue-dark";
   }
-  return "bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-slate-500 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200";
 });
 </script>
 
@@ -42,7 +71,7 @@ const toneClass = computed(() => {
   <button
     :type="type"
     :class="[
-      'inline-flex items-center justify-center gap-2 rounded-md border border-transparent font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60 dark:focus-visible:ring-offset-slate-900',
+      'inline-flex items-center justify-center gap-2 rounded-md border-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60 dark:focus-visible:ring-offset-slate-900',
       sizeClass,
       toneClass
     ]"
@@ -55,9 +84,9 @@ const toneClass = computed(() => {
       class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
       aria-hidden="true"
     />
-    <slot name="icon" />
+    <slot v-if="!(loading && hideIconsOnLoading)" name="icon" />
     <slot />
-    <slot name="iconRight" />
+    <slot v-if="!(loading && hideIconsOnLoading)" name="iconRight" />
     <span v-if="loading" class="sr-only">Chargement</span>
   </button>
 </template>

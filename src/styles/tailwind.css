@@ -2,9 +2,17 @@
 
 @theme {
   --color-c-red: #ED5565;
+  --color-c-red-dark: #D14B59;
+  --color-c-red-light: #F27A86;
   --color-c-blue: #1C84C6;
+  --color-c-blue-dark: #196FAB;
+  --color-c-blue-light: #4EA0D6;
   --color-c-green: #30B7AC;
+  --color-c-green-dark: #27988F;
+  --color-c-green-light: #5CC7BE;
   --color-c-orange: #F8AC59;
+  --color-c-orange-dark: #DE964F;
+  --color-c-orange-light: #F9C17C;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
