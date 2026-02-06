@@ -4,6 +4,7 @@ import { ref } from "vue";
 import PlaygroundHeader from "./components/PlaygroundHeader.vue";
 import PlaygroundInputText from "./components/PlaygroundInputText.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
+import PlaygroundBadge from "./components/PlaygroundBadge.vue";
 
 </script>
 
@@ -13,5 +14,6 @@ import PlaygroundButton from "./components/PlaygroundButton.vue";
 
     <PlaygroundInputText />
     <PlaygroundButton />
+    <PlaygroundBadge />
   </div>
 </template>

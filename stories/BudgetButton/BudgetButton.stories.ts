@@ -72,8 +72,22 @@ export const IconOnly: Story = {
 export const IconText: Story = {
   render: () => ({
     components: { BudgetButton, BudgetIcon },
-    template:
-      '<BudgetButton><template #icon><BudgetIcon status="status-success" /></template>Confirmer</BudgetButton>'
+    template: `
+      <div class="flex flex-col gap-2">
+        <BudgetButton size="sm">
+          <template #icon><BudgetIcon status="status-success" /></template>
+          Confirmer
+        </BudgetButton>
+        <BudgetButton size="md">
+          <template #icon><BudgetIcon status="status-success" /></template>
+          Confirmer
+        </BudgetButton>
+        <BudgetButton size="lg">
+          <template #icon><BudgetIcon status="status-success" /></template>
+          Confirmer
+        </BudgetButton>
+      </div>
+    `
   })
 };
 
