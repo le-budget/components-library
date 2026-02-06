@@ -29,4 +29,30 @@ describe("BudgetStatusIcon", () => {
 
     expect(wrapper.attributes("aria-label")).toBe("Custom");
   });
+
+  it("applies color class when provided", () => {
+    const wrapper = mount(BudgetStatusIcon, {
+      props: { status: "status-success", color: "success" }
+    });
+
+    expect(wrapper.classes()).toContain("text-c-green");
+  });
+
+  it("keeps current text color when no color prop is provided", () => {
+    const wrapper = mount(BudgetStatusIcon, {
+      props: { status: "status-info" }
+    });
+
+    const colorClasses = [
+      "text-c-green",
+      "text-c-orange",
+      "text-c-red",
+      "text-c-blue",
+      "text-slate-700",
+      "text-slate-300"
+    ];
+    colorClasses.forEach((colorClass) => {
+      expect(wrapper.classes()).not.toContain(colorClass);
+    });
+  });
 });

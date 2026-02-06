@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { statusIconMap, statusLabelMap, type StatusIconName } from "../../icons";
+import { statusColorMap, type StatusColorName } from "../../utils/statusColors";
 
 type IconSize = "sm" | "md" | "lg";
 
@@ -10,10 +11,12 @@ const props = withDefaults(
     status: StatusIconName;
     size?: IconSize;
     label?: string;
+    color?: StatusColorName;
   }>(),
   {
     size: "md",
-    label: undefined
+    label: undefined,
+    color: undefined
   }
 );
 
@@ -25,15 +28,19 @@ const sizeClass = computed(() => {
   if (props.size === "lg") return "text-lg";
   return "text-base";
 });
+
+const colorClass = computed(() =>
+  props.color ? statusColorMap[props.color] : undefined
+);
 </script>
 
 <template>
   <span
-    class="inline-flex items-center text-slate-700 dark:text-slate-200"
-    :class="sizeClass"
+    class="inline-flex items-center"
+    :class="[sizeClass, colorClass]"
     role="img"
     :aria-label="ariaLabel"
   >
-    <FontAwesomeIcon :icon="icon" />
+    <FontAwesomeIcon :icon="icon" :class="colorClass" />
   </span>
 </template>

@@ -42,3 +42,10 @@ export const Info: Story = {
     status: "status-info"
   }
 };
+
+export const Colored: Story = {
+  args: {
+    status: "status-success",
+    color: "success"
+  }
+};
