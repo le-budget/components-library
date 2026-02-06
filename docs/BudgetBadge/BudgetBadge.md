@@ -11,10 +11,17 @@ Badge simple avec texte et couleur.
 ## Props
 
 - `text`: texte du badge
-- `colorClass`: classes Tailwind pour la couleur
+- `color`: `primary | secondary | ghost | success | warning | error`
+- `size`: `xs | md | lg`
 
 ## Examples
 
 ```vue
-<BudgetBadge text="Archive" colorClass="bg-slate-100 text-slate-700" />
+<BudgetBadge text="Archive" color="secondary" />
+<BudgetBadge text="XS" size="xs" />
+<BudgetBadge text="Avec icone">
+  <template #icon>
+    <BudgetIcon status="status-info" size="sm" />
+  </template>
+</BudgetBadge>
 ```

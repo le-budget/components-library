@@ -20,6 +20,16 @@ describe("BudgetIcon", () => {
       props: { status: "status-info", size: "lg" }
     });
     expect(large.classes()).toContain("text-lg");
+
+    const xl = mount(BudgetIcon, {
+      props: { status: "status-info", size: "xl" }
+    });
+    expect(xl.classes()).toContain("text-xl");
+
+    const xxl = mount(BudgetIcon, {
+      props: { status: "status-info", size: "xxl" }
+    });
+    expect(xxl.classes()).toContain("text-2xl");
   });
 
   it("uses custom label", () => {

@@ -42,6 +42,12 @@ const sizeClass = computed(() => {
   return "h-10 px-4 text-sm";
 });
 
+const iconSizeClass = computed(() => {
+  if (props.size === "sm") return "text-sm [&_svg]:text-sm";
+  if (props.size === "lg") return "text-lg [&_svg]:text-lg";
+  return "text-base [&_svg]:text-base";
+});
+
 const toneClass = computed(() => {
   switch (props.color) {
     case "secondary":
@@ -84,9 +90,21 @@ const toneClass = computed(() => {
       class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
       aria-hidden="true"
     />
-    <slot v-if="!(loading && hideIconsOnLoading)" name="icon" />
+    <span
+      v-show="!(loading && hideIconsOnLoading)"
+      class="inline-flex items-center"
+      :class="iconSizeClass"
+    >
+      <slot name="icon" />
+    </span>
     <slot />
-    <slot v-if="!(loading && hideIconsOnLoading)" name="iconRight" />
+    <span
+      v-show="!(loading && hideIconsOnLoading)"
+      class="inline-flex items-center"
+      :class="iconSizeClass"
+    >
+      <slot name="iconRight" />
+    </span>
     <span v-if="loading" class="sr-only">Chargement</span>
   </button>
 </template>

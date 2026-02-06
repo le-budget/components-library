@@ -28,6 +28,12 @@ describe("BudgetButton", () => {
     });
     expect(small.classes()).toContain("h-8");
 
+    const medium = mount(BudgetButton, {
+      props: { size: "md" },
+      slots: { default: "Moyen" }
+    });
+    expect(medium.classes()).toContain("h-10");
+
     const large = mount(BudgetButton, {
       props: { size: "lg" },
       slots: { default: "Grand" }
@@ -154,12 +160,64 @@ describe("BudgetButton", () => {
       slots: { icon: "<span>Icon</span>", default: "Chargement" }
     });
     expect(hidden.text()).toContain("Chargement");
-    expect(hidden.text()).not.toContain("Icon");
+    hidden.findAll("span.inline-flex.items-center").forEach((node) => {
+      expect(node.attributes("style")).toContain("display: none");
+    });
 
     const visible = mount(BudgetButton, {
       props: { loading: true, hideIconsOnLoading: false },
       slots: { icon: "<span>Icon</span>", default: "Chargement" }
     });
     expect(visible.text()).toContain("Icon");
+  });
+
+  it("renders icon slots when not loading and applies icon size per button size", () => {
+    const sm = mount(BudgetButton, {
+      props: { size: "sm" },
+      slots: { icon: "<span>Icon</span>", default: "Texte" }
+    });
+    expect(sm.find('span[class*="text-sm"]').exists()).toBe(true);
+
+    const md = mount(BudgetButton, {
+      props: { size: "md" },
+      slots: { iconRight: "<span>Icon</span>", default: "Texte" }
+    });
+    expect(md.find('span[class*="text-base"]').exists()).toBe(true);
+
+    const lg = mount(BudgetButton, {
+      props: { size: "lg" },
+      slots: { icon: "<span>Icon</span>", iconRight: "<span>Icon2</span>", default: "Texte" }
+    });
+    const lgIcons = lg.findAll('span[class*="text-lg"]');
+    expect(lgIcons.length).toBeGreaterThan(0);
+  });
+
+  it("renders icon wrappers even when no icon slots are provided", () => {
+    const wrapper = mount(BudgetButton, {
+      slots: { default: "Texte" }
+    });
+    const iconWrappers = wrapper.findAll("span.inline-flex.items-center");
+    expect(iconWrappers.length).toBe(2);
+    iconWrappers.forEach((node) => {
+      expect(node.text()).toBe("");
+    });
+  });
+
+  it("renders icon wrappers when loading is false and hides them when loading with hideIconsOnLoading", () => {
+    const visible = mount(BudgetButton, {
+      props: { loading: false, hideIconsOnLoading: true },
+      slots: { icon: "<span>Left</span>", iconRight: "<span>Right</span>", default: "Texte" }
+    });
+    expect(visible.findAll("span.inline-flex.items-center").length).toBe(2);
+
+    const hidden = mount(BudgetButton, {
+      props: { loading: true, hideIconsOnLoading: true },
+      slots: { icon: "<span>Left</span>", iconRight: "<span>Right</span>", default: "Texte" }
+    });
+    const hiddenWrappers = hidden.findAll("span.inline-flex.items-center");
+    expect(hiddenWrappers.length).toBe(2);
+    hiddenWrappers.forEach((node) => {
+      expect(node.attributes("style")).toContain("display: none");
+    });
   });
 });

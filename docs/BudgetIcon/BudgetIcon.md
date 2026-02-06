@@ -11,12 +11,12 @@ Icone de statut basee sur une registry interne Font Awesome.
 ## Props
 
 - `status`: `status-success | status-warning | status-error | status-info`
-- `size`: `sm | md | lg` (par defaut `md`)
+- `size`: `sm | md | lg | xl | xxl` (par defaut `md`)
 - `label`: libelle accessible (optionnel)
 - `color`: `success | warning | error | primary | disabled | base` (optionnel)
 
 ## Examples
 
 ```vue
-<BudgetIcon status="status-warning" size="lg" color="warning" />
+<BudgetIcon status="status-warning" size="xl" color="warning" />
 ```
