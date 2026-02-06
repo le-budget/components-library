@@ -81,4 +81,22 @@ describe("BudgetInputText", () => {
     expect(input.classes()).toContain("border-c-red");
     expect(input.classes()).not.toContain("border-c-green");
   });
+
+  it("passes autocomplete to the input", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "", autocomplete: "email" }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.attributes("autocomplete")).toBe("email");
+  });
+
+  it("defaults autocomplete to off", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "" }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.attributes("autocomplete")).toBe("off");
+  });
 });
