@@ -2,9 +2,8 @@
 import { ref } from "vue";
 
 import PlaygroundHeader from "./components/PlaygroundHeader.vue";
-import PlayerGroundInputText from "./components/PlayerGroundInputText.vue";
-
-
+import PlaygroundInputText from "./components/PlaygroundInputText.vue";
+import PlaygroundButton from "./components/PlaygroundButton.vue";
 
 </script>
 
@@ -12,7 +11,7 @@ import PlayerGroundInputText from "./components/PlayerGroundInputText.vue";
   <div class="mx-auto flex min-h-screen w-full max-w-4xl flex-col gap-8 px-6 py-10">
     <PlaygroundHeader />
 
-    <PlayerGroundInputText />
-
+    <PlaygroundInputText />
+    <PlaygroundButton />
   </div>
 </template>

@@ -25,7 +25,7 @@ export const Primary: Story = {
     size: "md",
     disabled: false,
     loading: false,
-    error: false
+    color: "primary"
   },
   render: (args) => ({
     components: { BudgetButton },
@@ -56,17 +56,6 @@ export const Disabled: Story = {
   })
 };
 
-export const Error: Story = {
-  args: {
-    error: true
-  },
-  render: (args) => ({
-    components: { BudgetButton },
-    setup: () => ({ args }),
-    template: '<BudgetButton v-bind="args">Erreur</BudgetButton>'
-  })
-};
-
 export const IconOnly: Story = {
   args: {
     ariaLabel: "Ajouter",
@@ -88,6 +77,31 @@ export const IconText: Story = {
   })
 };
 
+export const IconTextLoading: Story = {
+  args: {
+    loading: true
+  },
+  render: (args) => ({
+    components: { BudgetButton, BudgetIcon },
+    setup: () => ({ args }),
+    template:
+      '<BudgetButton v-bind="args"><template #icon><BudgetIcon status="status-info" /></template>En cours</BudgetButton>'
+  })
+};
+
+export const IconTextLoadingWithIcons: Story = {
+  args: {
+    loading: true,
+    hideIconsOnLoading: false
+  },
+  render: (args) => ({
+    components: { BudgetButton, BudgetIcon },
+    setup: () => ({ args }),
+    template:
+      '<BudgetButton v-bind="args"><template #icon><BudgetIcon status="status-info" /></template>En cours</BudgetButton>'
+  })
+};
+
 export const Sizes: Story = {
   render: () => ({
     components: { BudgetButton },
@@ -96,6 +110,25 @@ export const Sizes: Story = {
         <BudgetButton size="sm">Petit</BudgetButton>
         <BudgetButton size="md">Moyen</BudgetButton>
         <BudgetButton size="lg">Grand</BudgetButton>
+      </div>
+    `
+  })
+};
+
+export const Colors: Story = {
+  render: () => ({
+    components: { BudgetButton },
+    template: `
+      <div class="grid gap-2 sm:grid-cols-2">
+        <BudgetButton color="primary">Primary</BudgetButton>
+        <BudgetButton color="secondary">Secondary</BudgetButton>
+        <BudgetButton color="ghost">Ghost</BudgetButton>
+        <BudgetButton color="primary-success">Primary Success</BudgetButton>
+        <BudgetButton color="secondary-success">Secondary Success</BudgetButton>
+        <BudgetButton color="primary-warning">Primary Warning</BudgetButton>
+        <BudgetButton color="secondary-warning">Secondary Warning</BudgetButton>
+        <BudgetButton color="primary-error">Primary Error</BudgetButton>
+        <BudgetButton color="secondary-error">Secondary Error</BudgetButton>
       </div>
     `
   })
