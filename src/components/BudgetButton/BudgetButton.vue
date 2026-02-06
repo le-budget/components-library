@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, useSlots } from "vue";
 
 type ButtonSize = "sm" | "md" | "lg";
 type ButtonColor =
@@ -34,7 +34,13 @@ const props = withDefaults(
   }
 );
 
+const slots = useSlots();
 const isDisabled = computed(() => props.disabled || props.loading);
+const isIconOnly = computed(() => {
+  const hasDefault = !!slots.default?.();
+  const hasIcon = !!slots.icon?.() || !!slots.iconRight?.();
+  return hasIcon && !hasDefault;
+});
 
 const sizeClass = computed(() => {
   if (props.size === "sm") return "h-8 px-3 text-sm";
@@ -77,7 +83,8 @@ const toneClass = computed(() => {
   <button
     :type="type"
     :class="[
-      'inline-flex items-center justify-center gap-2 rounded-md border-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60 dark:focus-visible:ring-offset-slate-900',
+      'inline-flex items-center justify-center rounded-md border-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60 dark:focus-visible:ring-offset-slate-900',
+      !isIconOnly ? 'gap-2' : '',
       sizeClass,
       toneClass
     ]"

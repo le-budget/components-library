@@ -192,6 +192,19 @@ describe("BudgetButton", () => {
     expect(lgIcons.length).toBeGreaterThan(0);
   });
 
+  it("does not apply gap when icon-only and applies gap with text", () => {
+    const iconOnly = mount(BudgetButton, {
+      props: { ariaLabel: "Ajouter" },
+      slots: { icon: "<span>Icon</span>" }
+    });
+    expect(iconOnly.classes()).not.toContain("gap-2");
+
+    const withText = mount(BudgetButton, {
+      slots: { icon: "<span>Icon</span>", default: "Texte" }
+    });
+    expect(withText.classes()).toContain("gap-2");
+  });
+
   it("renders icon wrappers even when no icon slots are provided", () => {
     const wrapper = mount(BudgetButton, {
       slots: { default: "Texte" }
