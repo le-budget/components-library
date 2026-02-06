@@ -13,6 +13,7 @@ Champ texte avec validation integree et icones prefix/suffix.
 - `modelValue`: valeur du champ
 - `label`: libelle au-dessus du champ
 - `placeholder`: texte d'aide
+- `autocomplete`: valeur HTML autocomplete (defaut: `off`)
 - `disabled`: desactive le champ
 - `error`: active l'etat d'erreur
 - `success`: active l'etat de succes

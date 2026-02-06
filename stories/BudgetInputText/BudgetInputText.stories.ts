@@ -14,6 +14,11 @@ const meta: Meta<typeof BudgetInputText> = {
         component: doc
       }
     }
+  },
+  argTypes: {
+    autocomplete: {
+      control: "text"
+    }
   }
 };
 
@@ -25,7 +30,8 @@ export const Default: Story = {
   args: {
     modelValue: "",
     label: "Nom",
-    placeholder: "Votre nom"
+    placeholder: "Votre nom",
+    autocomplete: "off"
   },
   render: (args) => ({
     components: { BudgetInputText },
@@ -84,6 +90,23 @@ export const Success: Story = {
     modelValue: "Valide",
     label: "Nom",
     success: true
+  },
+  render: (args) => ({
+    components: { BudgetInputText },
+    setup() {
+      const value = ref(args.modelValue);
+      return { args, value };
+    },
+    template: '<BudgetInputText v-bind="args" v-model="value" />'
+  })
+};
+
+export const Autocomplete: Story = {
+  args: {
+    modelValue: "",
+    label: "Email",
+    placeholder: "nom@exemple.com",
+    autocomplete: "email"
   },
   render: (args) => ({
     components: { BudgetInputText },

@@ -8,6 +8,7 @@ const props = withDefaults(
     label?: string;
     placeholder?: string;
     name?: string;
+    autocomplete?: string;
     id?: string;
     disabled?: boolean;
     error?: boolean;
@@ -18,6 +19,7 @@ const props = withDefaults(
     label: undefined,
     placeholder: undefined,
     name: undefined,
+    autocomplete: "off",
     id: undefined,
     disabled: false,
     error: false,
@@ -58,7 +60,7 @@ function onInput(event: Event) {
 
 <template>
   <div class="flex flex-col gap-2">
-    <label v-if="label" :for="inputId" class="text-sm font-medium text-slate-700 dark:text-slate-200">
+    <label v-if="label" :for="inputId" class="text-base font-medium text-slate-700 dark:text-slate-200">
       {{ label }}
     </label>
     <div class="relative">
@@ -72,13 +74,14 @@ function onInput(event: Event) {
         :id="inputId"
         type="text"
         :name="name"
+        :autocomplete="autocomplete"
         :placeholder="placeholder"
         :value="modelValue"
         :disabled="disabled"
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
         :class="[
-          'w-full rounded border px-3 py-2 text-sm shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
+          'w-full rounded border px-3 py-2 text-base shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
           inputStateClass,
           hasPrefix ? 'pl-9' : '',
           hasSuffix ? 'pr-9' : ''
