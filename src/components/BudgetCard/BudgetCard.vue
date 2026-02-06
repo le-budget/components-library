@@ -64,7 +64,7 @@ watch(
   >
     <div
       v-show="showHeader"
-      :class="['flex items-center justify-between gap-4', isCollapsed ? '' : 'mb-4']"
+      :class="['flex items-center justify-between gap-4']"
     >
       <div class="flex items-center gap-3">
         <span v-if="hasIconSlot" class="inline-flex items-center">

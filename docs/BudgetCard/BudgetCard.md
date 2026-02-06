@@ -15,7 +15,7 @@ Avec icone:
 ```vue
 <BudgetCard title="Budget">
   <template #icon>
-    <BudgetStatusIcon status="status-info" />
+    <BudgetIcon status="status-info" />
   </template>
   <p>Contenu</p>
 </BudgetCard>

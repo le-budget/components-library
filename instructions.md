@@ -34,7 +34,7 @@
   - prop boolean pour autoriser `null`/vide (sinon 0)
 - `BudgetBadge`
   - texte + couleur
-- `BudgetStatusIcon`
+- `BudgetIcon`
   - mapping semantique: `status-success`, `status-warning`, `status-error`, `status-info`
 
 ## Icônes

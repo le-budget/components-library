@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import BudgetStatusIcon from "../../src/components/BudgetStatusIcon/BudgetStatusIcon.vue";
-import doc from "../../docs/BudgetStatusIcon/BudgetStatusIcon.md?raw";
+import BudgetIcon from "../../src/components/BudgetIcon/BudgetIcon.vue";
+import doc from "../../docs/BudgetIcon/BudgetIcon.md?raw";
 
-const meta: Meta<typeof BudgetStatusIcon> = {
-  title: "Components/UI/Status Icon",
-  component: BudgetStatusIcon,
+const meta: Meta<typeof BudgetIcon> = {
+  title: "Components/UI/Icon",
+  component: BudgetIcon,
   tags: ["autodocs"],
   parameters: {
     docs: {
@@ -17,7 +17,7 @@ const meta: Meta<typeof BudgetStatusIcon> = {
 
 export default meta;
 
-type Story = StoryObj<typeof BudgetStatusIcon>;
+type Story = StoryObj<typeof BudgetIcon>;
 
 export const Success: Story = {
   args: {

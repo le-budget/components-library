@@ -1,9 +1,9 @@
 import { mount } from "@vue/test-utils";
-import BudgetStatusIcon from "../src/components/BudgetStatusIcon/BudgetStatusIcon.vue";
+import BudgetIcon from "../src/components/BudgetIcon/BudgetIcon.vue";
 
-describe("BudgetStatusIcon", () => {
+describe("BudgetIcon", () => {
   it("uses default label for status", () => {
-    const wrapper = mount(BudgetStatusIcon, {
+    const wrapper = mount(BudgetIcon, {
       props: { status: "status-success" }
     });
 
@@ -11,19 +11,19 @@ describe("BudgetStatusIcon", () => {
   });
 
   it("handles size variants", () => {
-    const small = mount(BudgetStatusIcon, {
+    const small = mount(BudgetIcon, {
       props: { status: "status-warning", size: "sm" }
     });
     expect(small.classes()).toContain("text-sm");
 
-    const large = mount(BudgetStatusIcon, {
+    const large = mount(BudgetIcon, {
       props: { status: "status-info", size: "lg" }
     });
     expect(large.classes()).toContain("text-lg");
   });
 
   it("uses custom label", () => {
-    const wrapper = mount(BudgetStatusIcon, {
+    const wrapper = mount(BudgetIcon, {
       props: { status: "status-error", label: "Custom" }
     });
 
@@ -31,7 +31,7 @@ describe("BudgetStatusIcon", () => {
   });
 
   it("applies color class when provided", () => {
-    const wrapper = mount(BudgetStatusIcon, {
+    const wrapper = mount(BudgetIcon, {
       props: { status: "status-success", color: "success" }
     });
 
@@ -39,7 +39,7 @@ describe("BudgetStatusIcon", () => {
   });
 
   it("keeps current text color when no color prop is provided", () => {
-    const wrapper = mount(BudgetStatusIcon, {
+    const wrapper = mount(BudgetIcon, {
       props: { status: "status-info" }
     });
 

@@ -125,19 +125,6 @@ describe("BudgetCard", () => {
     expect(wrapper.find("h3").exists()).toBe(false);
   });
 
-  it("toggles header spacing with collapsed state", async () => {
-    const wrapper = mount(BudgetCard, {
-      props: { collapsible: true, collapsed: true, title: "Titre" }
-    });
-
-    const header = wrapper.find("section > div");
-    expect(header.classes()).not.toContain("mb-4");
-
-    await wrapper.setProps({ collapsed: false });
-    await nextTick();
-    expect(header.classes()).toContain("mb-4");
-  });
-
   it("syncs internal state when collapsed prop appears", async () => {
     const wrapper = mount(BudgetCard, {
       props: { collapsible: true },

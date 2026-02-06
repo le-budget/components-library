@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import BudgetButton from "../../src/components/BudgetButton/BudgetButton.vue";
-import BudgetStatusIcon from "../../src/components/BudgetStatusIcon/BudgetStatusIcon.vue";
+import BudgetIcon from "../../src/components/BudgetIcon/BudgetIcon.vue";
 import doc from "../../docs/BudgetButton/BudgetButton.md?raw";
 
 const meta: Meta<typeof BudgetButton> = {
@@ -73,18 +73,18 @@ export const IconOnly: Story = {
     size: "md"
   },
   render: (args) => ({
-    components: { BudgetButton, BudgetStatusIcon },
+    components: { BudgetButton, BudgetIcon },
     setup: () => ({ args }),
     template:
-      '<BudgetButton v-bind="args"><template #icon><BudgetStatusIcon status="status-info" /></template></BudgetButton>'
+      '<BudgetButton v-bind="args"><template #icon><BudgetIcon status="status-info" /></template></BudgetButton>'
   })
 };
 
 export const IconText: Story = {
   render: () => ({
-    components: { BudgetButton, BudgetStatusIcon },
+    components: { BudgetButton, BudgetIcon },
     template:
-      '<BudgetButton><template #icon><BudgetStatusIcon status="status-success" /></template>Confirmer</BudgetButton>'
+      '<BudgetButton><template #icon><BudgetIcon status="status-success" /></template>Confirmer</BudgetButton>'
   })
 };
 

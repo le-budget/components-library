@@ -1,11 +1,11 @@
-# BudgetStatusIcon
+# BudgetIcon
 
 Icone de statut basee sur une registry interne Font Awesome.
 
 ## Usage
 
 ```vue
-<BudgetStatusIcon status="status-success" />
+<BudgetIcon status="status-success" />
 ```
 
 ## Props
@@ -18,5 +18,5 @@ Icone de statut basee sur une registry interne Font Awesome.
 ## Examples
 
 ```vue
-<BudgetStatusIcon status="status-warning" size="lg" color="warning" />
+<BudgetIcon status="status-warning" size="lg" color="warning" />
 ```

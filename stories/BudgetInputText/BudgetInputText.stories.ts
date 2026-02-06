@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { ref } from "vue";
 import BudgetInputText from "../../src/components/BudgetInputText/BudgetInputText.vue";
-import BudgetStatusIcon from "../../src/components/BudgetStatusIcon/BudgetStatusIcon.vue";
+import BudgetIcon from "../../src/components/BudgetIcon/BudgetIcon.vue";
 import doc from "../../docs/BudgetInputText/BudgetInputText.md?raw";
 
 const meta: Meta<typeof BudgetInputText> = {
@@ -44,7 +44,7 @@ export const WithIcons: Story = {
     placeholder: "Rechercher"
   },
   render: (args) => ({
-    components: { BudgetInputText, BudgetStatusIcon },
+    components: { BudgetInputText, BudgetIcon },
     setup() {
       const value = ref(args.modelValue);
       return { args, value };
@@ -52,10 +52,10 @@ export const WithIcons: Story = {
     template: `
       <BudgetInputText v-bind="args" v-model="value">
         <template #prefix>
-          <BudgetStatusIcon status="status-info" />
+          <BudgetIcon status="status-info" />
         </template>
         <template #suffix>
-          <BudgetStatusIcon status="status-success" />
+          <BudgetIcon status="status-success" />
         </template>
       </BudgetInputText>
     `

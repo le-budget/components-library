@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import BudgetButton from "../../components/BudgetButton/BudgetButton.vue"
-import BudgetStatusIcon from "../../components/BudgetStatusIcon/BudgetStatusIcon.vue";
+import BudgetIcon from "../../components/BudgetIcon/BudgetIcon.vue";
 
 const darkMode = ref(false);
 
@@ -21,7 +21,7 @@ function toggleTheme() {
         </div>
         <BudgetButton size="sm" @click="toggleTheme">
             <template #icon>
-                <BudgetStatusIcon :status="darkMode ? 'status-info' : 'status-success'" />
+                <BudgetIcon :status="darkMode ? 'status-info' : 'status-success'" />
             </template>
             {{ darkMode ? "Mode clair" : "Mode sombre" }}
         </BudgetButton>

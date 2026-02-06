@@ -2,11 +2,13 @@
 import { ref } from "vue";
 import BudgetInputText from "../../components/BudgetInputText/BudgetInputText.vue";
 import BudgetCard from "../../components/BudgetCard/BudgetCard.vue";
-import BudgetStatusIcon from "../../components/BudgetStatusIcon/BudgetStatusIcon.vue";
+import BudgetIcon from "../../components/BudgetIcon/BudgetIcon.vue";
 const name = ref("");
+
+const inputTextCollapsed = ref(true);
 </script>
 <template>
-    <BudgetCard title="Input Text" collapsible>
+    <BudgetCard title="Input Text" collapsible v-model:collapsed="inputTextCollapsed">
         <div class="grid gap-4">
             <BudgetInputText v-model="name" label="Nom" placeholder="Votre nom"></BudgetInputText>
             <hr class="border-gray-200">
@@ -20,13 +22,13 @@ const name = ref("");
             <hr class="border-gray-200">
             <BudgetInputText v-model="name" label="Prefix icon" placeholder="Votre nom">
                 <template #prefix>
-                    <BudgetStatusIcon status="status-info" size="sm" />
+                    <BudgetIcon status="status-info" size="sm" />
                 </template>
             </BudgetInputText>
             <hr class="border-gray-200">
             <BudgetInputText v-model="name" label="Suffix icon" placeholder="Votre nom">
                 <template #suffix>
-                    <BudgetStatusIcon status="status-success" size="sm" color="primary" />
+                    <BudgetIcon status="status-success" size="sm" color="primary" />
                 </template>
             </BudgetInputText>
             <hr class="border-gray-200">

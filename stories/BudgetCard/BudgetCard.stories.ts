@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import BudgetCard from "../../src/components/BudgetCard/BudgetCard.vue";
-import BudgetStatusIcon from "../../src/components/BudgetStatusIcon/BudgetStatusIcon.vue";
+import BudgetIcon from "../../src/components/BudgetIcon/BudgetIcon.vue";
 import doc from "../../docs/BudgetCard/BudgetCard.md?raw";
 
 const meta: Meta<typeof BudgetCard> = {
-  title: "Components/BudgetCard",
+  title: "Components/UI/Card",
   component: BudgetCard,
   tags: ["autodocs"],
   argTypes: {
@@ -61,12 +61,12 @@ export const AvecIcone: Story = {
     title: "Budget"
   },
   render: (args) => ({
-    components: { BudgetCard, BudgetStatusIcon },
+    components: { BudgetCard, BudgetIcon },
     setup: () => ({ args }),
     template: `
       <BudgetCard v-bind="args">
         <template #icon>
-          <BudgetStatusIcon status="status-info" />
+          <BudgetIcon status="status-info" />
         </template>
         <p class="text-sm text-slate-600 dark:text-slate-400">Contenu</p>
       </BudgetCard>
@@ -81,12 +81,12 @@ export const Repliable: Story = {
     collapsed: false
   },
   render: (args) => ({
-    components: { BudgetCard, BudgetStatusIcon },
+    components: { BudgetCard, BudgetIcon },
     setup: () => ({ args }),
     template: `
       <BudgetCard v-bind="args">
         <template #icon>
-          <BudgetStatusIcon status="status-info" />
+          <BudgetIcon status="status-info" />
         </template>
         <p class="text-sm text-slate-600 dark:text-slate-400">Contenu</p>
       </BudgetCard>
