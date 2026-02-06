@@ -26,4 +26,4 @@ yarn build-storybook
 
 ## Publication
 
-La publication se fait sur GitHub Packages via un tag `vX.Y.Z`.
+La publication se fait sur GitHub Packages via un tag `X.Y.Z`.

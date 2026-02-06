@@ -8,4 +8,5 @@ storybook-static/
 .idea/
 .yarn/*
 !.yarn/patches
+!.yarn/releases
 coverage/
