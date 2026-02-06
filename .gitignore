@@ -1,0 +1,11 @@
+node_modules/
+dist/
+storybook-static/
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/
+.yarn/*
+!.yarn/patches
+coverage/

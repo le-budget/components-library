@@ -1,0 +1,94 @@
+<script setup lang="ts">
+import { computed, useSlots } from "vue";
+import { nextId } from "../../utils/id";
+
+const props = withDefaults(
+  defineProps<{
+    modelValue: string;
+    label?: string;
+    placeholder?: string;
+    name?: string;
+    id?: string;
+    disabled?: boolean;
+    error?: boolean;
+    errorMessage?: string;
+  }>(),
+  {
+    label: undefined,
+    placeholder: undefined,
+    name: undefined,
+    id: undefined,
+    disabled: false,
+    error: false,
+    errorMessage: undefined
+  }
+);
+
+const emit = defineEmits<{
+  (event: "update:modelValue", value: string): void;
+}>();
+
+const slots = useSlots();
+const inputId = props.id ?? nextId("budget-input");
+const describedBy = computed(() =>
+  props.error ? `${inputId}-error` : undefined
+);
+const resolvedErrorMessage = computed(
+  () => props.errorMessage ?? "Valeur invalide"
+);
+const hasPrefix = computed(() => Boolean(slots.prefix));
+const hasSuffix = computed(() => Boolean(slots.suffix));
+
+function onInput(event: Event) {
+  const target = event.target as HTMLInputElement;
+  emit("update:modelValue", target.value);
+}
+</script>
+
+<template>
+  <div class="flex flex-col gap-2">
+    <label v-if="label" :for="inputId" class="text-sm font-medium text-slate-700 dark:text-slate-200">
+      {{ label }}
+    </label>
+    <div class="relative">
+      <span
+        v-if="hasPrefix"
+        class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+      >
+        <slot name="prefix" />
+      </span>
+      <input
+        :id="inputId"
+        type="text"
+        :name="name"
+        :placeholder="placeholder"
+        :value="modelValue"
+        :disabled="disabled"
+        :aria-invalid="error ? 'true' : undefined"
+        :aria-describedby="describedBy"
+        :class="[
+          'w-full rounded-md border px-3 py-2 text-sm text-slate-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 dark:bg-slate-900 dark:text-slate-100 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
+          error
+            ? 'border-red-500 focus-visible:ring-red-500'
+            : 'border-slate-300 focus-visible:ring-slate-500',
+          hasPrefix ? 'pl-9' : '',
+          hasSuffix ? 'pr-9' : ''
+        ]"
+        @input="onInput"
+      />
+      <span
+        v-if="hasSuffix"
+        class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+      >
+        <slot name="suffix" />
+      </span>
+    </div>
+    <p
+      v-if="error"
+      :id="describedBy"
+      class="text-xs text-red-600"
+    >
+      {{ resolvedErrorMessage }}
+    </p>
+  </div>
+</template>
