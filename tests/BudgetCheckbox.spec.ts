@@ -20,36 +20,33 @@ describe("BudgetCheckbox", () => {
 
     const input = wrapper.find("input");
     expect(wrapper.find("p").exists()).toBe(false);
-    expect(input.attributes("aria-invalid")).toBeUndefined();
     expect(input.attributes("aria-describedby")).toBeUndefined();
     expect(wrapper.findAll("label span")).toHaveLength(1);
   });
 
   it("shows checked styles and icon when modelValue is true", () => {
     const wrapper = mount(BudgetCheckbox, {
-      props: { modelValue: true, label: "Ok" }
+      props: { modelValue: true, label: "Ok", color: "primary" }
     });
 
     const box = wrapper.find("label span");
-    expect(box.classes()).toContain("bg-slate-900");
-    expect(box.classes()).toContain("border-slate-300");
+    expect(box.classes()).toContain("bg-c-blue");
+    expect(box.classes()).toContain("border-c-blue-dark");
     const icon = wrapper.find("svg");
     expect(icon.exists()).toBe(true);
     expect(icon.element.style.display).toBe("");
   });
 
-  it("applies error and disabled styles together", () => {
+  it("applies color and disabled styles together", () => {
     const wrapper = mount(BudgetCheckbox, {
-      props: { modelValue: false, error: true, disabled: true }
+      props: { modelValue: false, color: "error", disabled: true }
     });
 
     const input = wrapper.find("input");
     expect(input.attributes("disabled")).toBeDefined();
-    expect(input.attributes("aria-invalid")).toBe("true");
-    expect(input.attributes("aria-describedby")).toBeDefined();
 
     const box = wrapper.find("label span");
-    expect(box.classes()).toContain("border-red-500");
+    expect(box.classes()).toContain("border-c-red-dark");
     expect(box.classes()).toContain("opacity-60");
   });
 
@@ -64,21 +61,41 @@ describe("BudgetCheckbox", () => {
     expect(wrapper.find("svg").element.style.display).toBe("none");
   });
 
-  it("shows error message", () => {
-    const wrapper = mount(BudgetCheckbox, {
-      props: { modelValue: false, error: true, errorMessage: "Invalide" }
-    });
+  it("applies color variants for checked and unchecked states", () => {
+    const cases = [
+      {
+        color: "success",
+        checked: ["bg-c-green", "border-c-green-dark"],
+        unchecked: ["bg-white", "text-c-green-dark"]
+      },
+      {
+        color: "warning",
+        checked: ["bg-c-orange", "border-c-orange-dark"],
+        unchecked: ["bg-white", "text-c-orange-dark"]
+      },
+      {
+        color: "error",
+        checked: ["bg-c-red", "border-c-red-dark"],
+        unchecked: ["bg-white", "text-c-red-dark"]
+      }
+    ] as const;
 
-    const input = wrapper.find("input");
-    expect(input.attributes("aria-invalid")).toBe("true");
-    expect(wrapper.text()).toContain("Invalide");
-  });
+    for (const { color, checked, unchecked } of cases) {
+      const checkedWrapper = mount(BudgetCheckbox, {
+        props: { modelValue: true, color }
+      });
+      const checkedBox = checkedWrapper.find("label span");
+      checked.forEach((className) => {
+        expect(checkedBox.classes()).toContain(className);
+      });
 
-  it("uses default error message", () => {
-    const wrapper = mount(BudgetCheckbox, {
-      props: { modelValue: false, error: true }
-    });
-
-    expect(wrapper.text()).toContain("Valeur invalide");
+      const uncheckedWrapper = mount(BudgetCheckbox, {
+        props: { modelValue: false, color }
+      });
+      const uncheckedBox = uncheckedWrapper.find("label span");
+      unchecked.forEach((className) => {
+        expect(uncheckedBox.classes()).toContain(className);
+      });
+    }
   });
 });

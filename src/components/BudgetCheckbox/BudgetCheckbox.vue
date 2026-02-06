@@ -9,16 +9,14 @@ const props = withDefaults(
     id?: string;
     name?: string;
     disabled?: boolean;
-    error?: boolean;
-    errorMessage?: string;
+    color?: "primary" | "success" | "warning" | "error";
   }>(),
   {
     label: undefined,
     id: undefined,
     name: undefined,
     disabled: false,
-    error: false,
-    errorMessage: undefined
+    color: "primary"
   }
 );
 
@@ -27,12 +25,41 @@ const emit = defineEmits<{
 }>();
 
 const inputId = props.id ?? nextId("budget-checkbox");
-const describedBy = computed(() =>
-  props.error ? `${inputId}-error` : undefined
-);
-const resolvedErrorMessage = computed(
-  () => props.errorMessage ?? "Valeur invalide"
-);
+const describedBy = computed(() => undefined);
+
+const colorClass = computed(() => {
+  switch (props.color) {
+    case "success":
+      return {
+        border: "border-c-green-dark dark:border-c-black-success",
+        ring: "peer-focus-visible:ring-c-green-dark dark:peer-focus-visible:ring-c-black-success",
+        checked: "bg-c-green dark:bg-c-black-success text-white",
+        unchecked: "bg-white dark:bg-slate-900 text-c-green-dark dark:text-c-black-success"
+      };
+    case "warning":
+      return {
+        border: "border-c-orange-dark dark:border-c-black-warning",
+        ring: "peer-focus-visible:ring-c-orange-dark dark:peer-focus-visible:ring-c-black-warning",
+        checked: "bg-c-orange dark:bg-c-black-warning text-white",
+        unchecked: "bg-white dark:bg-slate-900 text-c-orange-dark dark:text-c-black-warning"
+      };
+    case "error":
+      return {
+        border: "border-c-red-dark dark:border-c-black-error",
+        ring: "peer-focus-visible:ring-c-red-dark dark:peer-focus-visible:ring-c-black-error",
+        checked: "bg-c-red dark:bg-c-black-error text-white",
+        unchecked: "bg-white dark:bg-slate-900 text-c-red-dark dark:text-c-black-error"
+      };
+    case "primary":
+    default:
+      return {
+        border: "border-c-blue-dark dark:border-c-black",
+        ring: "peer-focus-visible:ring-c-blue-dark dark:peer-focus-visible:ring-c-black",
+        checked: "bg-c-blue dark:bg-c-black text-white",
+        unchecked: "bg-white dark:bg-slate-900 text-c-blue-dark dark:text-c-black"
+      };
+  }
+});
 
 function onChange(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -50,19 +77,15 @@ function onChange(event: Event) {
         :name="name"
         :checked="modelValue"
         :disabled="disabled"
-        :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
         @change="onChange"
       />
       <span
         class="flex h-5 w-5 items-center justify-center rounded border text-white transition peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:peer-focus-visible:ring-offset-slate-900"
         :class="[
-          error
-            ? 'border-red-500 peer-focus-visible:ring-red-500'
-            : 'border-slate-300 peer-focus-visible:ring-slate-500',
-          modelValue
-            ? 'bg-slate-900 dark:bg-slate-100'
-            : 'bg-white dark:bg-slate-900',
+          colorClass.border,
+          colorClass.ring,
+          modelValue ? colorClass.checked : colorClass.unchecked,
           disabled ? 'opacity-60' : ''
         ]"
       >
@@ -85,12 +108,5 @@ function onChange(event: Event) {
       </span>
       <span v-if="label">{{ label }}</span>
     </label>
-    <p
-      v-if="error"
-      :id="describedBy"
-      class="text-xs text-red-600"
-    >
-      {{ resolvedErrorMessage }}
-    </p>
   </div>
 </template>

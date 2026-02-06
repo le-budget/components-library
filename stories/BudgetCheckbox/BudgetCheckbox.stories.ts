@@ -66,19 +66,20 @@ export const Disabled: Story = {
   })
 };
 
-export const Error: Story = {
-  args: {
-    modelValue: false,
-    label: "Activer",
-    error: true,
-    errorMessage: "Valeur invalide"
-  },
-  render: (args) => ({
+export const Colors: Story = {
+  render: () => ({
     components: { BudgetCheckbox },
     setup() {
-      const value = ref(args.modelValue);
-      return { args, value };
+      const value = ref(true);
+      return { value };
     },
-    template: '<BudgetCheckbox v-bind="args" v-model="value" />'
+    template: `
+      <div class="flex flex-col gap-2">
+        <BudgetCheckbox v-model="value" label="Primary" color="primary" />
+        <BudgetCheckbox v-model="value" label="Success" color="success" />
+        <BudgetCheckbox v-model="value" label="Warning" color="warning" />
+        <BudgetCheckbox v-model="value" label="Error" color="error" />
+      </div>
+    `
   })
 };

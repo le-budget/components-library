@@ -1,6 +1,6 @@
 # BudgetCheckbox
 
-Case a cocher personnalisee avec support d'erreur.
+Case a cocher personnalisee avec variantes de couleur.
 
 ## Usage
 
@@ -13,11 +13,10 @@ Case a cocher personnalisee avec support d'erreur.
 - `modelValue`: valeur booleenne
 - `label`: texte de label
 - `disabled`: desactive la case
-- `error`: active l'etat d'erreur
-- `errorMessage`: message d'erreur (defaut: "Valeur invalide")
+- `color`: `primary | success | warning | error`
 
 ## Examples
 
 ```vue
-<BudgetCheckbox v-model="isChecked" />
+<BudgetCheckbox v-model="isChecked" color="success" />
 ```

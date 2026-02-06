@@ -5,6 +5,7 @@ import PlaygroundHeader from "./components/PlaygroundHeader.vue";
 import PlaygroundInputText from "./components/PlaygroundInputText.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
+import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
 
 </script>
 
@@ -15,5 +16,6 @@ import PlaygroundBadge from "./components/PlaygroundBadge.vue";
     <PlaygroundInputText />
     <PlaygroundButton />
     <PlaygroundBadge />
+    <PlaygroundCheckbox />
   </div>
 </template>
