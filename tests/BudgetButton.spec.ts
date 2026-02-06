@@ -44,7 +44,7 @@ describe("BudgetButton", () => {
           "bg-c-blue",
           "text-white",
           "hover:bg-c-blue-dark",
-          "active:bg-c-blue-active"
+          "enabled:active:bg-c-blue-active"
         ]
       },
       {
@@ -55,8 +55,8 @@ describe("BudgetButton", () => {
           "text-c-blue-dark",
           "hover:bg-c-blue-dark",
           "hover:text-white",
-          "active:bg-c-blue-active",
-          "active:text-white"
+          "enabled:active:bg-c-blue-active",
+          "enabled:active:text-white"
         ]
       },
       {
@@ -66,7 +66,7 @@ describe("BudgetButton", () => {
           "bg-transparent",
           "text-c-blue-dark",
           "hover:bg-c-blue-light/20",
-          "active:bg-c-blue-active/20"
+          "enabled:active:bg-c-blue-active/20"
         ]
       },
       {
@@ -76,7 +76,7 @@ describe("BudgetButton", () => {
           "bg-c-green",
           "text-white",
           "hover:bg-c-green-dark",
-          "active:bg-c-green-active"
+          "enabled:active:bg-c-green-active"
         ]
       },
       {
@@ -87,8 +87,8 @@ describe("BudgetButton", () => {
           "text-c-green-dark",
           "hover:bg-c-green-dark",
           "hover:text-white",
-          "active:bg-c-green-active",
-          "active:text-white"
+          "enabled:active:bg-c-green-active",
+          "enabled:active:text-white"
         ]
       },
       {
@@ -98,7 +98,7 @@ describe("BudgetButton", () => {
           "bg-c-orange",
           "text-white",
           "hover:bg-c-orange-dark",
-          "active:bg-c-orange-active"
+          "enabled:active:bg-c-orange-active"
         ]
       },
       {
@@ -109,8 +109,8 @@ describe("BudgetButton", () => {
           "text-c-orange-dark",
           "hover:bg-c-orange-dark",
           "hover:text-white",
-          "active:bg-c-orange-active",
-          "active:text-white"
+          "enabled:active:bg-c-orange-active",
+          "enabled:active:text-white"
         ]
       },
       {
@@ -120,7 +120,7 @@ describe("BudgetButton", () => {
           "bg-c-red",
           "text-white",
           "hover:bg-c-red-dark",
-          "active:bg-c-red-active"
+          "enabled:active:bg-c-red-active"
         ]
       },
       {
@@ -131,8 +131,8 @@ describe("BudgetButton", () => {
           "text-c-red-dark",
           "hover:bg-c-red-dark",
           "hover:text-white",
-          "active:bg-c-red-active",
-          "active:text-white"
+          "enabled:active:bg-c-red-active",
+          "enabled:active:text-white"
         ]
       }
     ] as const;
