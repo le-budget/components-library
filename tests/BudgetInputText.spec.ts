@@ -55,4 +55,30 @@ describe("BudgetInputText", () => {
 
     expect(wrapper.text()).toContain("Valeur invalide");
   });
+
+  it("applies success styles", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: {
+        modelValue: "",
+        success: true
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("border-c-green");
+  });
+
+  it("error overrides success", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: {
+        modelValue: "",
+        error: true,
+        success: true
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("border-c-red");
+    expect(input.classes()).not.toContain("border-c-green");
+  });
 });

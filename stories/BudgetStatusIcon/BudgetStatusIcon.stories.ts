@@ -3,7 +3,7 @@ import BudgetStatusIcon from "../../src/components/BudgetStatusIcon/BudgetStatus
 import doc from "../../docs/BudgetStatusIcon/BudgetStatusIcon.md?raw";
 
 const meta: Meta<typeof BudgetStatusIcon> = {
-  title: "Components/BudgetStatusIcon",
+  title: "Components/UI/Status Icon",
   component: BudgetStatusIcon,
   tags: ["autodocs"],
   parameters: {

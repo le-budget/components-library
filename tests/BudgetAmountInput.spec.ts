@@ -160,4 +160,16 @@ describe("BudgetAmountInput", () => {
     const input = wrapper.find("input").element as HTMLInputElement;
     expect(input.value).toBe(`0,00${NBSP}€`);
   });
+
+  it("renders label with matching input id", () => {
+    const wrapper = mount(BudgetAmountInput, {
+      props: { modelValue: 10, label: "Montant" }
+    });
+
+    const label = wrapper.find("label");
+    const input = wrapper.find("input");
+    expect(label.text()).toBe("Montant");
+    expect(label.attributes("for")).toBe(input.attributes("id"));
+  });
+
 });

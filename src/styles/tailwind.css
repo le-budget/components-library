@@ -1,3 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --color-c-red: #ED5565;
+  --color-c-blue: #1C84C6;
+  --color-c-green: #30B7AC;
+  --color-c-orange: #F8AC59;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));

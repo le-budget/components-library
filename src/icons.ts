@@ -3,7 +3,9 @@ import {
   faCircleCheck,
   faCircleInfo,
   faCircleXmark,
-  faTriangleExclamation
+  faTriangleExclamation,
+  faChevronDown,
+  faChevronUp
 } from "@fortawesome/free-solid-svg-icons";
 
 export type StatusIconName =
@@ -25,3 +27,6 @@ export const statusLabelMap: Record<StatusIconName, string> = {
   "status-error": "Erreur",
   "status-info": "Information"
 };
+
+export const chevronDownIcon = faChevronDown;
+export const chevronUpIcon = faChevronUp;

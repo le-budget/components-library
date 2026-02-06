@@ -4,7 +4,7 @@ import BudgetCheckbox from "../../src/components/BudgetCheckbox/BudgetCheckbox.v
 import doc from "../../docs/BudgetCheckbox/BudgetCheckbox.md?raw";
 
 const meta: Meta<typeof BudgetCheckbox> = {
-  title: "Components/BudgetCheckbox",
+  title: "Components/Input/Checkbox",
   component: BudgetCheckbox,
   tags: ["autodocs"],
   parameters: {

@@ -15,6 +15,7 @@ Champ texte avec validation integree et icones prefix/suffix.
 - `placeholder`: texte d'aide
 - `disabled`: desactive le champ
 - `error`: active l'etat d'erreur
+- `success`: active l'etat de succes
 - `errorMessage`: message d'erreur (defaut: "Valeur invalide")
 
 ## Slots

@@ -26,7 +26,7 @@ export default defineConfig({
         ".storybook/main.ts",
         ".storybook/preview.ts",
         "postcss.config.cjs",
-        "tailwind.config.js",
+        "tailwind.config.cjs",
         "src/index.ts"
       ]
     }

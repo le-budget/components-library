@@ -5,7 +5,7 @@ import BudgetStatusIcon from "../../src/components/BudgetStatusIcon/BudgetStatus
 import doc from "../../docs/BudgetInputText/BudgetInputText.md?raw";
 
 const meta: Meta<typeof BudgetInputText> = {
-  title: "Components/BudgetInputText",
+  title: "Components/Input/Input Text",
   component: BudgetInputText,
   tags: ["autodocs"],
   parameters: {
@@ -68,6 +68,22 @@ export const Error: Story = {
     label: "Nom",
     error: true,
     errorMessage: "Valeur invalide"
+  },
+  render: (args) => ({
+    components: { BudgetInputText },
+    setup() {
+      const value = ref(args.modelValue);
+      return { args, value };
+    },
+    template: '<BudgetInputText v-bind="args" v-model="value" />'
+  })
+};
+
+export const Success: Story = {
+  args: {
+    modelValue: "Valide",
+    label: "Nom",
+    success: true
   },
   render: (args) => ({
     components: { BudgetInputText },

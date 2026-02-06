@@ -4,7 +4,7 @@ import BudgetAmountInput from "../../src/components/BudgetAmountInput/BudgetAmou
 import doc from "../../docs/BudgetAmountInput/BudgetAmountInput.md?raw";
 
 const meta: Meta<typeof BudgetAmountInput> = {
-  title: "Components/BudgetAmountInput",
+  title: "Components/Input/Input Amount",
   component: BudgetAmountInput,
   tags: ["autodocs"],
   parameters: {

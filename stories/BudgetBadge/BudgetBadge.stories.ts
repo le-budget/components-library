@@ -3,7 +3,7 @@ import BudgetBadge from "../../src/components/BudgetBadge/BudgetBadge.vue";
 import doc from "../../docs/BudgetBadge/BudgetBadge.md?raw";
 
 const meta: Meta<typeof BudgetBadge> = {
-  title: "Components/BudgetBadge",
+  title: "Components/UI/Badge",
   component: BudgetBadge,
   tags: ["autodocs"],
   parameters: {

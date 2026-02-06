@@ -4,7 +4,7 @@ import BudgetStatusIcon from "../../src/components/BudgetStatusIcon/BudgetStatus
 import doc from "../../docs/BudgetButton/BudgetButton.md?raw";
 
 const meta: Meta<typeof BudgetButton> = {
-  title: "Components/BudgetButton",
+  title: "Components/Actions/Button",
   component: BudgetButton,
   tags: ["autodocs"],
   parameters: {

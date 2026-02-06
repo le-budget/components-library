@@ -5,5 +5,6 @@ export { default as BudgetInputText } from "./components/BudgetInputText/BudgetI
 export { default as BudgetCheckbox } from "./components/BudgetCheckbox/BudgetCheckbox.vue";
 export { default as BudgetAmountInput } from "./components/BudgetAmountInput/BudgetAmountInput.vue";
 export { default as BudgetBadge } from "./components/BudgetBadge/BudgetBadge.vue";
+export { default as BudgetCard } from "./components/BudgetCard/BudgetCard.vue";
 export { default as BudgetStatusIcon } from "./components/BudgetStatusIcon/BudgetStatusIcon.vue";
 export { statusIconMap, statusLabelMap, type StatusIconName } from "./icons";

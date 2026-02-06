@@ -11,6 +11,7 @@ const props = withDefaults(
     id?: string;
     disabled?: boolean;
     error?: boolean;
+    success?: boolean;
     errorMessage?: string;
   }>(),
   {
@@ -20,6 +21,7 @@ const props = withDefaults(
     id: undefined,
     disabled: false,
     error: false,
+    success: false,
     errorMessage: undefined
   }
 );
@@ -38,6 +40,15 @@ const resolvedErrorMessage = computed(
 );
 const hasPrefix = computed(() => Boolean(slots.prefix));
 const hasSuffix = computed(() => Boolean(slots.suffix));
+const inputStateClass = computed(() => {
+  if (props.error) {
+    return "text-c-red border-c-red focus-visible:ring-c-red dark:text-c-red";
+  }
+  if (props.success) {
+    return "text-c-green border-c-green focus-visible:ring-c-green dark:text-c-green";
+  }
+  return "text-slate-900 border-c-blue focus-visible:ring-c-blue dark:text-slate-100";
+});
 
 function onInput(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -67,10 +78,8 @@ function onInput(event: Event) {
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
         :class="[
-          'w-full rounded-md border px-3 py-2 text-sm text-slate-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 dark:bg-slate-900 dark:text-slate-100 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
-          error
-            ? 'border-red-500 focus-visible:ring-red-500'
-            : 'border-slate-300 focus-visible:ring-slate-500',
+          'w-full rounded border px-3 py-2 text-sm shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
+          inputStateClass,
           hasPrefix ? 'pl-9' : '',
           hasSuffix ? 'pr-9' : ''
         ]"
@@ -86,7 +95,7 @@ function onInput(event: Event) {
     <p
       v-if="error"
       :id="describedBy"
-      class="text-xs text-red-600"
+      class="text-xs text-c-red"
     >
       {{ resolvedErrorMessage }}
     </p>

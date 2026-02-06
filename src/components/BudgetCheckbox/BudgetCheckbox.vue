@@ -67,7 +67,7 @@ function onChange(event: Event) {
         ]"
       >
         <svg
-          v-if="modelValue"
+          v-show="modelValue"
           class="h-3 w-3"
           viewBox="0 0 12 10"
           fill="none"
