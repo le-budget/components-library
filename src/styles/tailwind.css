@@ -4,15 +4,29 @@
   --color-c-red: #ED5565;
   --color-c-red-dark: #D14B59;
   --color-c-red-light: #F27A86;
+  --color-c-red-active: #F06B78;
   --color-c-blue: #1C84C6;
   --color-c-blue-dark: #196FAB;
   --color-c-blue-light: #4EA0D6;
+  --color-c-blue-active: #3B92D0;
   --color-c-green: #30B7AC;
   --color-c-green-dark: #27988F;
   --color-c-green-light: #5CC7BE;
+  --color-c-green-active: #4AC1B6;
   --color-c-orange: #F8AC59;
   --color-c-orange-dark: #DE964F;
   --color-c-orange-light: #F9C17C;
+  --color-c-orange-active: #F9B96F;
+  --color-c-black: #0F172A;
+  --color-c-black-dark: #111827;
+  --color-c-black-light: rgba(15, 23, 42, 0.12);
+  --color-c-black-active: #1F2937;
+  --color-c-black-success: #0B3B2E;
+  --color-c-black-success-dark: #0A2F25;
+  --color-c-black-warning: #4A2B0E;
+  --color-c-black-warning-dark: #3D240C;
+  --color-c-black-error: #4A1418;
+  --color-c-black-error-dark: #3C1013;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

@@ -36,5 +36,29 @@ Aperçu des couleurs définies dans `src/styles/tailwind.css`.
       <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #DE964F;"></div></td>
       <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #F9C17C;"></div></td>
     </tr>
+    <tr>
+      <td>c-black</td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #0F172A;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #111827;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: rgba(15, 23, 42, 0.12); border: 1px solid #E2E8F0;"></div></td>
+    </tr>
+    <tr>
+      <td>c-black-success</td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #0B3B2E;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #0A2F25;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #0B3B2E;"></div></td>
+    </tr>
+    <tr>
+      <td>c-black-warning</td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #4A2B0E;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #3D240C;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #4A2B0E;"></div></td>
+    </tr>
+    <tr>
+      <td>c-black-error</td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #4A1418;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #3C1013;"></div></td>
+      <td><div style="width: 72px; height: 32px; border-radius: 6px; background: #4A1418;"></div></td>
+    </tr>
   </tbody>
 </table>
