@@ -1,7 +1,7 @@
 {
   "name": "@le-budget/components-library",
   "version": "0.1.0",
-  "description": "Bibliotheque de composants Vue 3 pour le SaaS Budget.",
+  "description": "Bibliotheque de composants Vue 3 pour le-budget.fr",
   "type": "module",
   "license": "UNLICENSED",
   "packageManager": "yarn@4.12.0",
