@@ -52,7 +52,8 @@ describe("BudgetButton", () => {
           "border-c-blue",
           "bg-white",
           "text-c-blue-dark",
-          "hover:bg-c-blue-light"
+          "hover:bg-c-blue-dark",
+          "hover:text-white"
         ]
       },
       {
@@ -79,7 +80,8 @@ describe("BudgetButton", () => {
           "border-c-green",
           "bg-white",
           "text-c-green-dark",
-          "hover:bg-c-green-light"
+          "hover:bg-c-green-dark",
+          "hover:text-white"
         ]
       },
       {
@@ -97,7 +99,8 @@ describe("BudgetButton", () => {
           "border-c-orange",
           "bg-white",
           "text-c-orange-dark",
-          "hover:bg-c-orange-light"
+          "hover:bg-c-orange-dark",
+          "hover:text-white"
         ]
       },
       {
@@ -115,7 +118,8 @@ describe("BudgetButton", () => {
           "border-c-red",
           "bg-white",
           "text-c-red-dark",
-          "hover:bg-c-red-light"
+          "hover:bg-c-red-dark",
+          "hover:text-white"
         ]
       }
     ] as const;
