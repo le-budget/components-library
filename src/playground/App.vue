@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
 import PlaygroundHeader from "./components/PlaygroundHeader.vue";
 import PlaygroundInputText from "./components/PlaygroundInputText.vue";
+import PlaygroundInputAmount from "./components/PlaygroundInputAmount.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
 import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
@@ -14,6 +13,7 @@ import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
     <PlaygroundHeader />
 
     <PlaygroundInputText />
+    <PlaygroundInputAmount />
     <PlaygroundButton />
     <PlaygroundBadge />
     <PlaygroundCheckbox />

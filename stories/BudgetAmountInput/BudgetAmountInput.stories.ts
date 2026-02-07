@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { ref } from "vue";
 import BudgetAmountInput from "../../src/components/BudgetAmountInput/BudgetAmountInput.vue";
+import BudgetIcon from "../../src/components/BudgetIcon/BudgetIcon.vue";
 import doc from "../../docs/BudgetAmountInput/BudgetAmountInput.md?raw";
 
 const meta: Meta<typeof BudgetAmountInput> = {
@@ -13,6 +14,11 @@ const meta: Meta<typeof BudgetAmountInput> = {
         component: doc
       }
     }
+  },
+  argTypes: {
+    autocomplete: {
+      control: "text"
+    }
   }
 };
 
@@ -23,7 +29,8 @@ type Story = StoryObj<typeof BudgetAmountInput>;
 export const Default: Story = {
   args: {
     modelValue: 1000.5,
-    label: "Montant"
+    label: "Montant",
+    autocomplete: "off"
   },
   render: (args) => ({
     components: { BudgetAmountInput },
@@ -32,6 +39,30 @@ export const Default: Story = {
       return { args, value };
     },
     template: '<BudgetAmountInput v-bind="args" v-model="value" />'
+  })
+};
+
+export const WithIcons: Story = {
+  args: {
+    modelValue: 250,
+    label: "Montant"
+  },
+  render: (args) => ({
+    components: { BudgetAmountInput, BudgetIcon },
+    setup() {
+      const value = ref(args.modelValue);
+      return { args, value };
+    },
+    template: `
+      <BudgetAmountInput v-bind="args" v-model="value">
+        <template #prefix>
+          <BudgetIcon status="status-info" />
+        </template>
+        <template #suffix>
+          <BudgetIcon status="status-success" />
+        </template>
+      </BudgetAmountInput>
+    `
   })
 };
 
@@ -57,6 +88,38 @@ export const Error: Story = {
     label: "Montant",
     error: true,
     errorMessage: "Valeur invalide"
+  },
+  render: (args) => ({
+    components: { BudgetAmountInput },
+    setup() {
+      const value = ref(args.modelValue);
+      return { args, value };
+    },
+    template: '<BudgetAmountInput v-bind="args" v-model="value" />'
+  })
+};
+
+export const Success: Story = {
+  args: {
+    modelValue: 99.99,
+    label: "Montant",
+    success: true
+  },
+  render: (args) => ({
+    components: { BudgetAmountInput },
+    setup() {
+      const value = ref(args.modelValue);
+      return { args, value };
+    },
+    template: '<BudgetAmountInput v-bind="args" v-model="value" />'
+  })
+};
+
+export const Autocomplete: Story = {
+  args: {
+    modelValue: 0,
+    label: "Montant",
+    autocomplete: "transaction-amount"
   },
   render: (args) => ({
     components: { BudgetAmountInput },
