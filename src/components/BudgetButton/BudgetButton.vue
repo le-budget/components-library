@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useSlots } from "vue";
+import { Comment, Fragment, Text, computed, useSlots } from "vue";
 
 type ButtonSize = "sm" | "md" | "lg";
 type ButtonColor =
@@ -36,9 +36,47 @@ const props = withDefaults(
 
 const slots = useSlots();
 const isDisabled = computed(() => props.disabled || props.loading);
+
+function hasMeaningfulNodes(slotName: "default" | "icon" | "iconRight") {
+  const nodes = slots[slotName]?.() ?? [];
+  const isMeaningfulNode = (node: unknown): boolean => {
+    const vnode = node as { type?: unknown; children?: unknown };
+    if (vnode.type === Comment) {
+      return false;
+    }
+    if (vnode.type === Text) {
+      return String(vnode.children).trim().length > 0;
+    }
+    if (vnode.type === Fragment) {
+      const fragmentChildren = vnode.children as unknown[];
+      return fragmentChildren.some((child) => isMeaningfulNode(child));
+    }
+    if (typeof vnode.children === "string") {
+      return vnode.children.trim().length > 0;
+    }
+    if (Array.isArray(vnode.children)) {
+      return vnode.children.some((child) => isMeaningfulNode(child));
+    }
+    return true;
+  };
+
+  return nodes.some((node) => {
+    if (node.type === Comment) {
+      return false;
+    }
+    if (node.type === Text) {
+      return String(node.children).trim().length > 0;
+    }
+    if (typeof node.children === "string") {
+      return node.children.trim().length > 0;
+    }
+    return isMeaningfulNode(node);
+  });
+}
+
 const isIconOnly = computed(() => {
-  const hasDefault = !!slots.default?.();
-  const hasIcon = !!slots.icon?.() || !!slots.iconRight?.();
+  const hasDefault = hasMeaningfulNodes("default");
+  const hasIcon = hasMeaningfulNodes("icon") || hasMeaningfulNodes("iconRight");
   return hasIcon && !hasDefault;
 });
 
