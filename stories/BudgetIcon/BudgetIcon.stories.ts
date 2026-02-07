@@ -19,33 +19,58 @@ export default meta;
 
 type Story = StoryObj<typeof BudgetIcon>;
 
-export const Success: Story = {
-  args: {
-    status: "status-success"
-  }
-};
-
-export const Warning: Story = {
-  args: {
-    status: "status-warning"
-  }
-};
-
-export const Error: Story = {
-  args: {
-    status: "status-error"
-  }
-};
-
-export const Info: Story = {
+export const Default: Story = {
   args: {
     status: "status-info"
   }
 };
 
-export const Colored: Story = {
+export const Statuses: Story = {
+  render: () => ({
+    components: { BudgetIcon },
+    template: `
+      <div class="flex items-center gap-4">
+        <BudgetIcon status="status-success" />
+        <BudgetIcon status="status-warning" />
+        <BudgetIcon status="status-error" />
+        <BudgetIcon status="status-info" />
+      </div>
+    `
+  })
+};
+
+export const Colors: Story = {
+  render: () => ({
+    components: { BudgetIcon },
+    template: `
+      <div class="flex items-center gap-4">
+        <BudgetIcon status="status-info" color="primary" />
+        <BudgetIcon status="status-success" color="success" />
+        <BudgetIcon status="status-warning" color="warning" />
+        <BudgetIcon status="status-error" color="error" />
+      </div>
+    `
+  })
+};
+
+export const Sizes: Story = {
+  render: () => ({
+    components: { BudgetIcon },
+    template: `
+      <div class="flex items-center gap-4">
+        <BudgetIcon status="status-info" size="sm" />
+        <BudgetIcon status="status-info" size="md" />
+        <BudgetIcon status="status-info" size="lg" />
+        <BudgetIcon status="status-info" size="xl" />
+        <BudgetIcon status="status-info" size="xxl" />
+      </div>
+    `
+  })
+};
+
+export const Decorative: Story = {
   args: {
-    status: "status-success",
-    color: "success"
+    status: "status-info",
+    decorative: true
   }
 };

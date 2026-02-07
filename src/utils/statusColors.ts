@@ -1,10 +1,8 @@
 export const statusColorMap = {
-  success: "text-c-green",
-  warning: "text-c-orange",
-  error: "text-c-red",
-  primary: "text-c-blue",
-  disabled: "text-slate-700",
-  base: "text-slate-300"
+  primary: "text-c-blue-dark dark:text-c-black",
+  success: "text-c-green-dark dark:text-c-black-success",
+  warning: "text-c-orange-dark dark:text-c-black-warning",
+  error: "text-c-red-dark dark:text-c-black-error"
 } as const;
 
 export type StatusColorName = keyof typeof statusColorMap;
