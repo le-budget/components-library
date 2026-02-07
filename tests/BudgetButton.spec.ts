@@ -1,4 +1,5 @@
 import { mount } from "@vue/test-utils";
+import { Comment, Fragment, Text, h } from "vue";
 import BudgetButton from "../src/components/BudgetButton/BudgetButton.vue";
 
 describe("BudgetButton", () => {
@@ -232,5 +233,71 @@ describe("BudgetButton", () => {
     hiddenWrappers.forEach((node) => {
       expect(node.attributes("style")).toContain("display: none");
     });
+  });
+
+  it("treats comment and whitespace-only text as empty default slot", () => {
+    const wrapper = mount(BudgetButton, {
+      props: { ariaLabel: "Icon only" },
+      slots: {
+        icon: "<span>Icon</span>",
+        default: () => [h(Comment), h(Text, "   ")]
+      }
+    });
+
+    expect(wrapper.classes()).not.toContain("gap-2");
+  });
+
+  it("handles fragment and array children in default slot parsing", () => {
+    const withFragment = mount(BudgetButton, {
+      slots: {
+        icon: "<span>Icon</span>",
+        default: () => [h(Fragment, [h("span", "Texte")])]
+      }
+    });
+    expect(withFragment.classes()).toContain("gap-2");
+
+    const withArrayChildren = mount(BudgetButton, {
+      props: { ariaLabel: "Icon only" },
+      slots: {
+        icon: "<span>Icon</span>",
+        default: () => [h("div", [h(Comment)])]
+      }
+    });
+    expect(withArrayChildren.classes()).not.toContain("gap-2");
+
+    const withEmptyElement = mount(BudgetButton, {
+      slots: {
+        icon: "<span>Icon</span>",
+        default: () => [h("span")]
+      }
+    });
+    expect(withEmptyElement.classes()).toContain("gap-2");
+  });
+
+  it("covers recursive text and fragment branches in slot parsing", () => {
+    const withTextChildren = mount(BudgetButton, {
+      slots: {
+        icon: "<span>Icon</span>",
+        default: () => [h("div", [h(Text, " "), h(Text, "Visible")])]
+      }
+    });
+    expect(withTextChildren.classes()).toContain("gap-2");
+
+    const withEmptyFragment = mount(BudgetButton, {
+      props: { ariaLabel: "Icon only" },
+      slots: {
+        icon: "<span>Icon</span>",
+        default: () => [h(Fragment, [])]
+      }
+    });
+    expect(withEmptyFragment.classes()).not.toContain("gap-2");
+
+    const withTopLevelText = mount(BudgetButton, {
+      slots: {
+        icon: "<span>Icon</span>",
+        default: () => [h(Text, "Texte")]
+      }
+    });
+    expect(withTopLevelText.classes()).toContain("gap-2");
   });
 });

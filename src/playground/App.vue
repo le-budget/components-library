@@ -5,6 +5,7 @@ import PlaygroundInputAmount from "./components/PlaygroundInputAmount.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
 import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
+import PlaygroundToolbar from "./components/PlaygroundToolbar.vue";
 
 </script>
 
@@ -17,5 +18,6 @@ import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
     <PlaygroundButton />
     <PlaygroundBadge />
     <PlaygroundCheckbox />
+    <PlaygroundToolbar />
   </div>
 </template>
