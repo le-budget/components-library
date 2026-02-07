@@ -478,7 +478,7 @@ onBeforeUnmount(() => {
     <div class="relative">
       <span
         v-if="hasPrefix"
-        class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+        class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400"
       >
         <slot name="prefix" />
       </span>
@@ -500,7 +500,7 @@ onBeforeUnmount(() => {
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
         :class="[
-          'w-full rounded border px-3 py-2 text-base shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
+          'w-full rounded border px-3 py-2 text-base leading-6 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
           inputStateClass,
           hasPrefix ? 'pl-9' : '',
           hasSuffix ? inputRightPaddingClass : ''
@@ -513,7 +513,7 @@ onBeforeUnmount(() => {
       <!-- c8 ignore start -->
       <span
         v-if="selectedRightText && !showClearButton"
-        class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500 dark:text-slate-400"
+        class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs text-slate-500 dark:text-slate-400"
       >
         {{ selectedRightText }}
       </span>
@@ -521,7 +521,7 @@ onBeforeUnmount(() => {
       <span
         v-else-if="hasNativeSuffix && !selectedRightText"
         :class="[
-          'pointer-events-none absolute top-1/2 -translate-y-1/2 text-slate-400',
+          'pointer-events-none absolute inset-y-0 flex items-center text-slate-400',
           showClearButton ? 'right-8' : 'right-3'
         ]"
       >
@@ -531,7 +531,7 @@ onBeforeUnmount(() => {
       <button
         v-if="showClearButton"
         type="button"
-        class="absolute right-3 top-1/2 -translate-y-1/2 text-base leading-none text-slate-400 transition-colors hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue focus-visible:ring-offset-1 dark:hover:text-slate-200"
+        class="absolute inset-y-0 right-3 flex items-center text-base leading-none text-slate-400 transition-colors hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue focus-visible:ring-offset-1 dark:hover:text-slate-200"
         aria-label="Vider la selection"
         @mousedown.prevent
         @click="clearSelection"
@@ -540,7 +540,7 @@ onBeforeUnmount(() => {
       </button>
       <span
         v-if="selectedRightText && showClearButton"
-        class="pointer-events-none absolute right-8 top-1/2 -translate-y-1/2 text-xs text-slate-500 dark:text-slate-400"
+        class="pointer-events-none absolute inset-y-0 right-8 flex items-center text-xs text-slate-500 dark:text-slate-400"
       >
         {{ selectedRightText }}
       </span>
