@@ -10,13 +10,15 @@ const props = withDefaults(
     name?: string;
     disabled?: boolean;
     color?: "primary" | "success" | "warning" | "error";
+    size?: "sm" | "md" | "lg";
   }>(),
   {
     label: undefined,
     id: undefined,
     name: undefined,
     disabled: false,
-    color: "primary"
+    color: "primary",
+    size: "md"
   }
 );
 
@@ -61,6 +63,25 @@ const colorClass = computed(() => {
   }
 });
 
+const sizeClass = computed(() => {
+  if (props.size === "sm") {
+    return {
+      box: "h-4 w-4",
+      icon: "h-2.5 w-2.5"
+    };
+  }
+  if (props.size === "lg") {
+    return {
+      box: "h-6 w-6",
+      icon: "h-3.5 w-3.5"
+    };
+  }
+  return {
+    box: "h-5 w-5",
+    icon: "h-3 w-3"
+  };
+});
+
 function onChange(event: Event) {
   const target = event.target as HTMLInputElement;
   emit("update:modelValue", target.checked);
@@ -81,8 +102,9 @@ function onChange(event: Event) {
         @change="onChange"
       />
       <span
-        class="flex h-5 w-5 items-center justify-center rounded border text-white transition peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:peer-focus-visible:ring-offset-slate-900"
+        class="flex items-center justify-center rounded border text-white transition peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:peer-focus-visible:ring-offset-slate-900"
         :class="[
+          sizeClass.box,
           colorClass.border,
           colorClass.ring,
           modelValue ? colorClass.checked : colorClass.unchecked,
@@ -91,7 +113,7 @@ function onChange(event: Event) {
       >
         <svg
           v-show="modelValue"
-          class="h-3 w-3"
+          :class="sizeClass.icon"
           viewBox="0 0 12 10"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

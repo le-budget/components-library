@@ -1,6 +1,6 @@
 # BudgetCheckbox
 
-Case a cocher personnalisee avec variantes de couleur.
+Case a cocher personnalisee avec variantes de couleur et de taille.
 
 ## Usage
 
@@ -14,9 +14,10 @@ Case a cocher personnalisee avec variantes de couleur.
 - `label`: texte de label
 - `disabled`: desactive la case
 - `color`: `primary | success | warning | error`
+- `size`: `sm | md | lg` (par defaut `md`)
 
 ## Examples
 
 ```vue
-<BudgetCheckbox v-model="isChecked" color="success" />
+<BudgetCheckbox v-model="isChecked" color="success" size="lg" />
 ```
