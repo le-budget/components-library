@@ -10,6 +10,7 @@ const dropdownCollapsed = ref(true);
 const selectedCategory = ref<string | number | null>(null);
 const customValue = ref<string | number | null>(null);
 const suffixExampleValue = ref<string | number | null>(null);
+const frozenSelectionValue = ref<string | number | null>(null);
 </script>
 
 <template>
@@ -69,6 +70,21 @@ const suffixExampleValue = ref<string | number | null>(null);
           <BudgetDropdownOption label="Supprimer" value="delete">
             <template #right>-30,00 €</template>
           </BudgetDropdownOption>
+        </BudgetDropdownGroup>
+      </BudgetDropdown>
+
+      <hr class="border-gray-200">
+
+      <BudgetDropdown
+        v-model="frozenSelectionValue"
+        label="Selection figee"
+        placeholder="Rechercher puis selectionner"
+        :frozen-selection="true"
+      >
+        <BudgetDropdownGroup label="Actions">
+          <BudgetDropdownOption label="Ajouter" value="add" />
+          <BudgetDropdownOption label="Modifier" value="edit" />
+          <BudgetDropdownOption label="Supprimer" value="delete" />
         </BudgetDropdownGroup>
       </BudgetDropdown>
     </div>

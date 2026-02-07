@@ -202,6 +202,23 @@ describe("BudgetDropdown", () => {
     expect(input.value).toBe("Salaire");
   });
 
+  it("freezes selection when configured and value is preset", () => {
+    const wrapper = mountDropdown({ modelValue: "salary", frozenSelection: true });
+    const input = wrapper.find("input");
+    expect(input.attributes("readonly")).toBeDefined();
+    expect(input.attributes("aria-expanded")).toBe("false");
+  });
+
+  it("does not freeze selection when allowCustomValue is true", () => {
+    const wrapper = mountDropdown({
+      modelValue: "salary",
+      frozenSelection: true,
+      allowCustomValue: true
+    });
+    const input = wrapper.find("input");
+    expect(input.attributes("readonly")).toBeUndefined();
+  });
+
   it("renders raw model value when not found in options", () => {
     const wrapper = mountDropdown({ modelValue: "hors-liste" });
     const input = wrapper.find("input").element as HTMLInputElement;
@@ -781,6 +798,42 @@ describe("BudgetDropdown", () => {
 
     await input.trigger("click");
     expect(input.attributes("aria-expanded")).toBe("true");
+  });
+
+  it("unfreezes input after clearing selection in frozen mode", async () => {
+    const wrapper = mountDropdown({ modelValue: "salary", frozenSelection: true });
+    const input = wrapper.find("input");
+    expect(input.attributes("readonly")).toBeDefined();
+
+    await wrapper.find('button[aria-label="Vider la selection"]').trigger("click");
+    await wrapper.setProps({ modelValue: null });
+    expect(input.attributes("readonly")).toBeUndefined();
+  });
+
+  it("freezes input after option selection in frozen mode", async () => {
+    const wrapper = mountDropdown({ frozenSelection: true });
+    const input = wrapper.find("input");
+    expect(input.attributes("readonly")).toBeUndefined();
+
+    await input.trigger("focus");
+    const option = wrapper.findAll('[role="option"]').find((node) =>
+      node.text().includes("Salaire")
+    );
+    expect(option).toBeDefined();
+    await option!.trigger("mousedown");
+
+    await wrapper.setProps({ modelValue: "salary" });
+    expect(input.attributes("readonly")).toBeDefined();
+    await input.trigger("click");
+    expect(input.attributes("aria-expanded")).toBe("false");
+  });
+
+  it("does not open dropdown on focus when selection is frozen", async () => {
+    const wrapper = mountDropdown({ modelValue: "salary", frozenSelection: true });
+    const input = wrapper.find("input");
+
+    await input.trigger("focus");
+    expect(input.attributes("aria-expanded")).toBe("false");
   });
 
   it("keeps dropdown open when clicking input while already open", async () => {

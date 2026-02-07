@@ -3,6 +3,7 @@ import {
   faCircleCheck,
   faCircleInfo,
   faCircleXmark,
+  faXmark,
   faTriangleExclamation,
   faChevronDown,
   faChevronUp
@@ -30,3 +31,4 @@ export const statusLabelMap: Record<StatusIconName, string> = {
 
 export const chevronDownIcon = faChevronDown;
 export const chevronUpIcon = faChevronUp;
+export const clearIcon = faXmark;

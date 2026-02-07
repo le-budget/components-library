@@ -145,3 +145,31 @@ export const WithSuffixSlot: Story = {
     `
   })
 };
+
+export const FrozenSelection: Story = {
+  render: () => ({
+    components: {
+      BudgetDropdown,
+      BudgetDropdownGroup,
+      BudgetDropdownOption
+    },
+    setup() {
+      const value = ref<string | number | null>(null);
+      return { value };
+    },
+    template: `
+      <BudgetDropdown
+        v-model="value"
+        label="Selection figee"
+        placeholder="Rechercher puis selectionner"
+        :frozen-selection="true"
+      >
+        <BudgetDropdownGroup label="Actions">
+          <BudgetDropdownOption label="Ajouter" value="add" />
+          <BudgetDropdownOption label="Modifier" value="edit" />
+          <BudgetDropdownOption label="Supprimer" value="delete" />
+        </BudgetDropdownGroup>
+      </BudgetDropdown>
+    `
+  })
+};

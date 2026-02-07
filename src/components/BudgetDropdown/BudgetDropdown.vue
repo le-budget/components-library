@@ -9,8 +9,10 @@ import {
   useSlots,
   type VNode
 } from "vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import BudgetDropdownGroup from "../BudgetDropdownGroup/BudgetDropdownGroup.vue";
 import BudgetDropdownOption from "../BudgetDropdownOption/BudgetDropdownOption.vue";
+import { clearIcon } from "../../icons";
 import { nextId } from "../../utils/id";
 
 type DropdownValue = string | number | null;
@@ -49,6 +51,7 @@ const props = withDefaults(
     errorMessage?: string;
     searchable?: boolean;
     allowCustomValue?: boolean;
+    frozenSelection?: boolean;
   }>(),
   {
     label: undefined,
@@ -61,7 +64,8 @@ const props = withDefaults(
     success: false,
     errorMessage: undefined,
     searchable: true,
-    allowCustomValue: false
+    allowCustomValue: false,
+    frozenSelection: false
   }
 );
 
@@ -104,6 +108,10 @@ const hasValue = computed(() => {
   return true;
 });
 const showClearButton = computed(() => !props.disabled && hasValue.value);
+const isSelectionFrozen = computed(
+  () => props.frozenSelection && !props.allowCustomValue && hasValue.value
+);
+const isInputReadonly = computed(() => !props.searchable || isSelectionFrozen.value);
 const hasSuffix = computed(
   () => Boolean(selectedRightText.value) || hasNativeSuffix.value || showClearButton.value
 );
@@ -300,6 +308,9 @@ function syncHighlightWithSelection() {
 }
 
 function openDropdown() {
+  if (isSelectionFrozen.value) {
+    return;
+  }
   if (!isOpen.value) {
     isOpen.value = true;
   }
@@ -485,7 +496,7 @@ onBeforeUnmount(() => {
         :placeholder="placeholder"
         :value="displayValue"
         :disabled="disabled"
-        :readonly="!searchable"
+        :readonly="isInputReadonly"
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
         :class="[
@@ -520,12 +531,12 @@ onBeforeUnmount(() => {
       <button
         v-if="showClearButton"
         type="button"
-        class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue focus-visible:ring-offset-1 dark:hover:text-slate-200"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-base leading-none text-slate-400 transition-colors hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue focus-visible:ring-offset-1 dark:hover:text-slate-200"
         aria-label="Vider la selection"
         @mousedown.prevent
         @click="clearSelection"
       >
-        ×
+        <FontAwesomeIcon :icon="clearIcon" />
       </button>
       <span
         v-if="selectedRightText && showClearButton"
@@ -613,3 +624,4 @@ onBeforeUnmount(() => {
     </p>
   </div>
 </template>
+
