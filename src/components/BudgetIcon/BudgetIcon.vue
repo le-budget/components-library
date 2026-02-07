@@ -12,16 +12,22 @@ const props = withDefaults(
     size?: IconSize;
     label?: string;
     color?: StatusColorName;
+    decorative?: boolean;
   }>(),
   {
     size: "md",
     label: undefined,
-    color: undefined
+    color: "primary",
+    decorative: false
   }
 );
 
 const icon = computed(() => statusIconMap[props.status]);
-const ariaLabel = computed(() => props.label ?? statusLabelMap[props.status]);
+const ariaLabel = computed(() =>
+  props.decorative ? undefined : (props.label ?? statusLabelMap[props.status])
+);
+const role = computed(() => (props.decorative ? undefined : "img"));
+const ariaHidden = computed(() => (props.decorative ? "true" : undefined));
 
 const sizeClass = computed(() => {
   if (props.size === "sm") return "text-sm";
@@ -31,18 +37,17 @@ const sizeClass = computed(() => {
   return "text-base";
 });
 
-const colorClass = computed(() =>
-  props.color ? statusColorMap[props.color] : undefined
-);
+const colorClass = computed(() => statusColorMap[props.color]);
 </script>
 
 <template>
   <span
     class="inline-flex items-center"
     :class="[sizeClass, colorClass]"
-    role="img"
+    :role="role"
     :aria-label="ariaLabel"
+    :aria-hidden="ariaHidden"
   >
-    <FontAwesomeIcon :icon="icon" :class="[sizeClass, colorClass]" />
+    <FontAwesomeIcon :icon="icon" />
   </span>
 </template>

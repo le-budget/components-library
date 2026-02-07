@@ -10,6 +10,14 @@ describe("BudgetIcon", () => {
     expect(wrapper.attributes("aria-label")).toBe("Succes");
   });
 
+  it("uses custom label", () => {
+    const wrapper = mount(BudgetIcon, {
+      props: { status: "status-error", label: "Custom" }
+    });
+
+    expect(wrapper.attributes("aria-label")).toBe("Custom");
+  });
+
   it("handles size variants", () => {
     const small = mount(BudgetIcon, {
       props: { status: "status-warning", size: "sm" }
@@ -32,37 +40,59 @@ describe("BudgetIcon", () => {
     expect(xxl.classes()).toContain("text-2xl");
   });
 
-  it("uses custom label", () => {
-    const wrapper = mount(BudgetIcon, {
-      props: { status: "status-error", label: "Custom" }
-    });
-
-    expect(wrapper.attributes("aria-label")).toBe("Custom");
-  });
-
-  it("applies color class when provided", () => {
-    const wrapper = mount(BudgetIcon, {
-      props: { status: "status-success", color: "success" }
-    });
-
-    expect(wrapper.classes()).toContain("text-c-green");
-  });
-
-  it("keeps current text color when no color prop is provided", () => {
+  it("uses primary color by default", () => {
     const wrapper = mount(BudgetIcon, {
       props: { status: "status-info" }
     });
 
-    const colorClasses = [
-      "text-c-green",
-      "text-c-orange",
-      "text-c-red",
-      "text-c-blue",
-      "text-slate-700",
-      "text-slate-300"
-    ];
-    colorClasses.forEach((colorClass) => {
-      expect(wrapper.classes()).not.toContain(colorClass);
+    expect(wrapper.classes()).toContain("text-c-blue-dark");
+    expect(wrapper.classes()).toContain("dark:text-c-black");
+  });
+
+  it("applies success color", () => {
+    const wrapper = mount(BudgetIcon, {
+      props: { status: "status-success", color: "success" }
     });
+
+    expect(wrapper.classes()).toContain("text-c-green-dark");
+    expect(wrapper.classes()).toContain("dark:text-c-black-success");
+  });
+
+  it("applies warning color", () => {
+    const wrapper = mount(BudgetIcon, {
+      props: { status: "status-warning", color: "warning" }
+    });
+
+    expect(wrapper.classes()).toContain("text-c-orange-dark");
+    expect(wrapper.classes()).toContain("dark:text-c-black-warning");
+  });
+
+  it("applies error color", () => {
+    const wrapper = mount(BudgetIcon, {
+      props: { status: "status-error", color: "error" }
+    });
+
+    expect(wrapper.classes()).toContain("text-c-red-dark");
+    expect(wrapper.classes()).toContain("dark:text-c-black-error");
+  });
+
+  it("can be decorative", () => {
+    const wrapper = mount(BudgetIcon, {
+      props: { status: "status-info", decorative: true }
+    });
+
+    expect(wrapper.attributes("aria-hidden")).toBe("true");
+    expect(wrapper.attributes("aria-label")).toBeUndefined();
+    expect(wrapper.attributes("role")).toBeUndefined();
+  });
+
+  it("keeps role and label when not decorative", () => {
+    const wrapper = mount(BudgetIcon, {
+      props: { status: "status-info" }
+    });
+
+    expect(wrapper.attributes("aria-hidden")).toBeUndefined();
+    expect(wrapper.attributes("role")).toBe("img");
+    expect(wrapper.attributes("aria-label")).toBe("Information");
   });
 });
