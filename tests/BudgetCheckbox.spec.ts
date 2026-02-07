@@ -98,4 +98,36 @@ describe("BudgetCheckbox", () => {
       });
     }
   });
+
+  it("applies size variants with md as default", () => {
+    const small = mount(BudgetCheckbox, {
+      props: { modelValue: true, size: "sm" }
+    });
+    const smallBox = small.find("label span");
+    const smallIcon = small.find("svg");
+    expect(smallBox.classes()).toContain("h-4");
+    expect(smallBox.classes()).toContain("w-4");
+    expect(smallIcon.classes()).toContain("h-2.5");
+    expect(smallIcon.classes()).toContain("w-2.5");
+
+    const medium = mount(BudgetCheckbox, {
+      props: { modelValue: true }
+    });
+    const mediumBox = medium.find("label span");
+    const mediumIcon = medium.find("svg");
+    expect(mediumBox.classes()).toContain("h-5");
+    expect(mediumBox.classes()).toContain("w-5");
+    expect(mediumIcon.classes()).toContain("h-3");
+    expect(mediumIcon.classes()).toContain("w-3");
+
+    const large = mount(BudgetCheckbox, {
+      props: { modelValue: true, size: "lg" }
+    });
+    const largeBox = large.find("label span");
+    const largeIcon = large.find("svg");
+    expect(largeBox.classes()).toContain("h-6");
+    expect(largeBox.classes()).toContain("w-6");
+    expect(largeIcon.classes()).toContain("h-3.5");
+    expect(largeIcon.classes()).toContain("w-3.5");
+  });
 });

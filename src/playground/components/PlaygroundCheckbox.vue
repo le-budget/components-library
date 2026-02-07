@@ -20,9 +20,16 @@ const unchecked = ref(false);
             </div>
             <hr class="border-gray-200">
             <div class="flex flex-col gap-2">
+                <BudgetCheckbox v-model="checked" label="Small" size="sm" />
+                <BudgetCheckbox v-model="checked" label="Medium" size="md" />
+                <BudgetCheckbox v-model="checked" label="Large" size="lg" />
+            </div>
+            <hr class="border-gray-200">
+            <div class="flex flex-col gap-2">
                 <BudgetCheckbox v-model="unchecked" label="Unchecked" />
                 <BudgetCheckbox v-model="checked" label="Checked" />
                 <BudgetCheckbox v-model="checked" label="Disabled" disabled />
+                <BudgetCheckbox v-model="unchecked" label="Disabled unchecked" disabled />
             </div>
         </div>
     </BudgetCard>
