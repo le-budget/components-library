@@ -1,4 +1,5 @@
 import { mount } from "@vue/test-utils";
+import { nextTick } from "vue";
 import BudgetCheckbox from "../src/components/BudgetCheckbox/BudgetCheckbox.vue";
 
 describe("BudgetCheckbox", () => {
@@ -55,14 +56,20 @@ describe("BudgetCheckbox", () => {
       props: { modelValue: true }
     });
 
-    const icon = wrapper.find("svg");
-    expect(icon.exists()).toBe(true);
+    const iconPath = wrapper.find("svg path");
+    expect(iconPath.attributes("d")).toBe("M1 5L4 8L11 1");
     await wrapper.setProps({ modelValue: false });
-    expect(wrapper.find("svg").element.style.display).toBe("none");
+    expect(wrapper.find("svg").classes()).toContain("opacity-0");
+    expect(wrapper.find("svg path").attributes("d")).toBe("");
   });
 
   it("applies color variants for checked and unchecked states", () => {
     const cases = [
+      {
+        color: "neutral",
+        checked: ["bg-slate-500", "border-slate-500"],
+        unchecked: ["bg-white", "text-slate-500"]
+      },
       {
         color: "success",
         checked: ["bg-c-green", "border-c-green-dark"],
@@ -129,5 +136,31 @@ describe("BudgetCheckbox", () => {
     expect(largeBox.classes()).toContain("w-6");
     expect(largeIcon.classes()).toContain("h-3.5");
     expect(largeIcon.classes()).toContain("w-3.5");
+  });
+
+  it("supports indeterminate state when unchecked", async () => {
+    const wrapper = mount(BudgetCheckbox, {
+      props: { modelValue: false, indeterminate: true, color: "neutral" }
+    });
+    await nextTick();
+
+    const input = wrapper.find("input");
+    expect((input.element as HTMLInputElement).indeterminate).toBe(true);
+    expect(input.attributes("aria-checked")).toBe("mixed");
+    expect(wrapper.find("svg").exists()).toBe(true);
+
+    await wrapper.setProps({ modelValue: true });
+    expect((input.element as HTMLInputElement).indeterminate).toBe(false);
+  });
+
+  it("does not render indeterminate icon when checked", async () => {
+    const wrapper = mount(BudgetCheckbox, {
+      props: { modelValue: true, indeterminate: true, color: "neutral" }
+    });
+    await nextTick();
+
+    const input = wrapper.find("input");
+    expect(input.attributes("aria-checked")).toBeUndefined();
+    expect(wrapper.find("svg path").attributes("d")).toBe("M1 5L4 8L11 1");
   });
 });

@@ -1,11 +1,18 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed, inject, useSlots, watchEffect } from "vue";
+import BudgetCheckbox from "../BudgetCheckbox/BudgetCheckbox.vue";
 import { budgetTableContextKey } from "../BudgetTable/tableContext";
 
-const props = defineProps<{
-  rowId: string;
-  sortValues?: Record<string, unknown>;
-}>();
+const props = withDefaults(
+  defineProps<{
+    rowId: string;
+    sortValues?: Record<string, unknown>;
+    checkboxColor?: "primary" | "success" | "warning" | "error" | "neutral";
+  }>(),
+  {
+    checkboxColor: undefined
+  }
+);
 
 const tableContext = inject(budgetTableContextKey, null);
 const slots = useSlots();
@@ -14,14 +21,16 @@ const hasActionsSlot = computed(() => Boolean(slots.actions));
 const isSelectable = computed(() => tableContext?.selectable.value ?? false);
 const hasActionsColumn = computed(() => tableContext?.hasActionsColumn.value ?? false);
 const isSelected = computed(() => tableContext?.isRowSelected(props.rowId) ?? false);
+const resolvedCheckboxColor = computed(
+  () => props.checkboxColor ?? tableContext?.checkboxColor?.value ?? "neutral"
+);
 
 watchEffect(() => {
   void isSelected.value;
 });
 
-function onToggle(event: Event) {
-  const target = event.target as HTMLInputElement;
-  tableContext?.toggleRowSelection(props.rowId, target.checked);
+function onToggle(checked: boolean) {
+  tableContext?.toggleRowSelection(props.rowId, checked);
 }
 </script>
 
@@ -35,12 +44,11 @@ function onToggle(event: Event) {
       v-if="isSelectable"
       class="border-b border-slate-200 px-3 py-2 align-middle dark:border-slate-700"
     >
-      <input
-        :checked="isSelected"
-        type="checkbox"
-        class="h-4 w-4 rounded border-slate-300 text-c-blue focus-visible:ring-c-blue"
+      <BudgetCheckbox
+        :model-value="isSelected"
+        :color="resolvedCheckboxColor"
         :aria-label="`Selectionner la ligne ${rowId}`"
-        @change="onToggle"
+        @update:model-value="onToggle"
       />
     </td>
     <slot />
@@ -53,6 +61,4 @@ function onToggle(event: Event) {
   </tr>
   <!-- v8 ignore stop -->
 </template>
-
-
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { nextId } from "../../utils/id";
 
 const props = withDefaults(
@@ -9,7 +9,8 @@ const props = withDefaults(
     id?: string;
     name?: string;
     disabled?: boolean;
-    color?: "primary" | "success" | "warning" | "error";
+    color?: "primary" | "success" | "warning" | "error" | "neutral";
+    indeterminate?: boolean;
     size?: "sm" | "md" | "lg";
   }>(),
   {
@@ -18,6 +19,7 @@ const props = withDefaults(
     name: undefined,
     disabled: false,
     color: "primary",
+    indeterminate: false,
     size: "md"
   }
 );
@@ -28,9 +30,24 @@ const emit = defineEmits<{
 
 const inputId = props.id ?? nextId("budget-checkbox");
 const describedBy = computed(() => undefined);
+const inputRef = ref<HTMLInputElement | null>(null);
+
+watchEffect(() => {
+  if (!inputRef.value) {
+    return;
+  }
+  inputRef.value.indeterminate = props.indeterminate && !props.modelValue;
+});
 
 const colorClass = computed(() => {
   switch (props.color) {
+    case "neutral":
+      return {
+        border: "border-slate-500 dark:border-slate-500",
+        ring: "peer-focus-visible:ring-slate-500 dark:peer-focus-visible:ring-slate-500",
+        checked: "bg-slate-500 dark:bg-slate-500 text-white",
+        unchecked: "bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400"
+      };
     case "success":
       return {
         border: "border-c-green-dark dark:border-c-black-success",
@@ -82,6 +99,17 @@ const sizeClass = computed(() => {
   };
 });
 
+const iconPath = computed(() => {
+  if (props.modelValue) {
+    return "M1 5L4 8L11 1";
+  }
+  if (props.indeterminate) {
+    return "M2 5H10";
+  }
+  return null;
+});
+const iconDisplayClass = computed(() => (iconPath.value ? "opacity-100" : "opacity-0"));
+
 function onChange(event: Event) {
   const target = event.target as HTMLInputElement;
   emit("update:modelValue", target.checked);
@@ -92,12 +120,14 @@ function onChange(event: Event) {
   <div class="flex flex-col gap-2">
     <label class="flex cursor-pointer items-center gap-2 text-sm text-slate-700 dark:text-slate-200">
       <input
+        ref="inputRef"
         :id="inputId"
         type="checkbox"
         class="peer sr-only"
         :name="name"
         :checked="modelValue"
         :disabled="disabled"
+        :aria-checked="indeterminate && !modelValue ? 'mixed' : undefined"
         :aria-describedby="describedBy"
         @change="onChange"
       />
@@ -112,15 +142,14 @@ function onChange(event: Event) {
         ]"
       >
         <svg
-          v-show="modelValue"
-          :class="sizeClass.icon"
+          :class="[sizeClass.icon, iconDisplayClass]"
           viewBox="0 0 12 10"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
           <path
-            d="M1 5L4 8L11 1"
+            :d="iconPath ?? ''"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"

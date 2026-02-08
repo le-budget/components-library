@@ -5,15 +5,18 @@ import {
   provide,
   ref,
   useSlots,
-  watch,
-  watchEffect,
-  type VNode
+  watch
 } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import BudgetCheckbox from "../BudgetCheckbox/BudgetCheckbox.vue";
 import BudgetTableGroup from "../BudgetTableGroup/BudgetTableGroup.vue";
 import BudgetTableRow from "../BudgetTableRow/BudgetTableRow.vue";
 import { chevronDownIcon, chevronUpIcon } from "../../icons";
-import type { BudgetTableSortDirection, BudgetTableSortFn } from "./tableContext";
+import type {
+  BudgetTableCheckboxColor,
+  BudgetTableSortDirection,
+  BudgetTableSortFn
+} from "./tableContext";
 import { budgetTableContextKey } from "./tableContext";
 import {
   buildPaginableUnits,
@@ -57,6 +60,7 @@ const props = withDefaults(
   defineProps<{
     selected?: string[];
     selectable?: boolean;
+    checkboxColor?: BudgetTableCheckboxColor;
     selectAllColor?: "primary" | "success" | "warning" | "error" | "info" | "neutral" | "gray";
     pageSize?: number;
     loading?: boolean;
@@ -65,6 +69,7 @@ const props = withDefaults(
   {
     selected: () => [],
     selectable: false,
+    checkboxColor: "neutral",
     selectAllColor: undefined,
     pageSize: undefined,
     loading: false,
@@ -82,7 +87,6 @@ const activeSortKey = ref<string | null>(null);
 const activeSortDirection = ref<BudgetTableSortDirection>("asc");
 const activeSortFn = ref<BudgetTableSortFn | undefined>(undefined);
 const collapsedByGroup = ref<Record<string, boolean>>({});
-const selectAllRef = ref<HTMLInputElement | null>(null);
 
 const parsedContent = computed(() => {
   const rootNodes = flattenNodes(slots.default?.() ?? []);
@@ -220,12 +224,6 @@ const partiallySelected = computed(() => {
   return selectedCount > 0 && selectedCount < pageIds.length;
 });
 
-watchEffect(() => {
-  if (selectAllRef.value) {
-    selectAllRef.value.indeterminate = partiallySelected.value;
-  }
-});
-
 const hasRowsToDisplay = computed(() => pagedUnits.value.length > 0);
 
 function getSortDirection(key?: string) {
@@ -257,12 +255,11 @@ function toggleRowSelection(rowId: string, checked: boolean) {
   emit("update:selected", Array.from(next));
 }
 
-function toggleSelectAll(event: Event) {
-  const target = event.target as HTMLInputElement;
+function toggleSelectAll(checked: boolean) {
   const next = new Set(props.selected);
 
   for (const rowId of pageRowIds.value) {
-    if (target.checked) {
+    if (checked) {
       next.add(rowId);
     } else {
       next.delete(rowId);
@@ -291,6 +288,7 @@ function goNextPage() {
 provide(budgetTableContextKey, {
   selectable: computed(() => props.selectable),
   hasActionsColumn: computed(() => parsedContent.value.hasActionsColumn),
+  checkboxColor: computed(() => props.checkboxColor),
   activeSortKey,
   activeSortDirection,
   getSortDirection,
@@ -313,13 +311,12 @@ provide(budgetTableContextKey, {
               class="border-b px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide"
               :class="selectAllColorClass"
             >
-              <input
-                ref="selectAllRef"
-                type="checkbox"
-                class="h-4 w-4 rounded border-slate-300 text-c-blue focus-visible:ring-c-blue"
-                :checked="allVisibleSelected"
+              <BudgetCheckbox
+                :model-value="allVisibleSelected"
+                :indeterminate="partiallySelected"
+                :color="checkboxColor"
                 aria-label="Selectionner toutes les lignes visibles"
-                @change="toggleSelectAll"
+                @update:model-value="toggleSelectAll"
               />
             </th>
             <template v-for="(headerNode, index) in headerNodes" :key="`header-${index}`">

@@ -123,6 +123,19 @@ describe("BudgetTable", () => {
     expect(selectAllHeader.classes()).toContain("text-c-blue-dark");
   });
 
+  it("uses neutral checkbox color by default", () => {
+    const wrapper = mountTable();
+    const checkboxBox = wrapper.find("thead th label span");
+    expect(checkboxBox.classes()).toContain("border-slate-500");
+  });
+
+  it("applies checkboxColor to select-all and row checkboxes", () => {
+    const wrapper = mountTable({ checkboxColor: "warning" });
+    const checkboxBoxes = wrapper.findAll("label span");
+    expect(checkboxBoxes[0].classes()).toContain("border-c-orange-dark");
+    expect(checkboxBoxes[1].classes()).toContain("border-c-orange-dark");
+  });
+
   it("supports all select-all color variants", () => {
     const variants: Array<[string, string]> = [
       ["gray", "bg-slate-100"],

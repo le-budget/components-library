@@ -92,6 +92,7 @@ export const Colors: Story = {
     template: `
       <div class="flex flex-col gap-2">
         <BudgetCheckbox v-model="value" label="Primary" color="primary" />
+        <BudgetCheckbox v-model="value" label="Neutral" color="neutral" />
         <BudgetCheckbox v-model="value" label="Success" color="success" />
         <BudgetCheckbox v-model="value" label="Warning" color="warning" />
         <BudgetCheckbox v-model="value" label="Error" color="error" />

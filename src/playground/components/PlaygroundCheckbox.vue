@@ -14,6 +14,7 @@ const unchecked = ref(false);
             <hr class="border-gray-200">
             <div class="flex flex-col gap-2">
                 <BudgetCheckbox v-model="checked" label="Primary" color="primary" />
+                <BudgetCheckbox v-model="checked" label="Neutral" color="neutral" />
                 <BudgetCheckbox v-model="checked" label="Success" color="success" />
                 <BudgetCheckbox v-model="checked" label="Warning" color="warning" />
                 <BudgetCheckbox v-model="checked" label="Error" color="error" />
