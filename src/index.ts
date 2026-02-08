@@ -2,6 +2,7 @@ import "./styles/tailwind.css";
 
 export { default as BudgetButton } from "./components/BudgetButton/BudgetButton.vue";
 export { default as BudgetInputText } from "./components/BudgetInputText/BudgetInputText.vue";
+export { default as BudgetDatepicker } from "./components/BudgetDatepicker/BudgetDatepicker.vue";
 export { default as BudgetCheckbox } from "./components/BudgetCheckbox/BudgetCheckbox.vue";
 export { default as BudgetRadio } from "./components/BudgetRadio/BudgetRadio.vue";
 export { default as BudgetRadioGroup } from "./components/BudgetRadioGroup/BudgetRadioGroup.vue";
