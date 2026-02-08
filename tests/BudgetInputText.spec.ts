@@ -37,6 +37,32 @@ describe("BudgetInputText", () => {
     expect(input.classes()).toContain("pr-9");
   });
 
+  it("handles prefix slot only", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "" },
+      slots: {
+        prefix: "<span>p</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("pl-9");
+    expect(input.classes()).not.toContain("pr-9");
+  });
+
+  it("handles suffix slot only", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "" },
+      slots: {
+        suffix: "<span>s</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).not.toContain("pl-9");
+    expect(input.classes()).toContain("pr-9");
+  });
+
   it("renders without slots", () => {
     const wrapper = mount(BudgetInputText, {
       props: { modelValue: "" }
@@ -98,5 +124,36 @@ describe("BudgetInputText", () => {
 
     const input = wrapper.find("input");
     expect(input.attributes("autocomplete")).toBe("off");
+  });
+
+  it("applies compact size classes", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "", size: "sm" },
+      slots: {
+        prefix: "<span>p</span>",
+        suffix: "<span>s</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("py-1.5");
+    expect(input.classes()).toContain("text-sm");
+    expect(input.classes()).toContain("pl-8");
+    expect(input.classes()).toContain("pr-8");
+  });
+
+  it("applies large size classes", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "", size: "lg" },
+      slots: {
+        prefix: "<span>p</span>",
+        suffix: "<span>s</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("py-2.5");
+    expect(input.classes()).toContain("pl-10");
+    expect(input.classes()).toContain("pr-10");
   });
 });

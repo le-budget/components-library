@@ -196,6 +196,32 @@ describe("BudgetDropdown", () => {
     expect(input.classes()).toContain("pr-9");
   });
 
+  it("handles prefix slot only", () => {
+    const wrapper = mount(BudgetDropdown, {
+      props: { modelValue: null },
+      slots: {
+        prefix: "<span>p</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("pl-9");
+    expect(input.classes()).not.toContain("pr-9");
+  });
+
+  it("handles suffix slot only", () => {
+    const wrapper = mount(BudgetDropdown, {
+      props: { modelValue: null },
+      slots: {
+        suffix: "<span>s</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).not.toContain("pl-9");
+    expect(input.classes()).toContain("pr-9");
+  });
+
   it("renders selected label from modelValue", () => {
     const wrapper = mountDropdown({ modelValue: "salary" });
     const input = wrapper.find("input").element as HTMLInputElement;
@@ -868,5 +894,54 @@ describe("BudgetDropdown", () => {
     expect(suffixText.exists()).toBe(true);
     expect(suffixText.text()).toContain("+120,00");
     expect(wrapper.find('button[aria-label="Vider la selection"]').exists()).toBe(false);
+  });
+
+  it("applies compact size classes including suffix and clear button", () => {
+    const wrapper = mount(BudgetDropdown, {
+      props: { modelValue: "add", size: "sm" },
+      slots: {
+        prefix: "<span>p</span>",
+        suffix: '<span data-testid="native-suffix">EUR</span>',
+        default: `<BudgetDropdownOption label="Ajouter" value="add" />`
+      },
+      global: {
+        components: {
+          BudgetDropdownOption
+        }
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("py-1.5");
+    expect(input.classes()).toContain("pl-8");
+    expect(input.classes()).toContain("pr-14");
+
+    const nativeSuffix = wrapper.find('[data-testid="native-suffix"]');
+    expect(nativeSuffix.element.parentElement?.className).toContain("right-7");
+    expect(wrapper.find('button[aria-label="Vider la selection"]').classes()).toContain("right-2.5");
+  });
+
+  it("applies large size classes including prefix and suffix offsets", () => {
+    const wrapper = mount(BudgetDropdown, {
+      props: { modelValue: null, size: "lg" },
+      slots: {
+        prefix: "<span>p</span>",
+        suffix: "<span>s</span>",
+        default: `<BudgetDropdownOption label="Ajouter" value="add" />`
+      },
+      global: {
+        components: {
+          BudgetDropdownOption
+        }
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("py-2.5");
+    expect(input.classes()).toContain("pl-10");
+    expect(input.classes()).toContain("pr-10");
+    const slotSpans = wrapper.findAll("span.pointer-events-none.absolute.inset-y-0.flex.items-center.text-slate-400");
+    expect(slotSpans.some((node) => node.classes().includes("left-3.5"))).toBe(true);
+    expect(slotSpans.some((node) => node.classes().includes("right-3.5"))).toBe(true);
   });
 });

@@ -16,6 +16,7 @@ Liste deroulante single-select avec recherche locale, grouping et saisie libre o
 ## Props
 
 - `modelValue`: `string | number | null`
+- `size`: taille du champ (`sm` | `md` | `lg`, defaut `md`)
 - `label`: texte du label
 - `placeholder`: placeholder de saisie
 - `name`: attribut `name` HTML

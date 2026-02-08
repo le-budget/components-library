@@ -173,3 +173,41 @@ export const FrozenSelection: Story = {
     `
   })
 };
+
+export const Sizes: Story = {
+  render: () => ({
+    components: {
+      BudgetDropdown,
+      BudgetDropdownGroup,
+      BudgetDropdownOption
+    },
+    setup() {
+      const valueSm = ref<string | number | null>(null);
+      const valueMd = ref<string | number | null>(null);
+      const valueLg = ref<string | number | null>(null);
+      return { valueSm, valueMd, valueLg };
+    },
+    template: `
+      <div class="grid gap-4">
+        <BudgetDropdown v-model="valueSm" label="Taille sm" size="sm" placeholder="Choisir">
+          <BudgetDropdownGroup label="Actions">
+            <BudgetDropdownOption label="Ajouter" value="add" />
+            <BudgetDropdownOption label="Modifier" value="edit" />
+          </BudgetDropdownGroup>
+        </BudgetDropdown>
+        <BudgetDropdown v-model="valueMd" label="Taille md" size="md" placeholder="Choisir">
+          <BudgetDropdownGroup label="Actions">
+            <BudgetDropdownOption label="Ajouter" value="add" />
+            <BudgetDropdownOption label="Modifier" value="edit" />
+          </BudgetDropdownGroup>
+        </BudgetDropdown>
+        <BudgetDropdown v-model="valueLg" label="Taille lg" size="lg" placeholder="Choisir">
+          <BudgetDropdownGroup label="Actions">
+            <BudgetDropdownOption label="Ajouter" value="add" />
+            <BudgetDropdownOption label="Modifier" value="edit" />
+          </BudgetDropdownGroup>
+        </BudgetDropdown>
+      </div>
+    `
+  })
+};

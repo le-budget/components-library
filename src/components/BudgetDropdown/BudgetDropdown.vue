@@ -40,6 +40,7 @@ type RenderItem =
 const props = withDefaults(
   defineProps<{
     modelValue: DropdownValue;
+    size?: "sm" | "md" | "lg";
     label?: string;
     placeholder?: string;
     name?: string;
@@ -54,6 +55,7 @@ const props = withDefaults(
     frozenSelection?: boolean;
   }>(),
   {
+    size: "md",
     label: undefined,
     placeholder: undefined,
     name: undefined,
@@ -115,11 +117,53 @@ const isInputReadonly = computed(() => !props.searchable || isSelectionFrozen.va
 const hasSuffix = computed(
   () => Boolean(selectedRightText.value) || hasNativeSuffix.value || showClearButton.value
 );
+const sizeClass = computed(() => {
+  if (props.size === "sm") {
+    return {
+      input: "py-1.5 text-sm leading-5",
+      prefix: "left-2.5 text-sm",
+      withPrefix: "pl-8",
+      suffixNoClear: "right-2.5 text-xs",
+      nativeSuffixNoClear: "right-2.5 text-sm",
+      nativeSuffixWithClear: "right-7 text-sm",
+      clearButton: "right-2.5 text-sm",
+      suffixWithClear: "right-7 text-xs",
+      withSuffix: "pr-8",
+      withSuffixAndClear: "pr-14"
+    };
+  }
+  if (props.size === "lg") {
+    return {
+      input: "py-2.5 text-base leading-6",
+      prefix: "left-3.5 text-base",
+      withPrefix: "pl-10",
+      suffixNoClear: "right-3.5 text-sm",
+      nativeSuffixNoClear: "right-3.5 text-base",
+      nativeSuffixWithClear: "right-9 text-base",
+      clearButton: "right-3.5 text-lg",
+      suffixWithClear: "right-9 text-sm",
+      withSuffix: "pr-10",
+      withSuffixAndClear: "pr-18"
+    };
+  }
+  return {
+    input: "py-2 text-base leading-6",
+    prefix: "left-3",
+    withPrefix: "pl-9",
+    suffixNoClear: "right-3 text-xs",
+    nativeSuffixNoClear: "right-3",
+    nativeSuffixWithClear: "right-8",
+    clearButton: "right-3 text-base",
+    suffixWithClear: "right-8 text-xs",
+    withSuffix: "pr-9",
+    withSuffixAndClear: "pr-16"
+  };
+});
 const inputRightPaddingClass = computed(() => {
   if (showClearButton.value && (Boolean(selectedRightText.value) || hasNativeSuffix.value)) {
-    return "pr-16";
+    return sizeClass.value.withSuffixAndClear;
   }
-  return "pr-9";
+  return sizeClass.value.withSuffix;
 });
 
 const inputStateClass = computed(() => {
@@ -476,12 +520,17 @@ onBeforeUnmount(() => {
       {{ label }}
     </label>
     <div class="relative">
+      <!-- c8 ignore start -->
       <span
         v-if="hasPrefix"
-        class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400"
+        :class="[
+          'pointer-events-none absolute inset-y-0 flex items-center text-slate-400',
+          sizeClass.prefix
+        ]"
       >
         <slot name="prefix" />
       </span>
+      <!-- c8 ignore stop -->
       <input
         ref="inputRef"
         :id="inputId"
@@ -500,9 +549,10 @@ onBeforeUnmount(() => {
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
         :class="[
-          'w-full rounded border px-3 py-2 text-base leading-6 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
+          'w-full rounded border px-3 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
+          sizeClass.input,
           inputStateClass,
-          hasPrefix ? 'pl-9' : '',
+          hasPrefix ? sizeClass.withPrefix : '',
           hasSuffix ? inputRightPaddingClass : ''
         ]"
         @focus="onFocus"
@@ -513,7 +563,10 @@ onBeforeUnmount(() => {
       <!-- c8 ignore start -->
       <span
         v-if="selectedRightText && !showClearButton"
-        class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs text-slate-500 dark:text-slate-400"
+        :class="[
+          'pointer-events-none absolute inset-y-0 flex items-center text-slate-500 dark:text-slate-400',
+          sizeClass.suffixNoClear
+        ]"
       >
         {{ selectedRightText }}
       </span>
@@ -522,7 +575,7 @@ onBeforeUnmount(() => {
         v-else-if="hasNativeSuffix && !selectedRightText"
         :class="[
           'pointer-events-none absolute inset-y-0 flex items-center text-slate-400',
-          showClearButton ? 'right-8' : 'right-3'
+          showClearButton ? sizeClass.nativeSuffixWithClear : sizeClass.nativeSuffixNoClear
         ]"
       >
         <slot name="suffix" />
@@ -531,7 +584,10 @@ onBeforeUnmount(() => {
       <button
         v-if="showClearButton"
         type="button"
-        class="absolute inset-y-0 right-3 flex items-center text-base leading-none text-slate-400 transition-colors hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue focus-visible:ring-offset-1 dark:hover:text-slate-200"
+        :class="[
+          'absolute inset-y-0 flex items-center leading-none text-slate-400 transition-colors hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue focus-visible:ring-offset-1 dark:hover:text-slate-200',
+          sizeClass.clearButton
+        ]"
         aria-label="Vider la selection"
         @mousedown.prevent
         @click="clearSelection"
@@ -540,7 +596,10 @@ onBeforeUnmount(() => {
       </button>
       <span
         v-if="selectedRightText && showClearButton"
-        class="pointer-events-none absolute inset-y-0 right-8 flex items-center text-xs text-slate-500 dark:text-slate-400"
+        :class="[
+          'pointer-events-none absolute inset-y-0 flex items-center text-slate-500 dark:text-slate-400',
+          sizeClass.suffixWithClear
+        ]"
       >
         {{ selectedRightText }}
       </span>

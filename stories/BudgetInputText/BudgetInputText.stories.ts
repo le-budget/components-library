@@ -16,6 +16,10 @@ const meta: Meta<typeof BudgetInputText> = {
     }
   },
   argTypes: {
+    size: {
+      control: { type: "select" },
+      options: ["sm", "md", "lg"]
+    },
     autocomplete: {
       control: "text"
     }
@@ -115,5 +119,24 @@ export const Autocomplete: Story = {
       return { args, value };
     },
     template: '<BudgetInputText v-bind="args" v-model="value" />'
+  })
+};
+
+export const Sizes: Story = {
+  render: () => ({
+    components: { BudgetInputText },
+    setup() {
+      const valueSm = ref("");
+      const valueMd = ref("");
+      const valueLg = ref("");
+      return { valueSm, valueMd, valueLg };
+    },
+    template: `
+      <div class="grid gap-4">
+        <BudgetInputText v-model="valueSm" label="Taille sm" size="sm" placeholder="Votre nom" />
+        <BudgetInputText v-model="valueMd" label="Taille md" size="md" placeholder="Votre nom" />
+        <BudgetInputText v-model="valueLg" label="Taille lg" size="lg" placeholder="Votre nom" />
+      </div>
+    `
   })
 };
