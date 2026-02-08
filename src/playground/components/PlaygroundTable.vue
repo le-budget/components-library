@@ -15,6 +15,16 @@ const selectedRowsLarge = ref<string[]>([]);
 const selectedRowsSingleSortable = ref<string[]>([]);
 const selectedRowsSizing = ref<string[]>([]);
 const selectedRowsControls = ref<string[]>([]);
+const selectedRowsHeaderColors = ref<Record<string, string[]>>({
+  default: [],
+  gray: [],
+  primary: [],
+  success: [],
+  warning: [],
+  error: [],
+  info: [],
+  neutral: []
+});
 const headerColorExamples: Array<{
   key: string;
   label: string;
@@ -326,7 +336,11 @@ const ungroupedRowsAfterGroup = computed(() =>
         <div class="text-sm font-medium text-slate-700 dark:text-slate-200">
           {{ example.label }}
         </div>
-        <BudgetTable selectable :select-all-color="example.color">
+        <BudgetTable
+          v-model:selected="selectedRowsHeaderColors[example.key]"
+          selectable
+          :select-all-color="example.color"
+        >
           <template #header>
             <BudgetTableHeader :color="example.color">Column A</BudgetTableHeader>
             <BudgetTableHeader :color="example.color">Column B</BudgetTableHeader>
