@@ -20,6 +20,13 @@ const inputTextCollapsed = ref(true);
             <hr class="border-gray-200">
             <BudgetInputText v-model="name" placeholder="Votre nom"></BudgetInputText>
             <hr class="border-gray-200">
+            <BudgetInputText
+                v-model="name"
+                label="Alignement a droite"
+                placeholder="Votre nom"
+                align="right"
+            ></BudgetInputText>
+            <hr class="border-gray-200">
             <BudgetInputText v-model="name" label="On error" placeholder="Votre nom" error error-message="Vous devez saisir votre nom"></BudgetInputText>
             <hr class="border-gray-200">
             <BudgetInputText v-model="name" label="On success" placeholder="Votre nom" success></BudgetInputText>

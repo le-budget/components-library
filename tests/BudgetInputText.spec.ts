@@ -156,4 +156,24 @@ describe("BudgetInputText", () => {
     expect(input.classes()).toContain("pl-10");
     expect(input.classes()).toContain("pr-10");
   });
+
+  it("defaults text alignment to left", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "" }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("text-left");
+    expect(input.classes()).not.toContain("text-right");
+  });
+
+  it("supports right text alignment", () => {
+    const wrapper = mount(BudgetInputText, {
+      props: { modelValue: "", align: "right" }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("text-right");
+    expect(input.classes()).not.toContain("text-left");
+  });
 });

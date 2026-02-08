@@ -25,6 +25,12 @@ const amountEmpty = ref<number | null>(null);
       <hr class="border-gray-200">
       <BudgetAmountInput
         v-model="amount"
+        label="Alignement a droite"
+        align="right"
+      />
+      <hr class="border-gray-200">
+      <BudgetAmountInput
+        v-model="amount"
         label="On error"
         error
         error-message="Montant invalide"
