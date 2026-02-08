@@ -14,4 +14,9 @@ export { default as BudgetToolbar } from "./components/BudgetToolbar/BudgetToolb
 export { default as BudgetToolbarItem } from "./components/BudgetToolbarItem/BudgetToolbarItem.vue";
 export { default as BudgetToolbarItemButton } from "./components/BudgetToolbarItemButton/BudgetToolbarItemButton.vue";
 export { default as BudgetToolbarItemSeparator } from "./components/BudgetToolbarItemSeparator/BudgetToolbarItemSeparator.vue";
+export { default as BudgetTable } from "./components/BudgetTable/BudgetTable.vue";
+export { default as BudgetTableHeader } from "./components/BudgetTableHeader/BudgetTableHeader.vue";
+export { default as BudgetTableRow } from "./components/BudgetTableRow/BudgetTableRow.vue";
+export { default as BudgetTableCell } from "./components/BudgetTableCell/BudgetTableCell.vue";
+export { default as BudgetTableGroup } from "./components/BudgetTableGroup/BudgetTableGroup.vue";
 export { statusIconMap, statusLabelMap, type StatusIconName } from "./icons";
