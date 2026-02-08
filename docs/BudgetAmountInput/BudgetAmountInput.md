@@ -12,6 +12,7 @@ Champ montant avec formatage en direct, validation integree et slots prefix/suff
 
 - `modelValue`: nombre en euros
 - `size`: taille du champ (`sm` | `md` | `lg`, defaut: `md`)
+- `align`: alignement du texte (`left` | `right`, defaut: `left`)
 - `label`: libelle au-dessus du champ
 - `placeholder`: texte d'aide
 - `autocomplete`: valeur HTML autocomplete (defaut: `off`)

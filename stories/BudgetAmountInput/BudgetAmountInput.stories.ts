@@ -20,6 +20,10 @@ const meta: Meta<typeof BudgetAmountInput> = {
       control: { type: "select" },
       options: ["sm", "md", "lg"]
     },
+    align: {
+      control: { type: "select" },
+      options: ["left", "right"]
+    },
     autocomplete: {
       control: "text"
     }
@@ -151,5 +155,21 @@ export const Sizes: Story = {
         <BudgetAmountInput v-model="valueLg" label="Taille lg" size="lg" />
       </div>
     `
+  })
+};
+
+export const RightAligned: Story = {
+  args: {
+    modelValue: 1000.5,
+    label: "Montant",
+    align: "right"
+  },
+  render: (args) => ({
+    components: { BudgetAmountInput },
+    setup() {
+      const value = ref(args.modelValue);
+      return { args, value };
+    },
+    template: '<BudgetAmountInput v-bind="args" v-model="value" />'
   })
 };

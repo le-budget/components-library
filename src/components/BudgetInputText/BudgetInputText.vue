@@ -6,6 +6,7 @@ const props = withDefaults(
   defineProps<{
     modelValue: string;
     size?: "sm" | "md" | "lg";
+    align?: "left" | "right";
     label?: string;
     placeholder?: string;
     name?: string;
@@ -18,6 +19,7 @@ const props = withDefaults(
   }>(),
   {
     size: "md",
+    align: "left",
     label: undefined,
     placeholder: undefined,
     name: undefined,
@@ -80,6 +82,9 @@ const inputStateClass = computed(() => {
   }
   return "text-slate-900 border-c-blue focus-visible:ring-c-blue dark:text-slate-100";
 });
+const inputAlignmentClass = computed(() =>
+  props.align === "right" ? "text-right" : "text-left"
+);
 
 function onInput(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -117,6 +122,7 @@ function onInput(event: Event) {
           'w-full rounded border px-3 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:border-slate-300 dark:bg-slate-900 dark:disabled:bg-slate-800 dark:focus-visible:ring-offset-slate-900',
           sizeClass.input,
           inputStateClass,
+          inputAlignmentClass,
           hasPrefix ? sizeClass.withPrefix : '',
           hasSuffix ? sizeClass.withSuffix : ''
         ]"

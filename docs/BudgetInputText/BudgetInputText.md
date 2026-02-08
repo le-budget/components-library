@@ -12,6 +12,7 @@ Champ texte avec validation integree et icones prefix/suffix.
 
 - `modelValue`: valeur du champ
 - `size`: taille du champ (`sm` | `md` | `lg`, defaut: `md`)
+- `align`: alignement du texte (`left` | `right`, defaut: `left`)
 - `label`: libelle au-dessus du champ
 - `placeholder`: texte d'aide
 - `autocomplete`: valeur HTML autocomplete (defaut: `off`)
