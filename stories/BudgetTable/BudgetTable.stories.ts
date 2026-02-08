@@ -350,8 +350,11 @@ export const HeaderColors: Story = {
         { key: "info", label: "Info", color: "info" },
         { key: "neutral", label: "Neutral", color: "neutral" }
       ];
+      const selectedByHeaderColor = ref<Record<string, string[]>>(
+        Object.fromEntries(colorExamples.map((example) => [example.key, []]))
+      );
 
-      return { colorExamples };
+      return { colorExamples, selectedByHeaderColor };
     },
     template: `
       <div class="grid gap-3">
@@ -363,7 +366,12 @@ export const HeaderColors: Story = {
           <div class="text-sm font-medium text-slate-700 dark:text-slate-200">
             {{ example.label }}
           </div>
-          <BudgetTable selectable :select-all-color="example.color">
+          <BudgetTable
+            v-model:selected="selectedByHeaderColor[example.key]"
+            selectable
+            :select-all-color="example.color"
+            :checkbox-color="example.color ?? 'neutral'"
+          >
             <template #header>
               <BudgetTableHeader :color="example.color">Colonne A</BudgetTableHeader>
               <BudgetTableHeader :color="example.color">Colonne B</BudgetTableHeader>
@@ -383,6 +391,69 @@ export const HeaderColors: Story = {
               <BudgetTableCell>Ligne 3 A</BudgetTableCell>
               <BudgetTableCell>Ligne 3 B</BudgetTableCell>
               <BudgetTableCell>Ligne 3 C</BudgetTableCell>
+            </BudgetTableRow>
+          </BudgetTable>
+        </div>
+      </div>
+    `
+  })
+};
+
+export const CheckboxColors: Story = {
+  render: () => ({
+    components: {
+      BudgetTable,
+      BudgetTableHeader,
+      BudgetTableRow,
+      BudgetTableCell
+    },
+    setup() {
+      const checkboxColorExamples: Array<{
+        key: string;
+        label: string;
+        color: "primary" | "neutral" | "success" | "warning" | "error";
+      }> = [
+        { key: "primary", label: "Primary", color: "primary" },
+        { key: "neutral", label: "Neutral", color: "neutral" },
+        { key: "success", label: "Success", color: "success" },
+        { key: "warning", label: "Warning", color: "warning" },
+        { key: "error", label: "Error", color: "error" }
+      ];
+      const selectedByCheckboxColor = ref<Record<string, string[]>>(
+        Object.fromEntries(checkboxColorExamples.map((example) => [example.key, []]))
+      );
+
+      return { checkboxColorExamples, selectedByCheckboxColor };
+    },
+    template: `
+      <div class="grid gap-3">
+        <div
+          v-for="example in checkboxColorExamples"
+          :key="example.key"
+          class="space-y-1"
+        >
+          <div class="text-sm font-medium text-slate-700 dark:text-slate-200">
+            Checkbox color: {{ example.label }}
+          </div>
+          <BudgetTable
+            v-model:selected="selectedByCheckboxColor[example.key]"
+            selectable
+            :checkbox-color="example.color"
+          >
+            <template #header>
+              <BudgetTableHeader>Colonne A</BudgetTableHeader>
+              <BudgetTableHeader>Colonne B</BudgetTableHeader>
+              <BudgetTableHeader>Colonne C</BudgetTableHeader>
+            </template>
+            <BudgetTableRow :row-id="example.key + '-1'">
+              <BudgetTableCell>Ligne 1 A</BudgetTableCell>
+              <BudgetTableCell>Ligne 1 B</BudgetTableCell>
+              <BudgetTableCell>Ligne 1 C</BudgetTableCell>
+            </BudgetTableRow>
+            <BudgetTableRow :row-id="example.key + '-2'" checkbox-color="neutral">
+              <BudgetTableCell>Ligne 2 A</BudgetTableCell>
+              <BudgetTableCell>Ligne 2 B</BudgetTableCell>
+              <BudgetTableCell>Ligne 2 C (override neutral)</BudgetTableCell>
             </BudgetTableRow>
           </BudgetTable>
         </div>

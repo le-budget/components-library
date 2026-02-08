@@ -21,6 +21,7 @@ function mountRow(contextOverrides: Record<string, unknown> = {}, slots: Record<
         [budgetTableContextKey as symbol]: {
           selectable: ref(true),
           hasActionsColumn: ref(true),
+          checkboxColor: ref("neutral"),
           activeSortKey: ref(null),
           activeSortDirection: ref("asc"),
           getSortDirection: () => null,
@@ -70,6 +71,70 @@ describe("BudgetTableRow", () => {
 
     const checkbox = wrapper.find("input[type='checkbox']");
     expect(checkbox.element.checked).toBe(true);
+  });
+
+  it("uses row checkboxColor prop over table context color", () => {
+    const wrapper = mount(BudgetTableRow, {
+      props: {
+        rowId: "row-1",
+        checkboxColor: "warning"
+      },
+      slots: {
+        default: `<BudgetTableCell>Valeur</BudgetTableCell>`
+      },
+      global: {
+        components: {
+          BudgetTableCell
+        },
+        provide: {
+          [budgetTableContextKey as symbol]: {
+            selectable: ref(true),
+            hasActionsColumn: ref(false),
+            checkboxColor: ref("neutral"),
+            activeSortKey: ref(null),
+            activeSortDirection: ref("asc"),
+            getSortDirection: () => null,
+            toggleSort: vi.fn(),
+            isRowSelected: () => false,
+            toggleRowSelection: vi.fn()
+          }
+        }
+      }
+    });
+
+    const checkboxBox = wrapper.find("label span");
+    expect(checkboxBox.classes()).toContain("border-c-orange-dark");
+  });
+
+  it("falls back to neutral color when context has no checkboxColor", () => {
+    const wrapper = mount(BudgetTableRow, {
+      props: {
+        rowId: "row-fallback"
+      },
+      slots: {
+        default: `<BudgetTableCell>Valeur</BudgetTableCell>`
+      },
+      global: {
+        components: {
+          BudgetTableCell
+        },
+        provide: {
+          [budgetTableContextKey as symbol]: {
+            selectable: ref(true),
+            hasActionsColumn: ref(false),
+            activeSortKey: ref(null),
+            activeSortDirection: ref("asc"),
+            getSortDirection: () => null,
+            toggleSort: vi.fn(),
+            isRowSelected: () => false,
+            toggleRowSelection: vi.fn()
+          }
+        }
+      }
+    });
+
+    const checkboxBox = wrapper.find("label span");
+    expect(checkboxBox.classes()).toContain("border-slate-500");
   });
 
   it("renders actions column without content when slot is missing", () => {

@@ -13,7 +13,7 @@ Case a cocher personnalisee avec variantes de couleur et de taille.
 - `modelValue`: valeur booleenne
 - `label`: texte de label
 - `disabled`: desactive la case
-- `color`: `primary | success | warning | error`
+- `color`: `primary | neutral | success | warning | error`
 - `size`: `sm | md | lg` (par defaut `md`)
 
 ## Examples

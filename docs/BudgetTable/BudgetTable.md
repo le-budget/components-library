@@ -27,6 +27,7 @@ Tableau compose avec tri par colonne, selection, pagination client et groupes re
 
 - `selected`: ids des lignes selectionnees (`v-model:selected`)
 - `selectable`: active les cases a cocher de selection
+- `checkboxColor`: couleur des cases a cocher (`primary | neutral | success | warning | error`, par defaut `neutral`)
 - `pageSize`: active la pagination interne si defini
 - `loading`: affiche un etat de chargement
 - `emptyText`: texte affiche quand aucune ligne visible

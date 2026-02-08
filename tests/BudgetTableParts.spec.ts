@@ -38,6 +38,7 @@ describe("BudgetTableHeader", () => {
           [budgetTableContextKey as symbol]: {
             selectable: ref(false),
             hasActionsColumn: ref(false),
+            checkboxColor: ref("neutral"),
             activeSortKey: ref("amount"),
             activeSortDirection: ref("asc"),
             getSortDirection: () => "asc",
@@ -71,6 +72,7 @@ describe("BudgetTableHeader", () => {
           [budgetTableContextKey as symbol]: {
             selectable: ref(false),
             hasActionsColumn: ref(false),
+            checkboxColor: ref("neutral"),
             activeSortKey: ref("name"),
             activeSortDirection: ref("desc"),
             getSortDirection: () => "desc",
@@ -101,6 +103,7 @@ describe("BudgetTableHeader", () => {
           [budgetTableContextKey as symbol]: {
             selectable: ref(false),
             hasActionsColumn: ref(false),
+            checkboxColor: ref("neutral"),
             activeSortKey: ref(null),
             activeSortDirection: ref("asc"),
             getSortDirection: () => null,
@@ -169,6 +172,7 @@ describe("BudgetTableHeader", () => {
           [budgetTableContextKey as symbol]: {
             selectable: ref(false),
             hasActionsColumn: ref(false),
+            checkboxColor: ref("neutral"),
             activeSortKey: ref(null),
             activeSortDirection: ref("asc"),
             getSortDirection: () => null,
@@ -282,6 +286,7 @@ describe("BudgetTableHeader", () => {
           [budgetTableContextKey as symbol]: {
             selectable: ref(false),
             hasActionsColumn: ref(false),
+            checkboxColor: ref("neutral"),
             activeSortKey: ref(null),
             activeSortDirection: ref("asc"),
             getSortDirection: () => null,
@@ -312,6 +317,7 @@ describe("BudgetTableHeader", () => {
           [budgetTableContextKey as symbol]: {
             selectable: ref(false),
             hasActionsColumn: ref(false),
+            checkboxColor: ref("neutral"),
             activeSortKey: ref(null),
             activeSortDirection: ref("asc"),
             getSortDirection: () => null,
@@ -357,4 +363,3 @@ describe("BudgetTableCell", () => {
     expect(wrapper.find("span.flex").classes()).toContain("justify-start");
   });
 });
-

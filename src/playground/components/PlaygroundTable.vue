@@ -25,6 +25,13 @@ const selectedRowsHeaderColors = ref<Record<string, string[]>>({
   info: [],
   neutral: []
 });
+const selectedRowsCheckboxColors = ref<Record<string, string[]>>({
+  primary: [],
+  neutral: [],
+  success: [],
+  warning: [],
+  error: []
+});
 const headerColorExamples: Array<{
   key: string;
   label: string;
@@ -50,6 +57,17 @@ const groupColorExamples: Array<{
   { key: "error", label: "Error", color: "error" },
   { key: "info", label: "Info", color: "info" },
   { key: "neutral", label: "Neutral", color: "neutral" }
+];
+const checkboxColorExamples: Array<{
+  key: string;
+  label: string;
+  color: "primary" | "neutral" | "success" | "warning" | "error";
+}> = [
+  { key: "primary", label: "Primary", color: "primary" },
+  { key: "neutral", label: "Neutral", color: "neutral" },
+  { key: "success", label: "Success", color: "success" },
+  { key: "warning", label: "Warning", color: "warning" },
+  { key: "error", label: "Error", color: "error" }
 ];
 const controlRows = ref([
   {
@@ -340,6 +358,7 @@ const ungroupedRowsAfterGroup = computed(() =>
           v-model:selected="selectedRowsHeaderColors[example.key]"
           selectable
           :select-all-color="example.color"
+          :checkbox-color="example.color === 'gray' || example.color === 'info' ? 'neutral' : (example.color ?? 'neutral')"
         >
           <template #header>
             <BudgetTableHeader :color="example.color">Column A</BudgetTableHeader>
@@ -361,6 +380,40 @@ const ungroupedRowsAfterGroup = computed(() =>
             <BudgetTableCell>Row 3 A</BudgetTableCell>
             <BudgetTableCell>Row 3 B</BudgetTableCell>
             <BudgetTableCell>Row 3 C</BudgetTableCell>
+          </BudgetTableRow>
+        </BudgetTable>
+      </div>
+
+      <hr class="border-gray-200">
+
+      <div
+        v-for="example in checkboxColorExamples"
+        :key="`checkbox-color-${example.key}`"
+        class="space-y-1"
+      >
+        <div class="text-sm font-medium text-slate-700 dark:text-slate-200">
+          Checkbox color: {{ example.label }}
+        </div>
+        <BudgetTable
+          v-model:selected="selectedRowsCheckboxColors[example.key]"
+          selectable
+          :checkbox-color="example.color"
+        >
+          <template #header>
+            <BudgetTableHeader>Column A</BudgetTableHeader>
+            <BudgetTableHeader>Column B</BudgetTableHeader>
+            <BudgetTableHeader>Column C</BudgetTableHeader>
+          </template>
+
+          <BudgetTableRow :row-id="`checkbox-color-${example.key}-1`">
+            <BudgetTableCell>Row 1 A</BudgetTableCell>
+            <BudgetTableCell>Row 1 B</BudgetTableCell>
+            <BudgetTableCell>Row 1 C</BudgetTableCell>
+          </BudgetTableRow>
+          <BudgetTableRow :row-id="`checkbox-color-${example.key}-2`" checkbox-color="neutral">
+            <BudgetTableCell>Row 2 A</BudgetTableCell>
+            <BudgetTableCell>Row 2 B</BudgetTableCell>
+            <BudgetTableCell>Row 2 C (row override: neutral)</BudgetTableCell>
           </BudgetTableRow>
         </BudgetTable>
       </div>
