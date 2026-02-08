@@ -29,6 +29,18 @@ const headerColorExamples: Array<{
   { key: "info", label: "Info", color: "info" },
   { key: "neutral", label: "Neutral", color: "neutral" }
 ];
+const groupColorExamples: Array<{
+  key: string;
+  label: string;
+  color: "primary" | "success" | "warning" | "error" | "info" | "neutral";
+}> = [
+  { key: "primary", label: "Primary", color: "primary" },
+  { key: "success", label: "Success", color: "success" },
+  { key: "warning", label: "Warning", color: "warning" },
+  { key: "error", label: "Error", color: "error" },
+  { key: "info", label: "Info", color: "info" },
+  { key: "neutral", label: "Neutral", color: "neutral" }
+];
 const controlRows = ref([
   {
     id: "control-1",
@@ -338,6 +350,50 @@ const ungroupedRowsAfterGroup = computed(() =>
           </BudgetTableRow>
         </BudgetTable>
       </div>
+
+      <hr class="border-gray-200">
+
+      <BudgetTable>
+        <template #header>
+          <BudgetTableHeader>Libelle</BudgetTableHeader>
+          <BudgetTableHeader align="right">Montant</BudgetTableHeader>
+          <BudgetTableHeader>Statut</BudgetTableHeader>
+        </template>
+
+        <BudgetTableGroup
+          v-for="example in groupColorExamples"
+          :key="`group-color-${example.key}`"
+          :title="`Groupe ${example.label}`"
+          :color="example.color"
+          collapsible
+          collapsed
+        >
+          <BudgetTableRow
+            :row-id="`group-color-${example.key}-1`"
+            :sort-values="{ label: `${example.label} row 1`, amount: 120, status: 'open' }"
+          >
+            <BudgetTableCell>{{ example.label }} row 1</BudgetTableCell>
+            <BudgetTableCell align="right">120.00</BudgetTableCell>
+            <BudgetTableCell>Open</BudgetTableCell>
+          </BudgetTableRow>
+          <BudgetTableRow
+            :row-id="`group-color-${example.key}-2`"
+            :sort-values="{ label: `${example.label} row 2`, amount: 80, status: 'planned' }"
+          >
+            <BudgetTableCell>{{ example.label }} row 2</BudgetTableCell>
+            <BudgetTableCell align="right">80.00</BudgetTableCell>
+            <BudgetTableCell>Planned</BudgetTableCell>
+          </BudgetTableRow>
+          <BudgetTableRow
+            :row-id="`group-color-${example.key}-3`"
+            :sort-values="{ label: `${example.label} row 3`, amount: 45, status: 'done' }"
+          >
+            <BudgetTableCell>{{ example.label }} row 3</BudgetTableCell>
+            <BudgetTableCell align="right">45.00</BudgetTableCell>
+            <BudgetTableCell>Done</BudgetTableCell>
+          </BudgetTableRow>
+        </BudgetTableGroup>
+      </BudgetTable>
 
       <hr class="border-gray-200">
 

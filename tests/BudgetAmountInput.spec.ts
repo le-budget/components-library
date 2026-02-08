@@ -283,6 +283,32 @@ describe("BudgetAmountInput", () => {
     expect(input.classes()).toContain("pr-9");
   });
 
+  it("handles prefix slot only", () => {
+    const wrapper = mount(BudgetAmountInput, {
+      props: { modelValue: 10 },
+      slots: {
+        prefix: "<span>p</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("pl-9");
+    expect(input.classes()).not.toContain("pr-9");
+  });
+
+  it("handles suffix slot only", () => {
+    const wrapper = mount(BudgetAmountInput, {
+      props: { modelValue: 10 },
+      slots: {
+        suffix: "<span>s</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).not.toContain("pl-9");
+    expect(input.classes()).toContain("pr-9");
+  });
+
   it("renders without slots", () => {
     const wrapper = mount(BudgetAmountInput, {
       props: { modelValue: 10 }
@@ -302,5 +328,36 @@ describe("BudgetAmountInput", () => {
     const input = wrapper.find("input");
     expect(label.text()).toBe("Montant");
     expect(label.attributes("for")).toBe(input.attributes("id"));
+  });
+
+  it("applies compact size classes", () => {
+    const wrapper = mount(BudgetAmountInput, {
+      props: { modelValue: 10, size: "sm" },
+      slots: {
+        prefix: "<span>p</span>",
+        suffix: "<span>s</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("py-1.5");
+    expect(input.classes()).toContain("text-sm");
+    expect(input.classes()).toContain("pl-8");
+    expect(input.classes()).toContain("pr-8");
+  });
+
+  it("applies large size classes", () => {
+    const wrapper = mount(BudgetAmountInput, {
+      props: { modelValue: 10, size: "lg" },
+      slots: {
+        prefix: "<span>p</span>",
+        suffix: "<span>s</span>"
+      }
+    });
+
+    const input = wrapper.find("input");
+    expect(input.classes()).toContain("py-2.5");
+    expect(input.classes()).toContain("pl-10");
+    expect(input.classes()).toContain("pr-10");
   });
 });

@@ -12,6 +12,12 @@ const inputTextCollapsed = ref(true);
         <div class="grid gap-4">
             <BudgetInputText v-model="name" label="Nom" placeholder="Votre nom"></BudgetInputText>
             <hr class="border-gray-200">
+            <div class="grid gap-3">
+                <BudgetInputText v-model="name" label="Taille sm" size="sm" placeholder="Votre nom"></BudgetInputText>
+                <BudgetInputText v-model="name" label="Taille md" size="md" placeholder="Votre nom"></BudgetInputText>
+                <BudgetInputText v-model="name" label="Taille lg" size="lg" placeholder="Votre nom"></BudgetInputText>
+            </div>
+            <hr class="border-gray-200">
             <BudgetInputText v-model="name" placeholder="Votre nom"></BudgetInputText>
             <hr class="border-gray-200">
             <BudgetInputText v-model="name" label="On error" placeholder="Votre nom" error error-message="Vous devez saisir votre nom"></BudgetInputText>

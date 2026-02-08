@@ -11,6 +11,9 @@ const selectedCategory = ref<string | number | null>(null);
 const customValue = ref<string | number | null>(null);
 const suffixExampleValue = ref<string | number | null>(null);
 const frozenSelectionValue = ref<string | number | null>(null);
+const sizeSmValue = ref<string | number | null>(null);
+const sizeMdValue = ref<string | number | null>(null);
+const sizeLgValue = ref<string | number | null>(null);
 </script>
 
 <template>
@@ -31,6 +34,46 @@ const frozenSelectionValue = ref<string | number | null>(null);
           <BudgetDropdownOption label="Transport" value="transport" disabled />
         </BudgetDropdownGroup>
       </BudgetDropdown>
+
+      <hr class="border-gray-200">
+
+      <div class="grid gap-3">
+        <BudgetDropdown
+          v-model="sizeSmValue"
+          label="Taille sm"
+          size="sm"
+          placeholder="Selectionner une categorie"
+        >
+          <BudgetDropdownGroup label="Actions">
+            <BudgetDropdownOption label="Ajouter" value="add" />
+            <BudgetDropdownOption label="Modifier" value="edit" />
+          </BudgetDropdownGroup>
+        </BudgetDropdown>
+
+        <BudgetDropdown
+          v-model="sizeMdValue"
+          label="Taille md"
+          size="md"
+          placeholder="Selectionner une categorie"
+        >
+          <BudgetDropdownGroup label="Actions">
+            <BudgetDropdownOption label="Ajouter" value="add" />
+            <BudgetDropdownOption label="Modifier" value="edit" />
+          </BudgetDropdownGroup>
+        </BudgetDropdown>
+
+        <BudgetDropdown
+          v-model="sizeLgValue"
+          label="Taille lg"
+          size="lg"
+          placeholder="Selectionner une categorie"
+        >
+          <BudgetDropdownGroup label="Actions">
+            <BudgetDropdownOption label="Ajouter" value="add" />
+            <BudgetDropdownOption label="Modifier" value="edit" />
+          </BudgetDropdownGroup>
+        </BudgetDropdown>
+      </div>
 
       <hr class="border-gray-200">
 

@@ -15,6 +15,12 @@ const amountEmpty = ref<number | null>(null);
     <div class="grid gap-4">
       <BudgetAmountInput v-model="amount" label="Montant" placeholder="0,00" />
       <hr class="border-gray-200">
+      <div class="grid gap-3">
+        <BudgetAmountInput v-model="amount" label="Taille sm" size="sm" />
+        <BudgetAmountInput v-model="amount" label="Taille md" size="md" />
+        <BudgetAmountInput v-model="amount" label="Taille lg" size="lg" />
+      </div>
+      <hr class="border-gray-200">
       <BudgetAmountInput v-model="amount" placeholder="0,00" />
       <hr class="border-gray-200">
       <BudgetAmountInput
