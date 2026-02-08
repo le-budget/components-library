@@ -9,6 +9,7 @@ import PlaygroundRadio from "./components/PlaygroundRadio.vue";
 import PlaygroundDropdown from "./components/PlaygroundDropdown.vue";
 import PlaygroundToolbar from "./components/PlaygroundToolbar.vue";
 import PlaygroundTable from "./components/PlaygroundTable.vue";
+import PlaygroundDatepicker from "./components/PlaygroundDatepicker.vue";
 
 </script>
 
@@ -23,6 +24,7 @@ import PlaygroundTable from "./components/PlaygroundTable.vue";
     <PlaygroundCheckbox />
     <PlaygroundRadio />
     <PlaygroundDropdown />
+    <PlaygroundDatepicker />
     <PlaygroundToolbar />
     <PlaygroundTable />
   </div>
