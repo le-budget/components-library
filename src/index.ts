@@ -11,6 +11,7 @@ export { default as BudgetDropdown } from "./components/BudgetDropdown/BudgetDro
 export { default as BudgetDropdownGroup } from "./components/BudgetDropdownGroup/BudgetDropdownGroup.vue";
 export { default as BudgetDropdownOption } from "./components/BudgetDropdownOption/BudgetDropdownOption.vue";
 export { default as BudgetBadge } from "./components/BudgetBadge/BudgetBadge.vue";
+export { default as BudgetAlert } from "./components/BudgetAlert/BudgetAlert.vue";
 export { default as BudgetCard } from "./components/BudgetCard/BudgetCard.vue";
 export { default as BudgetIcon } from "./components/BudgetIcon/BudgetIcon.vue";
 export { default as BudgetToolbar } from "./components/BudgetToolbar/BudgetToolbar.vue";
