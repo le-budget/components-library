@@ -17,6 +17,7 @@ import PlaygroundTable from "./components/PlaygroundTable.vue";
 import PlaygroundDatepicker from "./components/PlaygroundDatepicker.vue";
 import PlaygroundNavbar from "./components/PlaygroundNavbar.vue";
 import PlaygroundDivider from "./components/PlaygroundDivider.vue";
+import PlaygroundRadialProgress from "./components/PlaygroundRadialProgress.vue";
 
 </script>
 
@@ -38,6 +39,7 @@ import PlaygroundDivider from "./components/PlaygroundDivider.vue";
     <PlaygroundDropdown />
     <PlaygroundDatepicker />
     <PlaygroundDivider />
+    <PlaygroundRadialProgress />
     <PlaygroundNavbar />
     <PlaygroundToolbar />
     <PlaygroundTable />
