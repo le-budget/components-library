@@ -8,7 +8,7 @@ type BadgeColor =
   | "success"
   | "warning"
   | "error";
-type BadgeSize = "xs" | "md" | "lg";
+type BadgeSize = "sm" | "md" | "lg";
 
 const props = withDefaults(
   defineProps<{
@@ -23,7 +23,7 @@ const props = withDefaults(
 );
 
 const sizeClass = computed(() => {
-  if (props.size === "xs") return "px-3 py-0.5 text-[11px] gap-1";
+  if (props.size === "sm") return "px-3 py-0.5 text-[11px] gap-1";
   if (props.size === "lg") return "px-3.5 py-1 text-sm gap-1.5";
   return "px-3 py-0.5 text-[13px] gap-1.5";
 });

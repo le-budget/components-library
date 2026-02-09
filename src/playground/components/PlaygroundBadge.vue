@@ -21,7 +21,7 @@ const badgeCollapsed = ref(true);
             </div>
             <hr class="border-gray-200">
             <div class="flex flex-wrap items-center gap-2">
-                <BudgetBadge text="XS" size="xs" />
+                <BudgetBadge text="SM" size="sm" />
                 <BudgetBadge text="MD" size="md" />
                 <BudgetBadge text="LG" size="lg" />
             </div>

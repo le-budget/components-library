@@ -11,6 +11,7 @@ import PlaygroundDropdown from "./components/PlaygroundDropdown.vue";
 import PlaygroundToolbar from "./components/PlaygroundToolbar.vue";
 import PlaygroundTable from "./components/PlaygroundTable.vue";
 import PlaygroundDatepicker from "./components/PlaygroundDatepicker.vue";
+import PlaygroundNavbar from "./components/PlaygroundNavbar.vue";
 
 </script>
 
@@ -27,6 +28,7 @@ import PlaygroundDatepicker from "./components/PlaygroundDatepicker.vue";
     <PlaygroundRadio />
     <PlaygroundDropdown />
     <PlaygroundDatepicker />
+    <PlaygroundNavbar />
     <PlaygroundToolbar />
     <PlaygroundTable />
   </div>
