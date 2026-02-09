@@ -5,6 +5,7 @@ import PlaygroundInputAmount from "./components/PlaygroundInputAmount.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
 import PlaygroundButtonGroup from "./components/PlaygroundButtonGroup.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
+import PlaygroundAvatar from "./components/PlaygroundAvatar.vue";
 import PlaygroundAlert from "./components/PlaygroundAlert.vue";
 import PlaygroundToast from "./components/PlaygroundToast.vue";
 import PlaygroundIcon from "./components/PlaygroundIcon.vue";
@@ -28,6 +29,7 @@ import PlaygroundDivider from "./components/PlaygroundDivider.vue";
     <PlaygroundButton />
     <PlaygroundButtonGroup />
     <PlaygroundBadge />
+    <PlaygroundAvatar />
     <PlaygroundAlert />
     <PlaygroundToast />
     <PlaygroundIcon />

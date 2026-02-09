@@ -13,6 +13,7 @@ export { default as BudgetDropdownGroup } from "./components/BudgetDropdownGroup
 export { default as BudgetDropdownOption } from "./components/BudgetDropdownOption/BudgetDropdownOption.vue";
 export { default as BudgetBadge } from "./components/BudgetBadge/BudgetBadge.vue";
 export { default as BudgetAlert } from "./components/BudgetAlert/BudgetAlert.vue";
+export { default as BudgetAvatar } from "./components/BudgetAvatar/BudgetAvatar.vue";
 export { default as BudgetToast } from "./components/BudgetToast/BudgetToast.vue";
 export { default as BudgetToastContainer } from "./components/BudgetToastContainer/BudgetToastContainer.vue";
 export { default as BudgetCard } from "./components/BudgetCard/BudgetCard.vue";
