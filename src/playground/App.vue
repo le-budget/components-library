@@ -6,6 +6,7 @@ import PlaygroundButton from "./components/PlaygroundButton.vue";
 import PlaygroundButtonGroup from "./components/PlaygroundButtonGroup.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
 import PlaygroundAlert from "./components/PlaygroundAlert.vue";
+import PlaygroundToast from "./components/PlaygroundToast.vue";
 import PlaygroundIcon from "./components/PlaygroundIcon.vue";
 import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
 import PlaygroundRadio from "./components/PlaygroundRadio.vue";
@@ -28,6 +29,7 @@ import PlaygroundDivider from "./components/PlaygroundDivider.vue";
     <PlaygroundButtonGroup />
     <PlaygroundBadge />
     <PlaygroundAlert />
+    <PlaygroundToast />
     <PlaygroundIcon />
     <PlaygroundCheckbox />
     <PlaygroundRadio />
