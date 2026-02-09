@@ -48,6 +48,8 @@ export const Colors: Story = {
         <BudgetIcon status="status-success" color="success" />
         <BudgetIcon status="status-warning" color="warning" />
         <BudgetIcon status="status-error" color="error" />
+        <BudgetIcon status="status-info" color="neutral" />
+        <BudgetIcon status="status-info" color="white" />
       </div>
     `
   })

@@ -13,7 +13,7 @@ Icone de statut basee sur une registry interne Font Awesome.
 - `status`: `status-success | status-warning | status-error | status-info`
 - `size`: `sm | md | lg | xl | xxl` (par defaut `md`)
 - `label`: libelle accessible (optionnel)
-- `color`: `primary | success | warning | error` (par defaut `primary`)
+- `color`: `primary | success | warning | error | neutral | white` (par defaut `primary`)
 - `decorative`: masque l'icone aux technologies d'assistance (`aria-hidden=true`)
 
 ## Examples
