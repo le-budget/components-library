@@ -22,6 +22,9 @@ export { default as BudgetDivider } from "./components/BudgetDivider/BudgetDivid
 export { default as BudgetStatus } from "./components/BudgetStatus/BudgetStatus.vue";
 export { default as BudgetRadialProgress } from "./components/BudgetRadialProgress/BudgetRadialProgress.vue";
 export { default as BudgetProgressBar } from "./components/BudgetProgressBar/BudgetProgressBar.vue";
+export { default as BudgetPieChart } from "./components/BudgetPieChart/BudgetPieChart.vue";
+export { default as BudgetBarChart } from "./components/BudgetBarChart/BudgetBarChart.vue";
+export { default as BudgetLineChart } from "./components/BudgetLineChart/BudgetLineChart.vue";
 export { default as BudgetToolbar } from "./components/BudgetToolbar/BudgetToolbar.vue";
 export { default as BudgetToolbarItem } from "./components/BudgetToolbarItem/BudgetToolbarItem.vue";
 export { default as BudgetToolbarItemButton } from "./components/BudgetToolbarItemButton/BudgetToolbarItemButton.vue";

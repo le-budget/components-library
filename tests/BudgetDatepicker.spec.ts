@@ -325,6 +325,15 @@ describe("BudgetDatepicker", () => {
     expect(wrapper.text()).toContain("janvier 2020");
   });
 
+  it("clamps fallback month to minDate when no value is selected", async () => {
+    const wrapper = mountDatepicker({
+      modelValue: null,
+      minDate: "2030-01-01"
+    });
+    await wrapper.find("input").trigger("focus");
+    expect(wrapper.text()).toContain("janvier 2030");
+  });
+
   it("keeps open state on repeated click and safely unmounts", async () => {
     const wrapper = mountDatepicker({
       modelValue: "2026-02-08"
