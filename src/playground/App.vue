@@ -4,6 +4,7 @@ import PlaygroundInputText from "./components/PlaygroundInputText.vue";
 import PlaygroundInputAmount from "./components/PlaygroundInputAmount.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
+import PlaygroundIcon from "./components/PlaygroundIcon.vue";
 import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
 import PlaygroundRadio from "./components/PlaygroundRadio.vue";
 import PlaygroundDropdown from "./components/PlaygroundDropdown.vue";
@@ -21,6 +22,7 @@ import PlaygroundDatepicker from "./components/PlaygroundDatepicker.vue";
     <PlaygroundInputAmount />
     <PlaygroundButton />
     <PlaygroundBadge />
+    <PlaygroundIcon />
     <PlaygroundCheckbox />
     <PlaygroundRadio />
     <PlaygroundDropdown />
