@@ -3,6 +3,7 @@ import PlaygroundHeader from "./components/PlaygroundHeader.vue";
 import PlaygroundInputText from "./components/PlaygroundInputText.vue";
 import PlaygroundInputAmount from "./components/PlaygroundInputAmount.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
+import PlaygroundButtonGroup from "./components/PlaygroundButtonGroup.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
 import PlaygroundAlert from "./components/PlaygroundAlert.vue";
 import PlaygroundIcon from "./components/PlaygroundIcon.vue";
@@ -23,6 +24,7 @@ import PlaygroundNavbar from "./components/PlaygroundNavbar.vue";
     <PlaygroundInputText />
     <PlaygroundInputAmount />
     <PlaygroundButton />
+    <PlaygroundButtonGroup />
     <PlaygroundBadge />
     <PlaygroundAlert />
     <PlaygroundIcon />
