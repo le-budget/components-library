@@ -17,6 +17,9 @@ export { default as BudgetToolbar } from "./components/BudgetToolbar/BudgetToolb
 export { default as BudgetToolbarItem } from "./components/BudgetToolbarItem/BudgetToolbarItem.vue";
 export { default as BudgetToolbarItemButton } from "./components/BudgetToolbarItemButton/BudgetToolbarItemButton.vue";
 export { default as BudgetToolbarItemSeparator } from "./components/BudgetToolbarItemSeparator/BudgetToolbarItemSeparator.vue";
+export { default as BudgetNavbar } from "./components/BudgetNavbar/BudgetNavbar.vue";
+export { default as BudgetNavbarMenu } from "./components/BudgetNavbarMenu/BudgetNavbarMenu.vue";
+export { default as BudgetNavbarMenuItem } from "./components/BudgetNavbarMenuItem/BudgetNavbarMenuItem.vue";
 export { default as BudgetTable } from "./components/BudgetTable/BudgetTable.vue";
 export { default as BudgetTableHeader } from "./components/BudgetTableHeader/BudgetTableHeader.vue";
 export { default as BudgetTableRow } from "./components/BudgetTableRow/BudgetTableRow.vue";
