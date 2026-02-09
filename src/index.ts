@@ -19,6 +19,7 @@ export { default as BudgetToastContainer } from "./components/BudgetToastContain
 export { default as BudgetCard } from "./components/BudgetCard/BudgetCard.vue";
 export { default as BudgetIcon } from "./components/BudgetIcon/BudgetIcon.vue";
 export { default as BudgetDivider } from "./components/BudgetDivider/BudgetDivider.vue";
+export { default as BudgetStatus } from "./components/BudgetStatus/BudgetStatus.vue";
 export { default as BudgetRadialProgress } from "./components/BudgetRadialProgress/BudgetRadialProgress.vue";
 export { default as BudgetProgressBar } from "./components/BudgetProgressBar/BudgetProgressBar.vue";
 export { default as BudgetToolbar } from "./components/BudgetToolbar/BudgetToolbar.vue";
