@@ -74,10 +74,10 @@ describe("BudgetBadge", () => {
   });
 
   it("applies size variants", () => {
-    const xs = mount(BudgetBadge, {
-      props: { text: "XS", size: "xs" }
+    const sm = mount(BudgetBadge, {
+      props: { text: "SM", size: "sm" }
     });
-    expect(xs.classes()).toContain("text-[11px]");
+    expect(sm.classes()).toContain("text-[11px]");
 
     const lg = mount(BudgetBadge, {
       props: { text: "LG", size: "lg" }

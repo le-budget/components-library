@@ -48,12 +48,12 @@ export const Sizes: Story = {
     template: `
       <div class="grid gap-3">
         <div class="flex flex-wrap items-center gap-2">
-          <BudgetBadge text="XS Primary" size="xs" color="primary" />
-          <BudgetBadge text="XS Secondary" size="xs" color="secondary" />
-          <BudgetBadge text="XS Ghost" size="xs" color="ghost" />
-          <BudgetBadge text="XS Success" size="xs" color="success" />
-          <BudgetBadge text="XS Warning" size="xs" color="warning" />
-          <BudgetBadge text="XS Error" size="xs" color="error" />
+          <BudgetBadge text="SM Primary" size="sm" color="primary" />
+          <BudgetBadge text="SM Secondary" size="sm" color="secondary" />
+          <BudgetBadge text="SM Ghost" size="sm" color="ghost" />
+          <BudgetBadge text="SM Success" size="sm" color="success" />
+          <BudgetBadge text="SM Warning" size="sm" color="warning" />
+          <BudgetBadge text="SM Error" size="sm" color="error" />
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <BudgetBadge text="MD Primary" size="md" color="primary" />
@@ -82,17 +82,17 @@ export const Icons: Story = {
     template: `
       <div class="grid gap-3">
         <div class="flex flex-wrap gap-2">
-          <BudgetBadge text="XS Left" size="xs">
+          <BudgetBadge text="SM Left" size="sm">
             <template #icon>
               <BudgetIcon status="status-info" size="sm" />
             </template>
           </BudgetBadge>
-          <BudgetBadge text="XS Right" size="xs">
+          <BudgetBadge text="SM Right" size="sm">
             <template #iconRight>
               <BudgetIcon status="status-success" size="sm" />
             </template>
           </BudgetBadge>
-          <BudgetBadge text="XS Both" size="xs">
+          <BudgetBadge text="SM Both" size="sm">
             <template #icon>
               <BudgetIcon status="status-info" size="sm" />
             </template>

@@ -12,13 +12,13 @@ Badge simple avec texte et couleur.
 
 - `text`: texte du badge
 - `color`: `primary | secondary | ghost | success | warning | error`
-- `size`: `xs | md | lg`
+- `size`: `sm | md | lg`
 
 ## Examples
 
 ```vue
 <BudgetBadge text="Archive" color="secondary" />
-<BudgetBadge text="XS" size="xs" />
+<BudgetBadge text="SM" size="sm" />
 <BudgetBadge text="Avec icone">
   <template #icon>
     <BudgetIcon status="status-info" size="sm" />
