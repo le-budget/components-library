@@ -20,6 +20,7 @@ import PlaygroundNavbar from "./components/PlaygroundNavbar.vue";
 import PlaygroundDivider from "./components/PlaygroundDivider.vue";
 import PlaygroundDrawer from "./components/PlaygroundDrawer.vue";
 import PlaygroundDialog from "./components/PlaygroundDialog.vue";
+import PlaygroundPopover from "./components/PlaygroundPopover.vue";
 import PlaygroundStatus from "./components/PlaygroundStatus.vue";
 import PlaygroundRadialProgress from "./components/PlaygroundRadialProgress.vue";
 import PlaygroundProgressBar from "./components/PlaygroundProgressBar.vue";
@@ -50,6 +51,7 @@ import PlaygroundLineChart from "./components/PlaygroundLineChart.vue";
     <PlaygroundDivider />
     <PlaygroundDrawer />
     <PlaygroundDialog />
+    <PlaygroundPopover />
     <PlaygroundStatus />
     <PlaygroundRadialProgress />
     <PlaygroundProgressBar />
