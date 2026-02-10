@@ -40,6 +40,14 @@ export const Default: Story = {
           Detail des comptes actifs.
         </BudgetTabItem>
 
+        <BudgetTabItem title="Neutre" color="neutral">
+          Onglet neutral (fond slate-500, bordure slate-700, texte blanc).
+        </BudgetTabItem>
+
+        <BudgetTabItem title="Neutre secondaire" color="secondary-neutral">
+          Onglet secondary-neutral (fond slate-50, bordure slate-500).
+        </BudgetTabItem>
+
         <BudgetTabItem title="Alertes" color="primary-warning">
           <template #icon>
             <BudgetIcon status="status-warning" decorative />
@@ -68,6 +76,14 @@ export const Spaced: Story = {
             <BudgetIcon status="status-success" decorative />
           </template>
           Detail des comptes actifs.
+        </BudgetTabItem>
+
+        <BudgetTabItem title="Neutre" color="neutral">
+          Onglet neutral (fond slate-500, bordure slate-700, texte blanc).
+        </BudgetTabItem>
+
+        <BudgetTabItem title="Neutre secondaire" color="secondary-neutral">
+          Onglet secondary-neutral (fond slate-50, bordure slate-500).
         </BudgetTabItem>
 
         <BudgetTabItem title="Alertes" color="primary-warning">

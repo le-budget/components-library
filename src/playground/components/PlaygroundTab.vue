@@ -41,6 +41,12 @@ const tabCollapsed = ref(true);
         <BudgetTabItem title="Secondary" color="secondary">
           Couleur secondary.
         </BudgetTabItem>
+        <BudgetTabItem title="Neutral" color="neutral">
+          Couleur neutral (slate-500 / slate-700 / texte blanc).
+        </BudgetTabItem>
+        <BudgetTabItem title="Secondary Neutral" color="secondary-neutral">
+          Couleur secondary-neutral (slate-50 / slate-500).
+        </BudgetTabItem>
         <BudgetTabItem title="Ghost" color="ghost">
           Couleur ghost.
         </BudgetTabItem>

@@ -189,6 +189,14 @@ function getTabButtonToneClass(item: BudgetTabRegistration) {
   const inactiveClass = "opacity-50";
 
   switch (item.color) {
+    case "neutral":
+      return active
+        ? "border-slate-700 bg-slate-500 text-white dark:border-slate-700 dark:bg-slate-500 dark:text-white"
+        : `border-slate-700 bg-slate-500 text-white dark:border-slate-700 dark:bg-slate-500 dark:text-white ${inactiveClass}`;
+    case "secondary-neutral":
+      return active
+        ? "border-slate-500 bg-slate-50 text-slate-700 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100"
+        : `border-slate-500 bg-slate-50 text-slate-700 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100 ${inactiveClass}`;
     case "secondary":
       return active
         ? "border-c-blue bg-white text-c-blue-dark dark:border-c-black dark:bg-slate-900 dark:text-slate-100"
@@ -231,6 +239,10 @@ function getTabButtonToneClass(item: BudgetTabRegistration) {
 
 function getPanelToneClass(color: BudgetTabItemColor) {
   switch (color) {
+    case "neutral":
+      return "border-slate-700 dark:border-slate-700";
+    case "secondary-neutral":
+      return "border-slate-500 dark:border-slate-500";
     case "secondary":
     case "ghost":
       return "border-c-blue dark:border-c-black";

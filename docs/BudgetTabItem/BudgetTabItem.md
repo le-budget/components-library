@@ -16,7 +16,7 @@ Element unitaire pour `BudgetTab` avec titre, icone optionnelle et contenu assoc
 ## Props
 
 - `title`: titre affiche dans l'onglet
-- `color`: `primary | secondary | ghost | primary-success | secondary-success | primary-warning | secondary-warning | primary-error | secondary-error`
+- `color`: `primary | neutral | secondary-neutral | secondary | ghost | primary-success | secondary-success | primary-warning | secondary-warning | primary-error | secondary-error`
 - `disabled`: desactive l'onglet
 - `defaultActive`: active l'onglet au rendu initial
 

@@ -405,6 +405,8 @@ describe("BudgetTab", () => {
       slots: {
         default: `
           <BudgetTabItem title="Primary" color="primary" :default-active="true">A</BudgetTabItem>
+          <BudgetTabItem title="Neutral" color="neutral">N</BudgetTabItem>
+          <BudgetTabItem title="Secondary Neutral" color="secondary-neutral">SN</BudgetTabItem>
           <BudgetTabItem title="Secondary" color="secondary">B</BudgetTabItem>
           <BudgetTabItem title="Ghost" color="ghost">C</BudgetTabItem>
           <BudgetTabItem title="Primary Success" color="primary-success">D</BudgetTabItem>
@@ -454,6 +456,22 @@ describe("BudgetTab", () => {
       defaultActive: false
     });
     const fallbackPanelClass = vm.getPanelToneClass("unexpected");
+    const neutralPanelClass = vm.getPanelToneClass("neutral");
+    const secondaryNeutralPanelClass = vm.getPanelToneClass("secondary-neutral");
+    const neutralButtonClass = vm.getTabButtonToneClass({
+      id: "n",
+      title: "n",
+      color: "neutral",
+      disabled: false,
+      defaultActive: false
+    });
+    const secondaryNeutralButtonClass = vm.getTabButtonToneClass({
+      id: "sn",
+      title: "sn",
+      color: "secondary-neutral",
+      disabled: false,
+      defaultActive: false
+    });
     const listClass = vm.getTabListClass();
     const tabListBorderClass = vm.getTabListBorderClass();
     const tabListBorderWidthClass = vm.getTabListBorderWidthClass();
@@ -465,6 +483,10 @@ describe("BudgetTab", () => {
 
     expect(fallbackButtonClass).toContain("border-c-blue-dark");
     expect(fallbackPanelClass).toContain("border-c-blue-dark");
+    expect(neutralPanelClass).toContain("border-slate-700");
+    expect(secondaryNeutralPanelClass).toContain("border-slate-500");
+    expect(neutralButtonClass).toContain("text-white");
+    expect(secondaryNeutralButtonClass).toContain("bg-slate-50");
     expect(listClass).toContain("gap-0");
     expect(tabListBorderClass).toContain("border-b-0");
     expect(tabListBorderWidthClass).toContain("border-b");

@@ -9,6 +9,8 @@ defineOptions({
 
 export type BudgetTabItemColor =
   | "primary"
+  | "neutral"
+  | "secondary-neutral"
   | "secondary"
   | "ghost"
   | "primary-success"
