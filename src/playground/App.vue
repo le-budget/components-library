@@ -27,6 +27,7 @@ import PlaygroundProgressBar from "./components/PlaygroundProgressBar.vue";
 import PlaygroundPieChart from "./components/PlaygroundPieChart.vue";
 import PlaygroundBarChart from "./components/PlaygroundBarChart.vue";
 import PlaygroundLineChart from "./components/PlaygroundLineChart.vue";
+import PlaygroundAccordion from "./components/PlaygroundAccordion.vue";
 
 </script>
 
@@ -52,6 +53,7 @@ import PlaygroundLineChart from "./components/PlaygroundLineChart.vue";
     <PlaygroundDrawer />
     <PlaygroundDialog />
     <PlaygroundPopover />
+    <PlaygroundAccordion />
     <PlaygroundStatus />
     <PlaygroundRadialProgress />
     <PlaygroundProgressBar />
