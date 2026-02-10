@@ -6,6 +6,7 @@ export { default as BudgetInputText } from "./components/BudgetInputText/BudgetI
 export { default as BudgetInputFile } from "./components/BudgetInputFile/BudgetInputFile.vue";
 export { default as BudgetDatepicker } from "./components/BudgetDatepicker/BudgetDatepicker.vue";
 export { default as BudgetCheckbox } from "./components/BudgetCheckbox/BudgetCheckbox.vue";
+export { default as BudgetToggle } from "./components/BudgetToggle/BudgetToggle.vue";
 export { default as BudgetRadio } from "./components/BudgetRadio/BudgetRadio.vue";
 export { default as BudgetRadioGroup } from "./components/BudgetRadioGroup/BudgetRadioGroup.vue";
 export { default as BudgetAmountInput } from "./components/BudgetAmountInput/BudgetAmountInput.vue";

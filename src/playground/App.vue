@@ -11,6 +11,7 @@ import PlaygroundAlert from "./components/PlaygroundAlert.vue";
 import PlaygroundToast from "./components/PlaygroundToast.vue";
 import PlaygroundIcon from "./components/PlaygroundIcon.vue";
 import PlaygroundCheckbox from "./components/PlaygroundCheckbox.vue";
+import PlaygroundToggle from "./components/PlaygroundToggle.vue";
 import PlaygroundRadio from "./components/PlaygroundRadio.vue";
 import PlaygroundDropdown from "./components/PlaygroundDropdown.vue";
 import PlaygroundToolbar from "./components/PlaygroundToolbar.vue";
@@ -46,6 +47,7 @@ import PlaygroundAccordion from "./components/PlaygroundAccordion.vue";
     <PlaygroundToast />
     <PlaygroundIcon />
     <PlaygroundCheckbox />
+    <PlaygroundToggle />
     <PlaygroundRadio />
     <PlaygroundDropdown />
     <PlaygroundDatepicker />
