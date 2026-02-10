@@ -104,3 +104,39 @@ export const WithDisabledTab: Story = {
     `
   })
 };
+
+export const BorderWidth: Story = {
+  render: () => ({
+    components: { BudgetTab, BudgetTabItem },
+    template: `
+      <div class="grid gap-6">
+        <BudgetTab border-width="sm">
+          <BudgetTabItem title="SM" :default-active="true">
+            Bordure fine sur onglets et contenu.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            Exemple borderWidth="sm".
+          </BudgetTabItem>
+        </BudgetTab>
+
+        <BudgetTab border-width="md" :spaced="true">
+          <BudgetTabItem title="MD" :default-active="true">
+            Bordure moyenne sur onglets et contenu.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            Exemple borderWidth="md".
+          </BudgetTabItem>
+        </BudgetTab>
+
+        <BudgetTab border-width="lg">
+          <BudgetTabItem title="LG" :default-active="true">
+            Bordure epaisse sur onglets et contenu.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            Exemple borderWidth="lg".
+          </BudgetTabItem>
+        </BudgetTab>
+      </div>
+    `
+  })
+};

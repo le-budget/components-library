@@ -35,7 +35,13 @@ type BudgetTabVm = {
     defaultActive: boolean;
   }) => string;
   getPanelToneClass: (color: string) => string;
+  getPanelShapeClass: () => string;
+  getPanelBorderWidthClass: () => string;
   getTabListClass: () => string;
+  getTabListBorderClass: () => string;
+  getTabListBorderWidthClass: () => string;
+  getRootClass: () => string;
+  getTabButtonBorderWidthClass: (itemId: string, index: number, total: number) => string;
   getTabButtonLayoutClass: (itemId: string, index: number, total: number) => string;
 };
 
@@ -62,6 +68,7 @@ describe("BudgetTab", () => {
     await nextTick();
 
     const list = wrapper.find('[data-testid="tab-list"]');
+    const root = wrapper.find('[data-testid="tab-root"]');
     const tabs = wrapper.findAll('[role="tab"]');
     const panels = wrapper.findAll('[data-testid="tab-panel"]');
 
@@ -75,15 +82,44 @@ describe("BudgetTab", () => {
     expect(tabs[0].attributes("aria-controls")).toBe(panels[0].attributes("id"));
     expect(tabs[0].find("svg").exists()).toBe(true);
     expect(list.classes()).toContain("gap-0");
+    expect(list.classes()).toContain("border-b-0");
+    expect(list.classes()).not.toContain("border-b");
+    expect(root.classes()).toContain("gap-0");
     expect(tabs[0].classes()).toContain("rounded-tl-lg");
     expect(tabs[0].classes()).toContain("rounded-none");
+    expect(tabs[0].classes()).toContain("border-t");
+    expect(tabs[0].classes()).not.toContain("border-y");
     expect(tabs[1].classes()).toContain("rounded-tr-lg");
-    expect(tabs[1].classes()).toContain("-mb-px");
+    expect(tabs[1].classes()).not.toContain("-mb-px");
     expect(tabs[1].classes()).toContain("border-r");
     expect(tabs[1].classes()).not.toContain("border-r-0");
+    expect(panels[0].classes()).toContain("rounded-t-none");
+    expect(panels[0].classes()).toContain("rounded-b-xl");
   });
 
-  it("shows right border on active non-last tabs in compact mode", async () => {
+  it("avoids double separators in compact mode with 2, 3 and 4 tabs", async () => {
+    const twoTabs = mount(BudgetTab, {
+      slots: {
+        default: `
+          <BudgetTabItem title="A" :default-active="true">Contenu A</BudgetTabItem>
+          <BudgetTabItem title="B">Contenu B</BudgetTabItem>
+        `
+      },
+      global: {
+        components: { BudgetTabItem }
+      }
+    });
+    await nextTick();
+
+    let tabs = twoTabs.findAll('[role="tab"]');
+    expect(tabs[0].classes()).toContain("border-r");
+    expect(tabs[1].classes()).toContain("border-l-0");
+
+    await tabs[1].trigger("click");
+    tabs = twoTabs.findAll('[role="tab"]');
+    expect(tabs[0].classes()).toContain("border-r-0");
+    expect(tabs[1].classes()).toContain("border-l");
+
     const wrapper = mount(BudgetTab, {
       slots: {
         default: `
@@ -98,14 +134,39 @@ describe("BudgetTab", () => {
     });
     await nextTick();
 
-    const tabs = wrapper.findAll('[role="tab"]');
+    tabs = wrapper.findAll('[role="tab"]');
     expect(tabs[0].classes()).toContain("border-r");
+    expect(tabs[0].classes()).not.toContain("opacity-50");
+    expect(tabs[1].classes()).toContain("opacity-50");
+    expect(tabs[1].classes()).toContain("border-l-0");
     expect(tabs[1].classes()).toContain("border-r-0");
 
     await tabs[1].trigger("click");
     const refreshed = wrapper.findAll('[role="tab"]');
+    expect(refreshed[0].classes()).toContain("opacity-50");
+    expect(refreshed[1].classes()).not.toContain("opacity-50");
     expect(refreshed[1].classes()).toContain("border-r");
+    expect(refreshed[2].classes()).toContain("border-l-0");
     expect(refreshed[0].classes()).toContain("border-r-0");
+
+    const fourTabs = mount(BudgetTab, {
+      slots: {
+        default: `
+          <BudgetTabItem title="A">Contenu A</BudgetTabItem>
+          <BudgetTabItem title="B" :default-active="true">Contenu B</BudgetTabItem>
+          <BudgetTabItem title="C">Contenu C</BudgetTabItem>
+          <BudgetTabItem title="D">Contenu D</BudgetTabItem>
+        `
+      },
+      global: {
+        components: { BudgetTabItem }
+      }
+    });
+    await nextTick();
+
+    tabs = fourTabs.findAll('[role="tab"]');
+    expect(tabs[2].classes()).toContain("border-l-0");
+    expect(tabs[3].classes()).toContain("border-l");
   });
 
   it("supports spaced mode layout classes", async () => {
@@ -126,12 +187,103 @@ describe("BudgetTab", () => {
     await nextTick();
 
     const list = wrapper.find('[data-testid="tab-list"]');
+    const root = wrapper.find('[data-testid="tab-root"]');
     const tabs = wrapper.findAll('[role="tab"]');
 
     expect(list.classes()).toContain("gap-2");
     expect(list.classes()).toContain("pb-2");
+    expect(list.classes()).toContain("border-b");
+    expect(root.classes()).toContain("gap-3");
     expect(tabs[0].classes()).toContain("rounded-lg");
     expect(tabs[0].classes()).not.toContain("rounded-tl-lg");
+    expect(wrapper.find('[data-testid="tab-panel"]').classes()).toContain("rounded-xl");
+  });
+
+  it("applies borderWidth on tabs and panel", async () => {
+    const compact = mount(BudgetTab, {
+      props: {
+        borderWidth: "md"
+      },
+      slots: {
+        default: `
+          <BudgetTabItem title="A" :default-active="true">Contenu A</BudgetTabItem>
+          <BudgetTabItem title="B">Contenu B</BudgetTabItem>
+          <BudgetTabItem title="C">Contenu C</BudgetTabItem>
+        `
+      },
+      global: {
+        components: { BudgetTabItem }
+      }
+    });
+    await nextTick();
+
+    const compactTabs = compact.findAll('[role="tab"]');
+    expect(compactTabs[0].classes()).toContain("border-t-2");
+    expect(compactTabs[0].classes()).toContain("border-l-2");
+    expect(compactTabs[1].classes()).toContain("border-t-2");
+    expect(compactTabs[1].classes()).toContain("border-r-0");
+    expect(compact.find('[data-testid="tab-panel"]').classes()).toContain("border-2");
+
+    const spaced = mount(BudgetTab, {
+      props: {
+        spaced: true,
+        borderWidth: "lg"
+      },
+      slots: {
+        default: `
+          <BudgetTabItem title="A" :default-active="true">Contenu A</BudgetTabItem>
+          <BudgetTabItem title="B">Contenu B</BudgetTabItem>
+        `
+      },
+      global: {
+        components: { BudgetTabItem }
+      }
+    });
+    await nextTick();
+
+    expect(spaced.find('[role="tab"]').classes()).toContain("border-4");
+    expect(spaced.find('[data-testid="tab-panel"]').classes()).toContain("border-4");
+    expect(spaced.find('[data-testid="tab-list"]').classes()).toContain("border-b-4");
+
+    const compactLg = mount(BudgetTab, {
+      props: {
+        borderWidth: "lg"
+      },
+      slots: {
+        default: `
+          <BudgetTabItem title="A" :default-active="true">Contenu A</BudgetTabItem>
+          <BudgetTabItem title="B">Contenu B</BudgetTabItem>
+          <BudgetTabItem title="C">Contenu C</BudgetTabItem>
+        `
+      },
+      global: {
+        components: { BudgetTabItem }
+      }
+    });
+    await nextTick();
+    const compactLgTabs = compactLg.findAll('[role="tab"]');
+    expect(compactLgTabs[0].classes()).toContain("border-t-4");
+    expect(compactLgTabs[1].classes()).toContain("border-t-4");
+    expect(compactLgTabs[1].classes()).toContain("border-r-0");
+
+    const spacedMd = mount(BudgetTab, {
+      props: {
+        spaced: true,
+        borderWidth: "md"
+      },
+      slots: {
+        default: `
+          <BudgetTabItem title="A" :default-active="true">Contenu A</BudgetTabItem>
+          <BudgetTabItem title="B">Contenu B</BudgetTabItem>
+        `
+      },
+      global: {
+        components: { BudgetTabItem }
+      }
+    });
+    await nextTick();
+    expect(spacedMd.find('[role="tab"]').classes()).toContain("border-2");
+    expect(spacedMd.find('[data-testid="tab-list"]').classes()).toContain("border-b-2");
   });
 
   it("navigates with keyboard and skips disabled tabs", async () => {
@@ -303,11 +455,23 @@ describe("BudgetTab", () => {
     });
     const fallbackPanelClass = vm.getPanelToneClass("unexpected");
     const listClass = vm.getTabListClass();
+    const tabListBorderClass = vm.getTabListBorderClass();
+    const tabListBorderWidthClass = vm.getTabListBorderWidthClass();
+    const rootClass = vm.getRootClass();
+    const panelShapeClass = vm.getPanelShapeClass();
+    const panelBorderWidthClass = vm.getPanelBorderWidthClass();
+    const tabBorderWidthClass = vm.getTabButtonBorderWidthClass("x", 0, 3);
     const buttonClass = vm.getTabButtonLayoutClass("x", 0, 3);
 
     expect(fallbackButtonClass).toContain("border-c-blue-dark");
     expect(fallbackPanelClass).toContain("border-c-blue-dark");
     expect(listClass).toContain("gap-0");
+    expect(tabListBorderClass).toContain("border-b-0");
+    expect(tabListBorderWidthClass).toContain("border-b");
+    expect(rootClass).toContain("gap-0");
+    expect(panelShapeClass).toContain("rounded-b-xl");
+    expect(panelBorderWidthClass).toContain("border");
+    expect(tabBorderWidthClass).toContain("border-t");
     expect(buttonClass).toContain("rounded-tl-lg");
   });
 
