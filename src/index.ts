@@ -26,6 +26,8 @@ export { default as BudgetDialog } from "./components/BudgetDialog/BudgetDialog.
 export { default as BudgetPopover } from "./components/BudgetPopover/BudgetPopover.vue";
 export { default as BudgetAccordion } from "./components/BudgetAccordion/BudgetAccordion.vue";
 export { default as BudgetAccordionItem } from "./components/BudgetAccordionItem/BudgetAccordionItem.vue";
+export { default as BudgetTab } from "./components/BudgetTab/BudgetTab.vue";
+export { default as BudgetTabItem } from "./components/BudgetTabItem/BudgetTabItem.vue";
 export { default as BudgetStatus } from "./components/BudgetStatus/BudgetStatus.vue";
 export { default as BudgetRadialProgress } from "./components/BudgetRadialProgress/BudgetRadialProgress.vue";
 export { default as BudgetProgressBar } from "./components/BudgetProgressBar/BudgetProgressBar.vue";
