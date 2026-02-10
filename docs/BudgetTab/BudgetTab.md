@@ -15,6 +15,7 @@ Conteneur d'onglets horizontaux compose de plusieurs `BudgetTabItem`.
 ## Props
 
 - `spaced`: `false` par defaut, colle les onglets entre eux; `true` ajoute un espacement entre onglets
+- `borderWidth`: `sm | md | lg`, definit l'epaisseur de bordure des onglets et du contenu
 
 ## Accessibility
 

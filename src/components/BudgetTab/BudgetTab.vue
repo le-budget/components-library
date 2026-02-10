@@ -13,9 +13,11 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     spaced?: boolean;
+    borderWidth?: "sm" | "md" | "lg";
   }>(),
   {
-    spaced: false
+    spaced: false,
+    borderWidth: "sm"
   }
 );
 
@@ -184,50 +186,63 @@ function onTabKeydown(event: KeyboardEvent, itemId: string) {
 
 function getTabButtonToneClass(item: BudgetTabRegistration) {
   const active = isActive(item.id);
+  const inactiveClass = "opacity-50";
 
   switch (item.color) {
+    case "neutral":
+      return active
+        ? "border-slate-700 bg-slate-500 text-white dark:border-slate-700 dark:bg-slate-500 dark:text-white"
+        : `border-slate-700 bg-slate-500 text-white dark:border-slate-700 dark:bg-slate-500 dark:text-white ${inactiveClass}`;
+    case "secondary-neutral":
+      return active
+        ? "border-slate-500 bg-slate-50 text-slate-700 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100"
+        : `border-slate-500 bg-slate-50 text-slate-700 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100 ${inactiveClass}`;
     case "secondary":
       return active
         ? "border-c-blue bg-white text-c-blue-dark dark:border-c-black dark:bg-slate-900 dark:text-slate-100"
-        : "border-transparent bg-transparent text-c-blue-dark/80 hover:border-c-blue/50 hover:bg-c-blue-light/10 hover:text-c-blue-dark dark:text-slate-300 dark:hover:border-c-black/50 dark:hover:bg-c-black-light/20 dark:hover:text-slate-100";
+        : `border-c-blue bg-white text-c-blue-dark dark:border-c-black dark:bg-slate-900 dark:text-slate-100 ${inactiveClass}`;
     case "ghost":
       return active
         ? "border-c-blue/60 bg-transparent text-c-blue-dark dark:border-c-black/70 dark:text-slate-100"
-        : "border-transparent bg-transparent text-c-blue-dark/80 hover:border-c-blue/30 hover:bg-c-blue-light/10 dark:text-slate-300 dark:hover:border-c-black/40 dark:hover:bg-c-black-light/20";
+        : `border-c-blue/60 bg-transparent text-c-blue-dark dark:border-c-black/70 dark:text-slate-100 ${inactiveClass}`;
     case "primary-success":
       return active
         ? "border-c-green bg-c-green/15 text-c-green-dark dark:border-c-black-success dark:bg-c-black-success/20 dark:text-c-black-success"
-        : "border-transparent bg-transparent text-c-green-dark/80 hover:border-c-green/50 hover:bg-c-green/10 dark:text-c-black-success/80 dark:hover:border-c-black-success/50 dark:hover:bg-c-black-success/15";
+        : `border-c-green bg-c-green/15 text-c-green-dark dark:border-c-black-success dark:bg-c-black-success/20 dark:text-c-black-success ${inactiveClass}`;
     case "secondary-success":
       return active
         ? "border-c-green bg-white text-c-green-dark dark:border-c-black-success dark:bg-slate-900 dark:text-c-black-success"
-        : "border-transparent bg-transparent text-c-green-dark/80 hover:border-c-green/50 hover:bg-c-green/10 dark:text-c-black-success/80 dark:hover:border-c-black-success/50 dark:hover:bg-c-black-success/15";
+        : `border-c-green bg-white text-c-green-dark dark:border-c-black-success dark:bg-slate-900 dark:text-c-black-success ${inactiveClass}`;
     case "primary-warning":
       return active
         ? "border-c-orange bg-c-orange/20 text-c-orange-dark dark:border-c-black-warning dark:bg-c-black-warning/20 dark:text-c-black-warning"
-        : "border-transparent bg-transparent text-c-orange-dark/80 hover:border-c-orange/50 hover:bg-c-orange/10 dark:text-c-black-warning/80 dark:hover:border-c-black-warning/50 dark:hover:bg-c-black-warning/15";
+        : `border-c-orange bg-c-orange/20 text-c-orange-dark dark:border-c-black-warning dark:bg-c-black-warning/20 dark:text-c-black-warning ${inactiveClass}`;
     case "secondary-warning":
       return active
         ? "border-c-orange bg-white text-c-orange-dark dark:border-c-black-warning dark:bg-slate-900 dark:text-c-black-warning"
-        : "border-transparent bg-transparent text-c-orange-dark/80 hover:border-c-orange/50 hover:bg-c-orange/10 dark:text-c-black-warning/80 dark:hover:border-c-black-warning/50 dark:hover:bg-c-black-warning/15";
+        : `border-c-orange bg-white text-c-orange-dark dark:border-c-black-warning dark:bg-slate-900 dark:text-c-black-warning ${inactiveClass}`;
     case "primary-error":
       return active
         ? "border-c-red bg-c-red/15 text-c-red-dark dark:border-c-black-error dark:bg-c-black-error/20 dark:text-c-black-error"
-        : "border-transparent bg-transparent text-c-red-dark/80 hover:border-c-red/50 hover:bg-c-red/10 dark:text-c-black-error/80 dark:hover:border-c-black-error/50 dark:hover:bg-c-black-error/15";
+        : `border-c-red bg-c-red/15 text-c-red-dark dark:border-c-black-error dark:bg-c-black-error/20 dark:text-c-black-error ${inactiveClass}`;
     case "secondary-error":
       return active
         ? "border-c-red bg-white text-c-red-dark dark:border-c-black-error dark:bg-slate-900 dark:text-c-black-error"
-        : "border-transparent bg-transparent text-c-red-dark/80 hover:border-c-red/50 hover:bg-c-red/10 dark:text-c-black-error/80 dark:hover:border-c-black-error/50 dark:hover:bg-c-black-error/15";
+        : `border-c-red bg-white text-c-red-dark dark:border-c-black-error dark:bg-slate-900 dark:text-c-black-error ${inactiveClass}`;
     case "primary":
     default:
       return active
         ? "border-c-blue-dark bg-c-blue-light/30 text-c-blue-dark dark:border-c-black dark:bg-c-black-light/35 dark:text-slate-100"
-        : "border-transparent bg-transparent text-c-blue-dark/80 hover:border-c-blue-dark/40 hover:bg-c-blue-light/10 hover:text-c-blue-dark dark:text-slate-300 dark:hover:border-c-black/50 dark:hover:bg-c-black-light/20 dark:hover:text-slate-100";
+        : `border-c-blue-dark bg-c-blue-light/30 text-c-blue-dark dark:border-c-black dark:bg-c-black-light/35 dark:text-slate-100 ${inactiveClass}`;
   }
 }
 
 function getPanelToneClass(color: BudgetTabItemColor) {
   switch (color) {
+    case "neutral":
+      return "border-slate-700 dark:border-slate-700";
+    case "secondary-neutral":
+      return "border-slate-500 dark:border-slate-500";
     case "secondary":
     case "ghost":
       return "border-c-blue dark:border-c-black";
@@ -253,23 +268,93 @@ function getTabListClass() {
   return "flex-nowrap gap-0";
 }
 
+function getTabListBorderClass() {
+  const borderWidthClass = getTabListBorderWidthClass();
+  return props.spaced
+    ? `${borderWidthClass} border-slate-200 dark:border-slate-700`
+    : "border-b-0";
+}
+
+function getRootClass() {
+  return props.spaced ? "gap-3" : "gap-0";
+}
+
+function getPanelShapeClass() {
+  return props.spaced ? "rounded-xl" : "rounded-b-xl rounded-t-none";
+}
+
+function getTabListBorderWidthClass() {
+  switch (props.borderWidth) {
+    case "md":
+      return "border-b-2";
+    case "lg":
+      return "border-b-4";
+    case "sm":
+    default:
+      return "border-b";
+  }
+}
+
+function getPanelBorderWidthClass() {
+  switch (props.borderWidth) {
+    case "md":
+      return "border-2";
+    case "lg":
+      return "border-4";
+    case "sm":
+    default:
+      return "border";
+  }
+}
+
 function getTabButtonLayoutClass(itemId: string, index: number, total: number) {
+  const borderClasses = getTabButtonBorderWidthClass(itemId, index, total);
+
   if (props.spaced) {
-    return "rounded-lg";
+    return `rounded-lg ${borderClasses}`;
   }
 
   const isFirst = index === 0;
   const isLast = index === total - 1;
-  const active = isActive(itemId);
 
   return [
-    "-mb-px rounded-none border-y border-l",
-    isLast || active ? "border-r" : "border-r-0",
+    "rounded-none",
+    borderClasses,
     isFirst ? "rounded-tl-lg border-l" : "",
-    isLast ? "rounded-tr-lg border-r" : ""
+    isLast ? "rounded-tr-lg" : ""
   ]
     .filter(Boolean)
     .join(" ");
+}
+
+function getTabButtonBorderWidthClass(itemId: string, index: number, total: number) {
+  if (props.spaced) {
+    switch (props.borderWidth) {
+      case "md":
+        return "border-2";
+      case "lg":
+        return "border-4";
+      case "sm":
+      default:
+        return "border";
+    }
+  }
+
+  const isLast = index === total - 1;
+  const active = isActive(itemId);
+  const previousItem = index > 0 ? registeredItems.value[index - 1] : null;
+  const previousIsActive = previousItem ? isActive(previousItem.id) : false;
+  const rightBorderClass = isLast || active ? "border-r" : "border-r-0";
+
+  switch (props.borderWidth) {
+    case "md":
+      return `border-t-2 ${index === 0 ? "border-l-2" : previousIsActive ? "border-l-0" : "border-l-2"} ${rightBorderClass === "border-r" ? "border-r-2" : rightBorderClass}`;
+    case "lg":
+      return `border-t-4 ${index === 0 ? "border-l-4" : previousIsActive ? "border-l-0" : "border-l-4"} ${rightBorderClass === "border-r" ? "border-r-4" : rightBorderClass}`;
+    case "sm":
+    default:
+      return `border-t ${index === 0 ? "border-l" : previousIsActive ? "border-l-0" : "border-l"} ${rightBorderClass}`;
+  }
 }
 
 provide(budgetTabContextKey, {
@@ -280,12 +365,12 @@ provide(budgetTabContextKey, {
 </script>
 
 <template>
-  <div class="flex flex-col gap-3" data-testid="tab-root">
+  <div class="flex flex-col" :class="getRootClass()" data-testid="tab-root">
     <div
       role="tablist"
       aria-orientation="horizontal"
-      class="flex items-end border-b border-slate-200 dark:border-slate-700"
-      :class="getTabListClass()"
+      class="flex items-end"
+      :class="[getTabListClass(), getTabListBorderClass()]"
       data-testid="tab-list"
     >
       <button
@@ -299,7 +384,7 @@ provide(budgetTabContextKey, {
         :aria-controls="getPanelId(item.id)"
         :tabindex="isActive(item.id) ? 0 : -1"
         :disabled="item.disabled"
-        class="inline-flex items-center gap-2 border px-3 py-2 text-sm font-semibold transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-55 dark:focus-visible:ring-offset-slate-900"
+        class="inline-flex items-center gap-2 px-3 py-2 text-sm font-semibold transition-colors focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-55 dark:focus-visible:ring-offset-slate-900"
         :class="[getTabButtonLayoutClass(item.id, index, registeredItems.length), getTabButtonToneClass(item)]"
         @click="selectItem(item.id)"
         @keydown="onTabKeydown($event, item.id)"
@@ -319,8 +404,8 @@ provide(budgetTabContextKey, {
         role="tabpanel"
         :id="getPanelId(item.id)"
         :aria-labelledby="getTabId(item.id)"
-        class="rounded-xl border bg-white p-4 text-sm text-slate-700 dark:bg-slate-900 dark:text-slate-200"
-        :class="getPanelToneClass(item.color)"
+        class="bg-white p-4 text-sm text-slate-700 dark:bg-slate-900 dark:text-slate-200"
+        :class="[getPanelBorderWidthClass(), getPanelShapeClass(), getPanelToneClass(item.color)]"
         data-testid="tab-panel"
       >
         <component :is="item.contentSlot" v-if="item.contentSlot" />

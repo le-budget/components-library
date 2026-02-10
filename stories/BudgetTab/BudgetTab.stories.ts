@@ -40,6 +40,14 @@ export const Default: Story = {
           Detail des comptes actifs.
         </BudgetTabItem>
 
+        <BudgetTabItem title="Neutre" color="neutral">
+          Onglet neutral (fond slate-500, bordure slate-700, texte blanc).
+        </BudgetTabItem>
+
+        <BudgetTabItem title="Neutre secondaire" color="secondary-neutral">
+          Onglet secondary-neutral (fond slate-50, bordure slate-500).
+        </BudgetTabItem>
+
         <BudgetTabItem title="Alertes" color="primary-warning">
           <template #icon>
             <BudgetIcon status="status-warning" decorative />
@@ -68,6 +76,14 @@ export const Spaced: Story = {
             <BudgetIcon status="status-success" decorative />
           </template>
           Detail des comptes actifs.
+        </BudgetTabItem>
+
+        <BudgetTabItem title="Neutre" color="neutral">
+          Onglet neutral (fond slate-500, bordure slate-700, texte blanc).
+        </BudgetTabItem>
+
+        <BudgetTabItem title="Neutre secondaire" color="secondary-neutral">
+          Onglet secondary-neutral (fond slate-50, bordure slate-500).
         </BudgetTabItem>
 
         <BudgetTabItem title="Alertes" color="primary-warning">
@@ -101,6 +117,42 @@ export const WithDisabledTab: Story = {
           Details des erreurs detectees.
         </BudgetTabItem>
       </BudgetTab>
+    `
+  })
+};
+
+export const BorderWidth: Story = {
+  render: () => ({
+    components: { BudgetTab, BudgetTabItem },
+    template: `
+      <div class="grid gap-6">
+        <BudgetTab border-width="sm">
+          <BudgetTabItem title="SM" :default-active="true">
+            Bordure fine sur onglets et contenu.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            Exemple borderWidth="sm".
+          </BudgetTabItem>
+        </BudgetTab>
+
+        <BudgetTab border-width="md" :spaced="true">
+          <BudgetTabItem title="MD" :default-active="true">
+            Bordure moyenne sur onglets et contenu.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            Exemple borderWidth="md".
+          </BudgetTabItem>
+        </BudgetTab>
+
+        <BudgetTab border-width="lg">
+          <BudgetTabItem title="LG" :default-active="true">
+            Bordure epaisse sur onglets et contenu.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            Exemple borderWidth="lg".
+          </BudgetTabItem>
+        </BudgetTab>
+      </div>
     `
   })
 };

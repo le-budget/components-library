@@ -41,6 +41,12 @@ export const Default: Story = {
         <BudgetTabItem title="Secondaire" color="secondary">
           Contenu secondaire.
         </BudgetTabItem>
+        <BudgetTabItem title="Neutre" color="neutral">
+          Contenu neutral.
+        </BudgetTabItem>
+        <BudgetTabItem title="Neutre secondaire" color="secondary-neutral">
+          Contenu secondary-neutral.
+        </BudgetTabItem>
       </BudgetTab>
     `
   })

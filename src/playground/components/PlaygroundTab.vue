@@ -41,6 +41,12 @@ const tabCollapsed = ref(true);
         <BudgetTabItem title="Secondary" color="secondary">
           Couleur secondary.
         </BudgetTabItem>
+        <BudgetTabItem title="Neutral" color="neutral">
+          Couleur neutral (slate-500 / slate-700 / texte blanc).
+        </BudgetTabItem>
+        <BudgetTabItem title="Secondary Neutral" color="secondary-neutral">
+          Couleur secondary-neutral (slate-50 / slate-500).
+        </BudgetTabItem>
         <BudgetTabItem title="Ghost" color="ghost">
           Couleur ghost.
         </BudgetTabItem>
@@ -63,6 +69,37 @@ const tabCollapsed = ref(true);
           Couleur secondary-error (disabled).
         </BudgetTabItem>
       </BudgetTab>
+
+      <hr class="border-gray-200">
+
+      <div class="grid gap-4">
+        <BudgetTab border-width="sm">
+          <BudgetTabItem title="Border SM" :default-active="true">
+            Epaisseur de bordure faible.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            borderWidth="sm"
+          </BudgetTabItem>
+        </BudgetTab>
+
+        <BudgetTab border-width="md" :spaced="true">
+          <BudgetTabItem title="Border MD" :default-active="true">
+            Epaisseur de bordure moyenne.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            borderWidth="md"
+          </BudgetTabItem>
+        </BudgetTab>
+
+        <BudgetTab border-width="lg">
+          <BudgetTabItem title="Border LG" :default-active="true">
+            Epaisseur de bordure forte.
+          </BudgetTabItem>
+          <BudgetTabItem title="Details">
+            borderWidth="lg"
+          </BudgetTabItem>
+        </BudgetTab>
+      </div>
     </div>
   </BudgetCard>
 </template>
