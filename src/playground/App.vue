@@ -2,6 +2,7 @@
 import PlaygroundHeader from "./components/PlaygroundHeader.vue";
 import PlaygroundInputText from "./components/PlaygroundInputText.vue";
 import PlaygroundInputAmount from "./components/PlaygroundInputAmount.vue";
+import PlaygroundInputFile from "./components/PlaygroundInputFile.vue";
 import PlaygroundButton from "./components/PlaygroundButton.vue";
 import PlaygroundButtonGroup from "./components/PlaygroundButtonGroup.vue";
 import PlaygroundBadge from "./components/PlaygroundBadge.vue";
@@ -32,6 +33,7 @@ import PlaygroundLineChart from "./components/PlaygroundLineChart.vue";
 
     <PlaygroundInputText />
     <PlaygroundInputAmount />
+    <PlaygroundInputFile />
     <PlaygroundButton />
     <PlaygroundButtonGroup />
     <PlaygroundBadge />
