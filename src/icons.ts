@@ -8,6 +8,7 @@ import {
   faTriangleExclamation,
   faChevronDown,
   faChevronUp,
+  faChevronRight,
   faArrowDown,
   faArrowUp
 } from "@fortawesome/free-solid-svg-icons";
@@ -37,6 +38,7 @@ export const statusLabelMap: Record<StatusIconName, string> = {
 
 export const chevronDownIcon = faChevronDown;
 export const chevronUpIcon = faChevronUp;
+export const chevronRightIcon = faChevronRight;
 export const clearIcon = faXmark;
 export const sortArrowDownIcon = faArrowDown;
 export const sortArrowUpIcon = faArrowUp;
