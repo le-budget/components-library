@@ -18,6 +18,7 @@ import PlaygroundToolbar from "./components/PlaygroundToolbar.vue";
 import PlaygroundTable from "./components/PlaygroundTable.vue";
 import PlaygroundDatepicker from "./components/PlaygroundDatepicker.vue";
 import PlaygroundNavbar from "./components/PlaygroundNavbar.vue";
+import PlaygroundBreadcrumb from "./components/PlaygroundBreadcrumb.vue";
 import PlaygroundDivider from "./components/PlaygroundDivider.vue";
 import PlaygroundDrawer from "./components/PlaygroundDrawer.vue";
 import PlaygroundDialog from "./components/PlaygroundDialog.vue";
@@ -67,6 +68,7 @@ import PlaygroundTab from "./components/PlaygroundTab.vue";
     <PlaygroundBarChart />
     <PlaygroundLineChart />
     <PlaygroundNavbar />
+    <PlaygroundBreadcrumb />
     <PlaygroundToolbar />
     <PlaygroundTable />
   </div>
