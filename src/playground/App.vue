@@ -23,6 +23,7 @@ import PlaygroundDrawer from "./components/PlaygroundDrawer.vue";
 import PlaygroundDialog from "./components/PlaygroundDialog.vue";
 import PlaygroundPopover from "./components/PlaygroundPopover.vue";
 import PlaygroundStatus from "./components/PlaygroundStatus.vue";
+import PlaygroundSkeleton from "./components/PlaygroundSkeleton.vue";
 import PlaygroundRadialProgress from "./components/PlaygroundRadialProgress.vue";
 import PlaygroundProgressBar from "./components/PlaygroundProgressBar.vue";
 import PlaygroundPieChart from "./components/PlaygroundPieChart.vue";
@@ -58,6 +59,7 @@ import PlaygroundTab from "./components/PlaygroundTab.vue";
     <PlaygroundPopover />
     <PlaygroundAccordion />
     <PlaygroundTab />
+    <PlaygroundSkeleton />
     <PlaygroundStatus />
     <PlaygroundRadialProgress />
     <PlaygroundProgressBar />

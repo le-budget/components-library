@@ -29,6 +29,8 @@ export { default as BudgetAccordionItem } from "./components/BudgetAccordionItem
 export { default as BudgetTab } from "./components/BudgetTab/BudgetTab.vue";
 export { default as BudgetTabItem } from "./components/BudgetTabItem/BudgetTabItem.vue";
 export { default as BudgetStatus } from "./components/BudgetStatus/BudgetStatus.vue";
+export { default as BudgetSkeleton } from "./components/BudgetSkeleton/BudgetSkeleton.vue";
+export { default as BudgetLoading } from "./components/BudgetLoading/BudgetLoading.vue";
 export { default as BudgetRadialProgress } from "./components/BudgetRadialProgress/BudgetRadialProgress.vue";
 export { default as BudgetProgressBar } from "./components/BudgetProgressBar/BudgetProgressBar.vue";
 export { default as BudgetPieChart } from "./components/BudgetPieChart/BudgetPieChart.vue";
