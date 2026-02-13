@@ -1,6 +1,6 @@
 {
   "name": "@le-budget/components-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bibliotheque de composants Vue 3 pour le-budget.fr",
   "type": "module",
   "license": "UNLICENSED",
@@ -19,7 +19,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/index.css"
   },
   "sideEffects": [
     "**/*.css"
