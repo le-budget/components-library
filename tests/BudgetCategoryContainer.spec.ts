@@ -1,4 +1,5 @@
 import { mount } from "@vue/test-utils";
+import { nextTick } from "vue";
 import BudgetCategoryContainer from "../src/components/BudgetCategoryContainer/BudgetCategoryContainer.vue";
 import type {
   BudgetCategoryContainerGroup,
@@ -411,6 +412,27 @@ describe("BudgetCategoryContainer", () => {
     expect(wrapper.emitted("update:itemSelected")).toEqual([
       [{ groupId: "group-factures", itemId: "item-electricite", value: true }]
     ]);
+    expect(wrapper.emitted("update:collapsed")).toEqual([
+      [{ groupId: "group-factures", collapsed: true }]
+    ]);
+  });
+
+  it("collapses a group locally when clicking its chevron even without parent state updates", async () => {
+    const wrapper = mountContainer();
+    const toggle = wrapper.get(
+      '[data-testid="budget-category-container-group-group-factures"] button[aria-controls]'
+    );
+    const content = wrapper.get(
+      '[data-testid="budget-category-container-group-group-factures"] [data-testid="budget-category-group-content"]'
+    );
+
+    expect(toggle.attributes("aria-expanded")).toBe("true");
+
+    await toggle.trigger("click");
+    await nextTick();
+
+    expect(toggle.attributes("aria-expanded")).toBe("false");
+    expect(content.attributes("style")).toContain("display: none;");
     expect(wrapper.emitted("update:collapsed")).toEqual([
       [{ groupId: "group-factures", collapsed: true }]
     ]);

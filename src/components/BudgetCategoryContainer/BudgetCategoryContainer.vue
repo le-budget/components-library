@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { computed, onBeforeUnmount, ref } from "vue";
+import { computed, onBeforeUnmount, ref, watch } from "vue";
 import BudgetCategoryGroup from "../BudgetCategoryGroup/BudgetCategoryGroup.vue";
 import BudgetCategoryItem from "../BudgetCategoryItem/BudgetCategoryItem.vue";
 import { dragHandleIcon } from "../../icons";
@@ -79,6 +79,7 @@ const emit = defineEmits<{
 const dragState = ref<DragState>(null);
 const activeGroupDropIndex = ref<number | null>(null);
 const activeItemDropTarget = ref<{ groupId: string; index: number } | null>(null);
+const collapsedOverrides = ref<Record<string, boolean>>({});
 
 const isDraggingGroup = computed(() => dragState.value?.type === "group");
 const isDraggingItem = computed(() => dragState.value?.type === "item");
@@ -147,6 +148,17 @@ onBeforeUnmount(() => {
   dragImageElement?.remove();
   dragImageElement = null;
 });
+
+watch(
+  () => props.groups,
+  (groups) => {
+    const knownGroupIds = new Set(groups.map((group) => group.id));
+    collapsedOverrides.value = Object.fromEntries(
+      Object.entries(collapsedOverrides.value).filter(([groupId]) => knownGroupIds.has(groupId))
+    );
+  },
+  { deep: true }
+);
 
 function clearDragState() {
   dragState.value = null;
@@ -268,7 +280,10 @@ function onGroupDragStart(event: DragEvent, group: BudgetCategoryContainerGroup)
   dragState.value = {
     type: "group",
     groupId: group.id,
-    group,
+    group: {
+      ...group,
+      collapsed: resolveGroupCollapsed(group)
+    },
     x: event.clientX,
     y: event.clientY
   };
@@ -492,6 +507,10 @@ function resolveItemCheckbox(item: BudgetCategoryContainerItem) {
   return item.hasCheckbox ?? props.hasCheckbox;
 }
 
+function resolveGroupCollapsed(group: BudgetCategoryContainerGroup) {
+  return collapsedOverrides.value[group.id] ?? group.collapsed ?? false;
+}
+
 function onGroupSelection(groupId: string, value: boolean) {
   emit("update:groupSelected", { groupId, value });
 }
@@ -501,6 +520,10 @@ function onItemSelection(groupId: string, itemId: string, value: boolean) {
 }
 
 function onCollapsed(groupId: string, collapsed: boolean) {
+  collapsedOverrides.value = {
+    ...collapsedOverrides.value,
+    [groupId]: collapsed
+  };
   emit("update:collapsed", { groupId, collapsed });
 }
 
@@ -551,7 +574,7 @@ function onDrag(event: DragEvent) {
 
         <div
           v-if="dragState?.type === 'group' && isGroupPreviewTarget(groupIndex)"
-          class="pointer-events-none py-2"
+          class="pointer-events-none py-1"
           data-testid="budget-category-container-preview"
         >
           <div
@@ -613,7 +636,7 @@ function onDrag(event: DragEvent) {
           :activity="group.activity"
           :available="group.available"
           :size="size"
-          :collapsed="group.collapsed"
+          :collapsed="resolveGroupCollapsed(group)"
           :indeterminate="group.indeterminate ?? false"
           :disabled="group.disabled ?? disabled"
           :has-checkbox="resolveGroupCheckbox(group)"
@@ -670,7 +693,7 @@ function onDrag(event: DragEvent) {
 
                 <div
                   v-if="dragState?.type === 'item' && isItemPreviewTarget(group.id, itemIndex)"
-                  class="pointer-events-none py-2"
+                  class="pointer-events-none py-1"
                   data-testid="budget-category-container-preview"
                 >
                   <div
@@ -779,7 +802,7 @@ function onDrag(event: DragEvent) {
 
               <div
                 v-if="dragState?.type === 'item' && isItemPreviewTarget(group.id, group.items.length)"
-                class="pointer-events-none py-2"
+                class="pointer-events-none py-1"
                 data-testid="budget-category-container-preview"
               >
                 <div
@@ -842,7 +865,7 @@ function onDrag(event: DragEvent) {
 
       <div
         v-if="dragState?.type === 'group' && isGroupPreviewTarget(groups.length)"
-        class="pointer-events-none py-2"
+        class="pointer-events-none py-1"
         data-testid="budget-category-container-preview"
       >
         <div
