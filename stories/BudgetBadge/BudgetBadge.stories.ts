@@ -33,6 +33,7 @@ export const Colors: Story = {
       <div class="flex flex-wrap gap-2">
         <BudgetBadge text="Primary" color="primary" />
         <BudgetBadge text="Secondary" color="secondary" />
+        <BudgetBadge text="Neutral" color="neutral" />
         <BudgetBadge text="Ghost" color="ghost" />
         <BudgetBadge text="Success" color="success" />
         <BudgetBadge text="Warning" color="warning" />
@@ -50,6 +51,7 @@ export const Sizes: Story = {
         <div class="flex flex-wrap items-center gap-2">
           <BudgetBadge text="SM Primary" size="sm" color="primary" />
           <BudgetBadge text="SM Secondary" size="sm" color="secondary" />
+          <BudgetBadge text="SM Neutral" size="sm" color="neutral" />
           <BudgetBadge text="SM Ghost" size="sm" color="ghost" />
           <BudgetBadge text="SM Success" size="sm" color="success" />
           <BudgetBadge text="SM Warning" size="sm" color="warning" />
@@ -58,6 +60,7 @@ export const Sizes: Story = {
         <div class="flex flex-wrap items-center gap-2">
           <BudgetBadge text="MD Primary" size="md" color="primary" />
           <BudgetBadge text="MD Secondary" size="md" color="secondary" />
+          <BudgetBadge text="MD Neutral" size="md" color="neutral" />
           <BudgetBadge text="MD Ghost" size="md" color="ghost" />
           <BudgetBadge text="MD Success" size="md" color="success" />
           <BudgetBadge text="MD Warning" size="md" color="warning" />
@@ -66,6 +69,7 @@ export const Sizes: Story = {
         <div class="flex flex-wrap items-center gap-2">
           <BudgetBadge text="LG Primary" size="lg" color="primary" />
           <BudgetBadge text="LG Secondary" size="lg" color="secondary" />
+          <BudgetBadge text="LG Neutral" size="lg" color="neutral" />
           <BudgetBadge text="LG Ghost" size="lg" color="ghost" />
           <BudgetBadge text="LG Success" size="lg" color="success" />
           <BudgetBadge text="LG Warning" size="lg" color="warning" />

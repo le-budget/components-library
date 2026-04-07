@@ -10,7 +10,8 @@ import {
   faChevronUp,
   faChevronRight,
   faArrowDown,
-  faArrowUp
+  faArrowUp,
+  faGripVertical
 } from "@fortawesome/free-solid-svg-icons";
 
 export type StatusIconName =
@@ -42,3 +43,4 @@ export const chevronRightIcon = faChevronRight;
 export const clearIcon = faXmark;
 export const sortArrowDownIcon = faArrowDown;
 export const sortArrowUpIcon = faArrowUp;
+export const dragHandleIcon = faGripVertical;

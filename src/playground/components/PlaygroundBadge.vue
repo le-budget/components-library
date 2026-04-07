@@ -14,6 +14,7 @@ const badgeCollapsed = ref(true);
             <div class="flex flex-wrap gap-2">
                 <BudgetBadge text="Primary" color="primary" />
                 <BudgetBadge text="Secondary" color="secondary" />
+                <BudgetBadge text="Neutral" color="neutral" />
                 <BudgetBadge text="Ghost" color="ghost" />
                 <BudgetBadge text="Success" color="success" />
                 <BudgetBadge text="Warning" color="warning" />

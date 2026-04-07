@@ -27,6 +27,9 @@ import PlaygroundStatus from "./components/PlaygroundStatus.vue";
 import PlaygroundSkeleton from "./components/PlaygroundSkeleton.vue";
 import PlaygroundRadialProgress from "./components/PlaygroundRadialProgress.vue";
 import PlaygroundProgressBar from "./components/PlaygroundProgressBar.vue";
+import PlaygroundCategoryItem from "./components/PlaygroundCategoryItem.vue";
+import PlaygroundCategoryGroup from "./components/PlaygroundCategoryGroup.vue";
+import PlaygroundCategoryContainer from "./components/PlaygroundCategoryContainer.vue";
 import PlaygroundPieChart from "./components/PlaygroundPieChart.vue";
 import PlaygroundBarChart from "./components/PlaygroundBarChart.vue";
 import PlaygroundLineChart from "./components/PlaygroundLineChart.vue";
@@ -64,6 +67,9 @@ import PlaygroundTab from "./components/PlaygroundTab.vue";
     <PlaygroundStatus />
     <PlaygroundRadialProgress />
     <PlaygroundProgressBar />
+    <PlaygroundCategoryItem />
+    <PlaygroundCategoryGroup />
+    <PlaygroundCategoryContainer />
     <PlaygroundPieChart />
     <PlaygroundBarChart />
     <PlaygroundLineChart />

@@ -24,6 +24,15 @@ describe("BudgetBadge", () => {
         ]
       },
       {
+        color: "neutral",
+        classes: [
+          "bg-slate-100",
+          "text-slate-700",
+          "border-slate-300",
+          "hover:bg-slate-200"
+        ]
+      },
+      {
         color: "ghost",
         classes: [
           "bg-transparent",
@@ -77,17 +86,17 @@ describe("BudgetBadge", () => {
     const sm = mount(BudgetBadge, {
       props: { text: "SM", size: "sm" }
     });
-    expect(sm.classes()).toContain("text-[11px]");
+    expect(sm.classes()).toContain("text-[10px]");
 
     const lg = mount(BudgetBadge, {
       props: { text: "LG", size: "lg" }
     });
-    expect(lg.classes()).toContain("text-sm");
+    expect(lg.classes()).toContain("text-[12px]");
 
     const md = mount(BudgetBadge, {
       props: { text: "MD", size: "md" }
     });
-    expect(md.classes()).toContain("text-[13px]");
+    expect(md.classes()).toContain("text-[11px]");
   });
 
   it("renders icon slots", () => {
@@ -147,7 +156,7 @@ describe("BudgetBadge", () => {
     const iconWrappers = wrapper.findAll("span > span.inline-flex.items-center");
     expect(iconWrappers.length).toBeGreaterThan(0);
     iconWrappers.forEach((node) => {
-      expect(node.classes()).toContain("text-lg");
+      expect(node.classes()).toContain("text-sm");
     });
   });
 });

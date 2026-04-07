@@ -19,6 +19,9 @@ export { default as BudgetAvatar } from "./components/BudgetAvatar/BudgetAvatar.
 export { default as BudgetToast } from "./components/BudgetToast/BudgetToast.vue";
 export { default as BudgetToastContainer } from "./components/BudgetToastContainer/BudgetToastContainer.vue";
 export { default as BudgetCard } from "./components/BudgetCard/BudgetCard.vue";
+export { default as BudgetCategoryContainer } from "./components/BudgetCategoryContainer/BudgetCategoryContainer.vue";
+export { default as BudgetCategoryGroup } from "./components/BudgetCategoryGroup/BudgetCategoryGroup.vue";
+export { default as BudgetCategoryItem } from "./components/BudgetCategoryItem/BudgetCategoryItem.vue";
 export { default as BudgetIcon } from "./components/BudgetIcon/BudgetIcon.vue";
 export { default as BudgetDivider } from "./components/BudgetDivider/BudgetDivider.vue";
 export { default as BudgetDrawer } from "./components/BudgetDrawer/BudgetDrawer.vue";
@@ -51,6 +54,14 @@ export { default as BudgetTableRow } from "./components/BudgetTableRow/BudgetTab
 export { default as BudgetTableCell } from "./components/BudgetTableCell/BudgetTableCell.vue";
 export { default as BudgetTableGroup } from "./components/BudgetTableGroup/BudgetTableGroup.vue";
 export { statusIconMap, statusLabelMap, type StatusIconName } from "./icons";
+export type {
+  BudgetCategoryContainerCheckboxColor,
+  BudgetCategoryContainerGroup,
+  BudgetCategoryContainerItem,
+  BudgetCategoryContainerOrderItem,
+  BudgetCategoryContainerOrderEntry,
+  BudgetCategoryContainerSize
+} from "./components/BudgetCategoryContainer/budgetCategoryContainer.types";
 export {
   budgetToast,
   useBudgetToast,

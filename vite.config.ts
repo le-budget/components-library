@@ -4,6 +4,9 @@ import path from "node:path";
 
 export default defineConfig({
   plugins: [vue()],
+  server: {
+    port: 5172
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

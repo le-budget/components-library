@@ -11,13 +11,14 @@ Badge simple avec texte et couleur.
 ## Props
 
 - `text`: texte du badge
-- `color`: `primary | secondary | ghost | success | warning | error`
+- `color`: `primary | secondary | neutral | ghost | success | warning | error`
 - `size`: `sm | md | lg`
 
 ## Examples
 
 ```vue
 <BudgetBadge text="Archive" color="secondary" />
+<BudgetBadge text="Neutre" color="neutral" />
 <BudgetBadge text="SM" size="sm" />
 <BudgetBadge text="Avec icone">
   <template #icon>
