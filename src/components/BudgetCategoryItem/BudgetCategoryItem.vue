@@ -89,7 +89,7 @@ function onToggle(value: boolean) {
         >
           <span
             v-if="props.hasDragHandle"
-            class="inline-flex shrink-0 items-center justify-center rounded-md text-[#776f61]"
+            class="inline-flex shrink-0 items-center justify-center rounded-md text-[#b9b2a8]"
             :class="[sizeClasses.handleButton, sizeClasses.handleIcon]"
             data-testid="budget-category-item-drag-handle"
           >

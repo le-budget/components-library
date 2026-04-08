@@ -648,7 +648,7 @@ function onDrag(event: DragEvent) {
           <template #dragHandle>
             <button
               type="button"
-              class="inline-flex items-center justify-center rounded-md text-[#776f61] transition hover:bg-black/5 hover:text-[#5d564d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue disabled:cursor-not-allowed disabled:opacity-45"
+              class="inline-flex items-center justify-center rounded-md text-[#b9b2a8] transition hover:bg-black/5 hover:text-[#938c82] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue disabled:cursor-not-allowed disabled:opacity-45"
               :class="[
                 resolveHandleClass(size),
                 isGroupDragDisabled(group) ? 'cursor-default' : 'cursor-grab active:cursor-grabbing'
@@ -756,7 +756,7 @@ function onDrag(event: DragEvent) {
                   <template #dragHandle>
                     <button
                       type="button"
-                      class="inline-flex items-center justify-center rounded-md text-[#776f61] transition hover:bg-black/5 hover:text-[#5d564d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue disabled:cursor-not-allowed disabled:opacity-45"
+                      class="inline-flex items-center justify-center rounded-md text-[#b9b2a8] transition hover:bg-black/5 hover:text-[#938c82] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-c-blue disabled:cursor-not-allowed disabled:opacity-45"
                       :class="[
                         resolveHandleClass(size),
                         isItemDragDisabled(group, item) ? 'cursor-default' : 'cursor-grab active:cursor-grabbing'
