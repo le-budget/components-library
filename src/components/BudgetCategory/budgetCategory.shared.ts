@@ -5,7 +5,7 @@ export type BudgetCategorySize = "sm" | "md" | "lg";
 export type BudgetCategoryBadgeColor = "neutral" | "success" | "warning" | "error";
 
 export const budgetCategoryGridClass =
-  "grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1.8fr)_112px_112px_116px] lg:gap-4 xl:grid-cols-[minmax(0,1.7fr)_132px_132px_132px]";
+  "grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1.95fr)_100px_100px_108px] lg:gap-4 xl:grid-cols-[minmax(0,1.8fr)_120px_120px_124px]";
 
 export const budgetCategorySizeKey: InjectionKey<ComputedRef<BudgetCategorySize>> =
   Symbol("budget-category-size");
