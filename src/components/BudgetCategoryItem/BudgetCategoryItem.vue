@@ -98,6 +98,13 @@ function onToggle(value: boolean) {
             </slot>
           </span>
 
+          <span
+            v-if="props.hasCheckbox"
+            aria-hidden="true"
+            class="inline-flex shrink-0"
+            :class="sizeClasses.chevronSpacer"
+          />
+
           <BudgetCheckbox
             v-if="props.hasCheckbox"
             :model-value="modelValue"

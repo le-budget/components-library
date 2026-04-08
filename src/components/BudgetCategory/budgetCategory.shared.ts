@@ -45,7 +45,8 @@ export function resolveBudgetCategoryItemSize(size: BudgetCategorySize) {
     return {
       container: "px-3 py-2",
       innerGrid: "gap-x-2 gap-y-1.5",
-      controlGap: "gap-1",
+      controlGap: "gap-1.5",
+      chevronSpacer: "h-5 w-5",
       row: "gap-1.5",
       prefix: "text-sm",
       label: "text-[13px]",
@@ -64,7 +65,8 @@ export function resolveBudgetCategoryItemSize(size: BudgetCategorySize) {
     return {
       container: "px-4 py-2.5",
       innerGrid: "gap-x-2.5 gap-y-1.5",
-      controlGap: "gap-1.5",
+      controlGap: "gap-2",
+      chevronSpacer: "h-6 w-6",
       row: "gap-2",
       prefix: "text-base",
       label: "text-[13px]",
@@ -82,7 +84,8 @@ export function resolveBudgetCategoryItemSize(size: BudgetCategorySize) {
   return {
     container: "px-5 py-3",
     innerGrid: "gap-x-3 gap-y-1.5",
-    controlGap: "gap-1.5",
+    controlGap: "gap-2.5",
+    chevronSpacer: "h-7 w-7",
     row: "gap-2.5",
     prefix: "text-lg",
     label: "text-[14px]",
