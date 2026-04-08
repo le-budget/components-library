@@ -103,7 +103,7 @@ function toggleCollapse() {
       :class="[
         budgetCategoryGridClass,
         sizeClasses.container,
-        'bg-[#fcfcfb] font-semibold text-[#39342f]',
+        'bg-[#f4f4f4] font-semibold text-[#39342f]',
         disabled ? 'opacity-60' : ''
       ]"
       :data-size="resolvedSize"
