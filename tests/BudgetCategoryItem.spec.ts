@@ -23,14 +23,34 @@ describe("BudgetCategoryItem", () => {
     const wrapper = mountItem();
 
     expect(wrapper.text()).toContain("Internet et mobiles");
-    expect(wrapper.text()).toContain("201,96 EUR");
-    expect(wrapper.text()).toContain("-126,98 EUR");
-    expect(wrapper.text()).toContain("74,98 EUR");
+    expect(wrapper.text()).toContain("201,96");
+    expect(wrapper.text()).toContain("-126,98");
+    expect(wrapper.text()).toContain("74,98");
+    expect(wrapper.text()).toContain("€");
+  });
+
+  it("formats raw numeric-like values to french currency and preserves dash values", () => {
+    const wrapper = mountItem({
+      assigned: "1489.81",
+      activity: "-1374.58",
+      available: "-"
+    });
+
+    expect(wrapper.text()).toContain("1 489,81");
+    expect(wrapper.text()).toContain("-1 374,58");
+    expect(wrapper.text()).toContain("-");
   });
 
   it("renders the progress label", () => {
     const wrapper = mountItem();
     expect(wrapper.text()).toContain("Depense 126,98 EUR sur 201,96 EUR");
+  });
+
+  it("renders label and amounts without bold weight", () => {
+    const wrapper = mountItem();
+
+    expect(wrapper.find(".truncate.text-\\[\\#1f1a17\\]").classes()).toContain("font-normal");
+    expect(wrapper.findAll(".text-\\[\\#2f2a26\\]").every((node) => node.classes().includes("font-normal"))).toBe(true);
   });
 
   it("clamps progress to the 0-100 range", () => {

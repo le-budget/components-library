@@ -57,6 +57,39 @@ const sizeClasses = computed(() => resolveBudgetCategoryItemSize(resolvedSize.va
 const normalizedProgress = computed(() => Math.min(Math.max(props.progress, 0), 100));
 const progressColor = computed(() => resolveBudgetCategoryProgressColor(props.tone));
 const availableBadgeColor = computed(() => resolveBudgetCategoryAvailableBadgeColor(props.tone));
+const assignedText = computed(() => formatFrenchCurrency(props.assigned));
+const activityText = computed(() => formatFrenchCurrency(props.activity));
+const availableText = computed(() => formatFrenchCurrency(props.available));
+
+function formatFrenchCurrency(value: string) {
+  const trimmedValue = value.trim();
+  if (!trimmedValue) {
+    return value;
+  }
+
+  if (trimmedValue === "-") {
+    return trimmedValue;
+  }
+
+  const normalizedValue = trimmedValue
+    .replace(/\s*€/gu, "")
+    .replace(/\s*EUR/giu, "")
+    .replace(/\u00A0/gu, " ")
+    .replace(/\s+/gu, "")
+    .replace(/,/gu, ".");
+
+  const parsedValue = Number(normalizedValue);
+  if (Number.isNaN(parsedValue)) {
+    return value;
+  }
+
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(parsedValue);
+}
 
 function onToggle(value: boolean) {
   emit("update:modelValue", value);
@@ -127,7 +160,7 @@ function onToggle(value: boolean) {
               <slot name="prefix" />
             </span>
 
-            <span class="truncate font-semibold text-[#1f1a17]" :class="sizeClasses.label">
+            <span class="truncate font-normal text-[#1f1a17]" :class="sizeClasses.label">
               {{ label }}
             </span>
 
@@ -148,15 +181,15 @@ function onToggle(value: boolean) {
       </div>
     </div>
 
-    <div class="self-center text-right font-medium text-[#2f2a26]" :class="sizeClasses.amount">
-      {{ assigned }}
+    <div class="self-center text-right font-normal text-[#2f2a26]" :class="sizeClasses.amount">
+      {{ assignedText }}
     </div>
-    <div class="self-center text-right font-medium text-[#2f2a26]" :class="sizeClasses.amount">
-      {{ activity }}
+    <div class="self-center text-right font-normal text-[#2f2a26]" :class="sizeClasses.amount">
+      {{ activityText }}
     </div>
     <div class="self-center text-right">
       <BudgetBadge
-        :text="available"
+        :text="availableText"
         :color="availableBadgeColor"
         :size="sizeClasses.badgeSize"
         data-testid="budget-category-item-available"
