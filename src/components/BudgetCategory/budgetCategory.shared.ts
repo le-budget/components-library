@@ -103,11 +103,11 @@ export function resolveBudgetCategoryItemSize(size: BudgetCategorySize) {
 export function resolveBudgetCategoryGroupSize(size: BudgetCategorySize) {
   if (size === "sm") {
     return {
-      container: "px-3 py-2 text-[12px]",
+      container: "px-3 py-2 text-[13px]",
       controlGap: "gap-1",
       row: "gap-1.5",
-      title: "text-[12px]",
-      amount: "text-[12px]",
+      title: "text-[13px]",
+      amount: "text-[13px]",
       button: "h-5 w-5",
       icon: "text-[10px]",
       handleButton: "h-5 w-5",
@@ -118,11 +118,11 @@ export function resolveBudgetCategoryGroupSize(size: BudgetCategorySize) {
 
   if (size === "md") {
     return {
-      container: "px-4 py-2.5 text-[13px]",
+      container: "px-4 py-2.5 text-[14px]",
       controlGap: "gap-1.5",
       row: "gap-2",
-      title: "text-[13px]",
-      amount: "text-[13px]",
+      title: "text-[14px]",
+      amount: "text-[14px]",
       button: "h-6 w-6",
       icon: "text-xs",
       handleButton: "h-6 w-6",
@@ -132,11 +132,11 @@ export function resolveBudgetCategoryGroupSize(size: BudgetCategorySize) {
   }
 
   return {
-    container: "px-5 py-3 text-[14px]",
+    container: "px-5 py-3 text-[15px]",
     controlGap: "gap-1.5",
     row: "gap-2.5",
-    title: "text-[14px]",
-    amount: "text-[14px]",
+    title: "text-[15px]",
+    amount: "text-[15px]",
     button: "h-7 w-7",
     icon: "text-sm",
     handleButton: "h-7 w-7",

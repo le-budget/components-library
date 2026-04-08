@@ -38,9 +38,22 @@ describe("BudgetCategoryGroup", () => {
     const wrapper = mountGroup();
 
     expect(wrapper.text()).toContain("Factures");
-    expect(wrapper.text()).toContain("821,07 EUR");
-    expect(wrapper.text()).toContain("-627,23 EUR");
-    expect(wrapper.text()).toContain("313,84 EUR");
+    expect(wrapper.text()).toContain("821,07");
+    expect(wrapper.text()).toContain("-627,23");
+    expect(wrapper.text()).toContain("313,84");
+    expect(wrapper.text()).toContain("€");
+  });
+
+  it("formats raw numeric-like values to french currency and preserves dash values", () => {
+    const wrapper = mountGroup({
+      assigned: "1489.81",
+      activity: "-1374.58",
+      available: "-"
+    });
+
+    expect(wrapper.text()).toContain("1 489,81");
+    expect(wrapper.text()).toContain("-1 374,58");
+    expect(wrapper.text()).toContain("-");
   });
 
   it("emits update:modelValue when the group checkbox changes", async () => {

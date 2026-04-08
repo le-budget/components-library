@@ -52,6 +52,9 @@ const internalCollapsed = ref(false);
 const hasPrefix = computed(() => Boolean(slots.prefix));
 const resolvedSize = computed<BudgetCategorySize>(() => props.size);
 const sizeClasses = computed(() => resolveBudgetCategoryGroupSize(resolvedSize.value));
+const assignedText = computed(() => formatFrenchCurrency(props.assigned));
+const activityText = computed(() => formatFrenchCurrency(props.activity));
+const availableText = computed(() => formatFrenchCurrency(props.available));
 const isControlled = computed(() => props.collapsed !== undefined);
 const isCollapsed = computed(() => {
   if (isControlled.value) {
@@ -78,6 +81,36 @@ watch(
 
 function onToggleSelection(value: boolean) {
   emit("update:modelValue", value);
+}
+
+function formatFrenchCurrency(value: string) {
+  const trimmedValue = value.trim();
+  if (!trimmedValue) {
+    return value;
+  }
+
+  if (trimmedValue === "-") {
+    return trimmedValue;
+  }
+
+  const normalizedValue = trimmedValue
+    .replace(/\s*€/gu, "")
+    .replace(/\s*EUR/giu, "")
+    .replace(/\u00A0/gu, " ")
+    .replace(/\s+/gu, "")
+    .replace(/,/gu, ".");
+
+  const parsedValue = Number(normalizedValue);
+  if (Number.isNaN(parsedValue)) {
+    return value;
+  }
+
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(parsedValue);
 }
 
 function toggleCollapse() {
@@ -156,9 +189,9 @@ function toggleCollapse() {
         </div>
       </div>
 
-      <span class="text-right" :class="sizeClasses.amount">{{ assigned }}</span>
-      <span class="text-right" :class="sizeClasses.amount">{{ activity }}</span>
-      <span class="text-right" :class="sizeClasses.amount">{{ available }}</span>
+      <span class="text-right" :class="sizeClasses.amount">{{ assignedText }}</span>
+      <span class="text-right" :class="sizeClasses.amount">{{ activityText }}</span>
+      <span class="text-right" :class="sizeClasses.amount">{{ availableText }}</span>
     </div>
 
     <transition name="budget-category-group-collapse">
