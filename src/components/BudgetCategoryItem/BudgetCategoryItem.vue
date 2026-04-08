@@ -68,7 +68,7 @@ function onToggle(value: boolean) {
     :class="[
       budgetCategoryGridClass,
       sizeClasses.container,
-      'transition hover:bg-[#fcfaf6] md:items-center',
+      'transition hover:bg-[#fffdf2] md:items-center',
       disabled ? 'opacity-60' : ''
     ]"
     data-testid="budget-category-item"
