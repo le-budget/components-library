@@ -150,7 +150,7 @@ function onToggle(value: boolean) {
         </div>
 
         <div class="min-w-0">
-          <div class="flex items-center" :class="sizeClasses.row">
+          <div class="flex min-w-0 items-center" :class="sizeClasses.row">
             <span
               v-if="hasPrefix"
               class="inline-flex shrink-0 items-center justify-center"
@@ -160,11 +160,11 @@ function onToggle(value: boolean) {
               <slot name="prefix" />
             </span>
 
-            <span class="truncate font-normal text-[#1f1a17]" :class="sizeClasses.label">
+            <span class="min-w-0 truncate font-normal text-[#1f1a17]" :class="sizeClasses.label">
               {{ label }}
             </span>
 
-            <span class="ml-auto font-medium text-[#6e675e]" :class="sizeClasses.progressLabel">
+            <span class="ml-auto min-w-0 truncate font-medium text-[#6e675e]" :class="sizeClasses.progressLabel">
               {{ progressLabel }}
             </span>
           </div>
